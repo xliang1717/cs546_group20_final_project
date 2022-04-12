@@ -1,4 +1,4 @@
-const mongoCollections = require('../../../config/mongoCollections');
+const mongoCollections = require('../config/mongoCollections');
 const parklot = mongoCollections.parklot;
 const { ObjectId } = require('mongodb');
 //const validation = require('../validation');

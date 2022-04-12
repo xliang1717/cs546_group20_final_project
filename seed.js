@@ -1,5 +1,5 @@
 const dbConnection = require('./config/mongoConnection');
-const method = require('./final/cs546_group20_final_project/method');
+const method = require('./method');
 const user = method.user;
 const parklot = method.parklot;
 const comment = method.comment;
