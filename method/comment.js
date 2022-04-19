@@ -6,30 +6,22 @@ const validation = require('../validation');
 
 
 module.exports = {
-    async get(id) {
+    async getAllCommentsOfTheOneParkLotID(id) {
     if (arguments.length !== 1)  throw " You must provide an id and only one id to search for!";
     id = validation.checkId(id,'ID');
         
     const commentCollection = await comments();
-    const commentData = await commentCollection.findOne( {_id : ObjectId(id) });
-    if (commentData=== null) throw 'No comment with that id';
-    commentData._id = commentData._id.toString();
-    return commentData;
+    const commentsList = await commentCollection.find( {parkLotId : id }).toArray();
+    if (commentsList.length== 0) return "There is no comment for this parkLot, add one now!";
+    for(let i = 0; i < commentsList.length; i++) {
+        commentsList[i]._id = commentsList[i]._id.toString();
+    }
+
+    // console.log(commentsList);
+
+    return commentsList;
     },
 
-    async getAll() {
-        if (arguments.length !== 0) throw "There should not input an argument !";
-        const commentCollection = await comments();
-        const commentsList = await commentCollection.find({}).toArray();
-        if (commentsList.length== 0) return [];
-        for(let i = 0; i < commentsList.length; i++) {
-            commentsList[i]._id = commentsList[i]._id.toString();
-        }
-
-        // console.log(commentsList);
-    
-        return commentsList;
-    },
 
     async create ( isDelete, commentTag, commentdate, parkLotId, UserId, commentInfo, level) {
 
@@ -127,5 +119,50 @@ module.exports = {
         if (deletionInfo.deletedCount === 0) throw `Could not delete band with id of ${id}`;
         return "your comment has been successfully deleted" ;
     }
+
+
+
+    
+    // ///建seed的时候用的
+    // ,
+    // async get(id) {
+    //     if (arguments.length !== 1)  throw " You must provide an id and only one id to search for!";
+    //     id = validation.checkId(id,'ID');
+            
+    //     const commentCollection = await comments();
+    //     const commentData = await commentCollection.findOne( {_id : ObjectId(id) });
+    //     if (commentData=== null) throw 'No comment with that id';
+    //     commentData._id = commentData._id.toString();
+    //     return commentData;
+    //     },
+
+    // async getAll() {
+    //     if (arguments.length !== 0) throw "There should not input an argument !";
+    //     const commentCollection = await comments();
+    //     const commentsList = await commentCollection.find({}).toArray();
+    //     if (commentsList.length== 0) return "There is no comment for this parkLot, add one now!";
+    //     for(let i = 0; i < commentsList.length; i++) {
+    //         commentsList[i]._id = commentsList[i]._id.toString();
+    //     }
+
+    //     // console.log(commentsList);
+    
+    //     return commentsList;
+    // },
+
+    // ////建seed的时候用的
+    // async getAll() {
+    //     if (arguments.length !== 0) throw "There should not input an argument !";
+    //     const commentCollection = await comments();
+    //     const commentsList = await commentCollection.find({}).toArray();
+    //     if (commentsList.length== 0) return [];
+    //     for(let i = 0; i < commentsList.length; i++) {
+    //         commentsList[i]._id = commentsList[i]._id.toString();
+    //     }
+
+    //     // console.log(commentsList);
+    
+    //     return commentsList;
+    // }
 
 }

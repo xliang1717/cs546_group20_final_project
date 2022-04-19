@@ -32,7 +32,7 @@ async function main() {
     const comment1Id = comm1._id.toString();
     const comment2Id = comm2._id.toString();
 
-    // await comment.remove(comment1Id);
+    //await comment.remove(comment1Id);
     // await comment.remove(comment2Id);
 
     await petrolStation.create('Hoboken', {"Longitude" : '137.6W' , "latitude" : '50.1N'}, 'Thirsty station', ['gaslion', 'diesel'] )

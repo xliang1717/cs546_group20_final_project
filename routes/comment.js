@@ -2,243 +2,165 @@ const express = require('express');
 const router = express.Router();
 const method = require('../method');
 const commentsData = method.comment;
+const xss = require('xss');
 //const validation = require('../validation');
 //const mongoCollections = require('../config/mongoCollections');
 //const { ObjectId } = require('mongodb');
 //const users = mongoCollections.user;
 
-router.get('/', async (req,res) => {
-    try {
-        
-        // let bandCollection = await bands();
-        // let allBandsList = await bandCollection.find({},{projection : {name : 1}}).toArray();
 
-        // if (allBandsList.length !== 0) {
-        //     for (let i = 0; i < allBandsList.length; i++) {
-        //         allBandsList[i]._id = allBandsList[i]._id.toString();
-        //     }
-        // }
-        // res.status(200).json(allBandsList);
-
-        let commentsDataList = await commentsData.getAll();
-        //let result = allusersDataList.map(({_id, name}) =>({_id,name}));
-        res.status(200).json(commentsDataList);
-    } catch(e) {
-        res.status(500).json({error : e});
-    }
-});
-
-router.get('/:id', async (req, res) =>{
-    let id = req.params.id;
-    // try {
-    //     id = validation.checkId(id, 'ID URL Param');
-    // }catch(e){
-    //     return res.status(400).json({error : e });
-    // }
-
-    try{
-        let comment = await commentsData.get(id);
-        res.status(200).json(comment);
-    }catch(e){
-        res.status(404).json({error : e});
-    }
-});
-
-// router.post('/', async(req, res) =>{
-    
-//     let bandPostInfo = req.body;
-
-//     try{
-//         if(!bandPostInfo) throw 'There is no bandPostInfo in the post body !';
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         if(Object.keys(bandPostInfo).length !== 6) throw 'There is wrong bandPostInfo number in the post body !';
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         bandPostInfo.name = validation.checkString(bandPostInfo.name, 'Name');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         bandPostInfo.genre = validation.checkStringArray(bandPostInfo.genre,'Genre');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-        
-//         bandPostInfo.website = validation.checkString(bandPostInfo.website,'Website');
-
-//         if (!bandPostInfo.website.match(/^[hH][tT][tT][pP]:\/\/[wW][wW][wW]\.[a-zA-Z0-9][^\s]{4,}\.[cC][oO][mM]$/)) {
-//             throw "The website format is invalid !"
-//         };
-        
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         bandPostInfo.genre = validation.checkStringArray(bandPostInfo.genre,'Genre');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         bandPostInfo.recordLabel = validation.checkString(bandPostInfo.recordLabel,'RecordLabel');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         bandPostInfo.bandMembers = validation.checkStringArray(bandPostInfo.bandMembers,'BandMembers');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         bandPostInfo.yearFormed = validation.checkYear(bandPostInfo.yearFormed,'YearFormed');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
+////暂时没用
+// router.get('/', async (req,res) => {
 //     try {
-//         const newBand = await bandsData.create(
-//             bandPostInfo.name,
-//             bandPostInfo.genre,
-//             bandPostInfo.website,
-//             bandPostInfo.recordLabel,
-//             bandPostInfo.bandMembers,
-//             bandPostInfo.yearFormed
-//         )
-//         res.status(200).json(newBand);
-//     }catch(e){
-//         res.status(500).json({error: e});
-//     }
+        
+//         // let bandCollection = await bands();
+//         // let allBandsList = await bandCollection.find({},{projection : {name : 1}}).toArray();
 
+//         // if (allBandsList.length !== 0) {
+//         //     for (let i = 0; i < allBandsList.length; i++) {
+//         //         allBandsList[i]._id = allBandsList[i]._id.toString();
+//         //     }
+//         // }
+//         // res.status(200).json(allBandsList);
+//         let commentsDataList = await commentsData.getAll();
+//         //let result = allusersDataList.map(({_id, name}) =>({_id,name}));
+//         if(commentsDataList){
+//             if(Array.isArray(commentsDataList))
+//             res.render('partials/parkLot',{layout:null, commentsDataList});
+//         }else if (typeof commentsDataList === 'string'){
+//             res.render('partials/parkLot',{layout:null, result : commentsDataList});
+//         }else{
+//             res.status(500).render('partials/parkLot',{layout:null, error : "Can't find the comments of this ParkLot"});
+//         }
+//     } catch(e) {
+//         res.status(400).render('partials/parkLot',{layout:null, error : e});
+//     }
 // });
 
-// router.put('/:id', async(req,res) =>{
+////建seed时候要注释掉
+router.get('/:id', async (req, res) =>{
+    let id = req.params.id; //这个id 是停车场的id
+    try {
+        id = validation.checkId(id, 'ID URL Param');
+    }catch(e){
+        return res.status(400).json({error : e });
+    }
+
+    try{
+        let commentsList = await commentsData.getAllCommentsOfTheOneParkLotID(id);
+        if(commentsList){
+            if(typeof commentsList === 'string'){
+                res.render('partials/parkLot',{layout:null, result : commentsList});
+            }else{
+                res.render('partials/parkLot',{layout:null, commentsList});
+            }
+        }else{
+            res.status(500).render('partials/parkLot',{layout:null, error : "Can't find the comments of this ParkLot"});
+        }
+        
+    }catch(e){
+        res.status(400).render('partials/parkLot',{layout:null, error : e});
+    }
+});
+
+router.post('/comment', async(req, res) =>{
+    try{
+        req.session.user = true; //test
+        if(req.session.user){
+            
+            let commentPostInfo = req.body;
+
+            let newComment = await commentsData.create(
+                false,
+                xss(commentPostInfo.commentTag),
+                xss(commentPostInfo.commentdate),
+                xss(commentPostInfo.parkLotId),
+                xss(commentPostInfo.req.session.user.UserId),
+                xss(commentPostInfo.commentInfo),
+                xss(commentPostInfo.level)
+            );
+
+            if(newComment){
+                res.redirect('/parkLot',{title: 'parkLot', result:'The new comment has been successfully added !'});
+            }else{
+                res.status(500).render('partials/parkLot',{layout:null, error: "Can't add new comment!"});
+            }
+
+        }else{
+            res.status(403).render('result/login',{title : 'Login'});
+        }
+    }catch(e){
+        res.status(404).render('partials/parkLot',{layout:null, error: e});
+    }
+
+});
+
+router.delete('/:id', async(req,res) =>{
+    try{
+        let id =xss(req.params.id);
+        let UserId = xss(req.body.UserId);
+        if(req.session.user){
+            if(req.session.user.UserId === UserId){
+                let message =  await commentsData.remove(id)
+                if(message){
+                    res.redirect('/parkLot',{result : message})
+                }else{
+                    res.status(500).render('partials/parkLot',{layout:null, error: "Can't delete this comment!"});
+                }
+            }else{
+                res.status(403).render('partials/parkLot',{layout:null, error: "You are not allowed to delete this comment!"});
+            }
+        }else{
+            res.status(403).render('result/login',{title : 'Login'});
+        }
+    }catch(e){
+        res.status(400).render('partials/parkLot',{layout:null, error: e})
+    }
+
+})
+
+
+
+
+
+
+// //////建seed的时候用的
+// ;
+// router.get('/:id', async (req, res) =>{
 //     let id = req.params.id;
-//     let bandPutInfo = req.body;
-//     let bandCollection = await bands();
-//     try{
-//         if(!bandPutInfo) throw 'There is no bandPutInfo in the put body !';
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
+//     // try {
+//     //     id = validation.checkId(id, 'ID URL Param');
+//     // }catch(e){
+//     //     return res.status(400).json({error : e });
+//     // }
 
 //     try{
-//         if(Object.keys(bandPutInfo).length !== 6) throw 'There is wrong bandPutInfo number in the put body !';
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-    
-//     try {
-//         id = validation.checkId(id, 'ID URL Param');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try {
-//         bandPutInfo.name = validation.checkString(bandPutInfo.name, 'Name');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try{
-//         bandPutInfo.genre = validation.checkStringArray(bandPutInfo.genre,'Genre');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try{
-        
-//         bandPutInfo.website = validation.checkString(bandPutInfo.website, 'Website');
-        
-//         if (!bandPutInfo.website.match(/^[hH][tT][tT][pP]:\/\/[wW][wW][wW]\.[a-zA-Z0-9][^\s]{4,}\.[cC][oO][mM]$/)) {
-//             throw "The website format is invalid !"
-//         };
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try{
-//         bandPutInfo.recordLabel = validation.checkString(bandPutInfo.recordLabel, ' RecordLabel');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try{
-//         bandPutInfo.bandMembers = validation.checkStringArray(bandPutInfo.bandMembers, 'BandMembers');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try{
-//         bandPutInfo.yearFormed = validation.checkYear(bandPutInfo.yearFormed , 'YearFormed');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try{
-//         let checkTheBand = await bandCollection.findOne({_id : ObjectId(id)});  
-//         if (!checkTheBand) throw " No band with that id !"     
-//     }catch(e){
-//         return res.status(404).json({error : e});
-//     }
-
-//     try{
-//         await bandsData.update(
-//             id,
-//             bandPutInfo.name,
-//             bandPutInfo.genre,
-//             bandPutInfo.website,
-//             bandPutInfo.recordLabel,
-//             bandPutInfo.bandMembers,
-//             bandPutInfo.yearFormed
-//         );  
-//     }catch(e){
-//         return res.status(500).json({error : e});
-//     }
-
-//     try {
-//         let theBandNew = await bandsData.get(id);
-//         res.status(200).json(theBandNew);
+//         let comment = await commentsData.get(id);
+//         res.status(200).json(comment);
 //     }catch(e){
 //         res.status(404).json({error : e});
 //     }
-
 // });
-
-// router.delete('/:id', async(req,res) =>{
-//     let id = req.params.id;
-//     let bandCollection = await bands();
+// ////建seed的时候用的
+// router.get('/', async (req,res) => {
 //     try {
-//         id = validation.checkId(id, 'ID URL Param');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
+        
+//         // let bandCollection = await bands();
+//         // let allBandsList = await bandCollection.find({},{projection : {name : 1}}).toArray();
 
-//     try {
-//         await bandsData.get(id);
-//     }catch(e){
-//         return res.status(404).json({error : e});
-//     }
+//         // if (allBandsList.length !== 0) {
+//         //     for (let i = 0; i < allBandsList.length; i++) {
+//         //         allBandsList[i]._id = allBandsList[i]._id.toString();
+//         //     }
+//         // }
+//         // res.status(200).json(allBandsList);
 
-//     try {
-//         await bandCollection.deleteOne({_id : ObjectId(id)});
-//         res.status(200).json({bandId : id, deleted : true});
-//     }catch(e){
-//         res.status(500).json({error : e})
+//         let commentsDataList = await commentsData.getAll();
+//         //let result = allusersDataList.map(({_id, name}) =>({_id,name}));
+//         res.status(200).json(commentsDataList);
+//     } catch(e) {
+//         res.status(500).json({error : e});
 //     }
-// })
+// });
 
 module.exports = router;

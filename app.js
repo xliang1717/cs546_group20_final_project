@@ -6,12 +6,19 @@ const session = require('express-session');
 const configRoutes = require('./routes');
 const exphbs = require('express-handlebars');
 
+const handlebarsInstance = exphbs.create({
+    defaultLayout: 'main',
+    // Specify helpers which are only registered on this instance.
+
+    partialsDir: ['views/partials/']
+  });
+
 
 app.use('/public', static);
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.engine('handlebars', exphbs.engine({defaultLayout: 'main'}));
+app.engine('handlebars', handlebarsInstance.engine);
 app.set('view engine', 'handlebars');
 
 app.use(session({
@@ -27,6 +34,9 @@ app.use((req, res, next) => {
     let method = req.method;
     let route = req.originalUrl;
 
+    req.session.user = true; //test
+
+
     if (req.session.user) {
         console.log(date + ":" + method + " " + route + " " + "(Authenticated User)");
         next();
@@ -37,6 +47,7 @@ app.use((req, res, next) => {
     });
 
 app.use('/comment', (req,res,next) =>{
+    req.session.user = true; //test
     if (!req.session.user){ 
         res.status(403).render('result/comment', {title: 'Error', content: 'you are not logged in', haserror : true});
     }else{
