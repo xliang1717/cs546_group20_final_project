@@ -24,8 +24,8 @@ async function main() {
     const idPA = PA._id.toString();
     //const idPB = PB._id.toString();
 
-    const comm1 =  await comment.create(false,['new driver friendly'],'09/12/2020', idPA, idUA,'The best parklot ever',5);
-    const comm2 = await comment.create(false,['low fee'],'07/13/2022', idPA, idUA,'very nice parking lot ',4);
+    const comm1 =  await comment.create(false, 'Harry pot',['new driver friendly','small size'],'09/12/2020', idPA, idUA,'The best parklot ever',5);
+    const comm2 = await comment.create(false,'Panda Smith',['low fee'],'07/13/2022', idPA, idUA,'very nice parking lot ',4);
 
     
 

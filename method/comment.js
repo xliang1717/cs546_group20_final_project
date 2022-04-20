@@ -23,9 +23,9 @@ module.exports = {
     },
 
 
-    async create ( isDelete, commentTag, commentdate, parkLotId, UserId, commentInfo, level) {
+    async create ( isDelete,userName, commentTag, commentdate, parkLotId, UserId, commentInfo, level) {
 
-        if (arguments.length !== 7) {
+        if (arguments.length !== 8) {
             throw "There must be 7 arguments !"
         }
 
@@ -33,23 +33,24 @@ module.exports = {
             throw 'isDelete should be Boolean'
         }
 
-        commentTag = validation.checkStringArray(commentTag, 'commentTag');
+        // commentTag = validation.checkStringArray(commentTag, 'commentTag');
 
-        commentdate = validation.checkValidDate(commentdate, 'commentdate'); 
+        // commentdate = validation.checkValidDate(commentdate, 'commentdate'); 
 
-        parkLotId = validation.checkId(parkLotId,'parkLotId');
+        // parkLotId = validation.checkId(parkLotId,'parkLotId');
 
-        UserId = validation.checkId(UserId,'UserId');
+        // UserId = validation.checkId(UserId,'UserId');
 
-        commentInfo = validation.checkString(commentInfo, 'CommentInfo');
+        // commentInfo = validation.checkString(commentInfo, 'CommentInfo');
 
-        level = validation.checkRate(level,'Level');
+        // level = validation.checkRate(level,'Level');
         
         const commentCollection = await comments();
 
         let newComment = {
 
             isDelete : isDelete,
+            userName : userName,
             commentTag : commentTag, 
             commentdate : commentdate,
             parkLotId : parkLotId,
@@ -69,11 +70,12 @@ module.exports = {
 
         if (rate){
             const parkLotCollection = await parklot();
+            let rating = parseInt(rate);
             const parklotData = await parkLotCollection.findOne( {_id : ObjectId(parkLotId) });
             if(parklotData.totalCommentNumber){
-                await parkLotCollection.updateOne({_id : ObjectId(parkLotId)},{$inc : {totalCommentRating : rate, totalCommentNumber : 1} });
+                await parkLotCollection.updateOne({_id : ObjectId(parkLotId)},{$inc : {totalCommentRating : rating, totalCommentNumber : 1} });
             }else{
-                await parkLotCollection.updateOne({_id:ObjectId(parkLotId)}, {$set : {totalCommentRating : rate, totalCommentNumber: 1}})
+                await parkLotCollection.updateOne({_id:ObjectId(parkLotId)}, {$set : {totalCommentRating : rating, totalCommentNumber: 1}})
             }
 
             let avgbefore = await parkLotCollection.findOne( {_id : ObjectId(parkLotId) });
@@ -164,5 +166,8 @@ module.exports = {
     
     //     return commentsList;
     // }
+
+
+
 
 }
