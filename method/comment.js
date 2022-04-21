@@ -80,14 +80,14 @@ module.exports = {
 
             let avgbefore = await parkLotCollection.findOne( {_id : ObjectId(parkLotId) });
 
-            let avgrating = (avgbefore.totalCommentRating / avgbefore.totalCommentNumber);
+            let avgrating = (avgbefore.totalCommentRating / avgbefore.totalCommentNumber).toFixed(2);
 
             await parkLotCollection.updateOne({_id : ObjectId(parkLotId)}, {$set : {rating : avgrating}});
 
         }
 
 
-        const comment = await this.get(newId);
+        const comment = await this. getAllCommentsOfTheOneParkLotID(parkLotId);
         return comment
     },
 

@@ -17,7 +17,7 @@ async function main() {
     //const idUB = B._id.toString();
 
 
-    const PA = await parklot.create(false,'little man', {"half hour ~ 1 hour" : '$5', "1 hour ~ 1 and half hour" : '$10', "1 and half hour ~ 2 hour" : '$13', " above 2 hour" : ' $ 20 '}, {"Longitude" : '137W' , "latitude" : '50N'}, 700037, true, ['medium', 'small'], idUA, {"8:00 ~ 15: 00" : 'light', "15:00 ~ 17:00": 'heavy'},5, 560)
+    const PA = await parklot.create(false,'little man', {"half hour ~ 1 hour" : '5', "1 hour ~ 1 and half hour" : '10', "1 and half hour ~ 2 hour" : '13', " above 2 hour" : '20 '}, {"Longitude" : '137W' , "latitude" : '50N'}, 700037, true, ['medium', 'small'], idUA, {"8:00 ~ 15: 00" : 'light', "15:00 ~ 17:00": 'heavy'},5, 560)
     //const PB = await parklot.create('stevens park lot', {"half hour ~ 1 hour" : '$5', "1 hour ~ 1 and half hour" : '$10', "1 and half hour ~ 2 hour" : '$13', " above 2 hour" : ' $20 '}, {"Longitude" : '138W' , "latitude" : '51N'}, 944458, true, ['medium', 'small'], idUB, {"8:00 ~ 15: 00" : 'light', "15:00 ~ 17:00": 'heavy'})
 
 
@@ -29,8 +29,9 @@ async function main() {
 
     
 
-    const comment1Id = comm1._id.toString();
-    const comment2Id = comm2._id.toString();
+
+    const comment1Id = comm1._id
+    const comment2Id = comm2._id
 
     //await comment.remove(comment1Id);
     // await comment.remove(comment2Id);

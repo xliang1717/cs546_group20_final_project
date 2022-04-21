@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const method = require('../method');
 const commentsData = method.comment;
+const parkLotData = method.parklot;
 const xss = require('xss');
 //const validation = require('../validation');
 //const mongoCollections = require('../config/mongoCollections');
@@ -45,21 +46,26 @@ router.get('/:id', async (req, res) =>{
     // }catch(e){
     //     return res.status(400).json({error : e });
     // }
+    
 
     try{
+        let ParkLotDetail = await parkLotData.get(id);
+        ParkLotDetail.parkingChargeStandard = JSON.stringify(ParkLotDetail.parkingChargeStandard);
+        ParkLotDetail.parkingLotCoordinates = JSON.stringify(ParkLotDetail.parkingLotCoordinates);
         let commentsList = await commentsData.getAllCommentsOfTheOneParkLotID(id);
-        if(commentsList){
+
+        if(commentsList && ParkLotDetail){
             if(typeof commentsList === 'string'){
                 res.render('result/comment',{title : 'The parklot comment', result : commentsList});
             }else{
-                res.render('result/comment',{title : 'The parklot comment', commentsList});
+                res.render('result/comment',{title : 'The parklot comment', commentsList, ParkLotDetail});
             }
         }else{
-            res.status(500).render('result/comment',{title : 'The parklot comment', error : "Can't find the comments of this ParkLot"});
+            res.status(500).render('result/comment',{title : 'The parklot comment', haserror : true,  error : "Can't find the comments of this ParkLot"});
         }
         
     }catch(e){
-        res.status(400).render('result/comment',{title : 'The parklot comment', error : e});
+        res.status(400).render('result/comment',{title : 'The parklot comment',  haserror : true,   error : e});
     }
 });
 
@@ -70,9 +76,9 @@ router.post('/comment', async(req, res) =>{
             
             
             let date = new Date().toUTCString();
-            let parklotId = '625f8fc8889a9b07db36c9fe';
+            let parklotId = '62616e5169c3b43a2e6f38f2';
             let tag = req.body.commentTag; 
-            let comment = req.body.commentInfo;
+            let commentS = req.body.commentInfo;
             let rating= req.body.level;
 
             let newComment = await commentsData.create(
@@ -82,12 +88,12 @@ router.post('/comment', async(req, res) =>{
                 date,
                 xss(parklotId),//commentPostInfo.parkLotId
                 req.session.user.userId,
-                xss(comment),
+                xss(commentS),
                 xss(rating)
             );
 
             if(newComment){
-                res.redirect('/'+parklotId,{title: 'parkLot', result:'The new comment has been successfully added !'});
+                res.status(200).json("You have successfully add the new comment!");
             }else{
                 res.status(500).render('partials/parkLot',{layout:null, error: "Can't add new comment!"});
             }

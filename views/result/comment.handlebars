@@ -1,20 +1,38 @@
 
 <div class="parkLotAllComments">
 
-    <div id = 'ParkLotId' hidden>{{ParkLotID}}</div>
+    {{!-- <div id = 'ParkLotId' hidden>{{ParkLotID}}</div> --}}
     
     <div id="result" hidden>
     </div>
 
     <div id="error" hidden>
     </div>
+        
+    <div class = "parklotInfo">
+        <p id="ParkLotName"> ParkLotName : {{ParkLotDetail.parkLotname}} </p>
+        <p id="ChargeStander">ChargeStandar : {{ParkLotDetail.parkingChargeStandard}}</p>
+        <p id="location"> parkingLotCoordinates: {{ParkLotDetail.parkingLotCoordinates}} </p>
+        <p id="disabilityFrendly"> disabilityFrendly : {{ ParkLotDetail.disabilityFriendly}} </p>
+        <p id="suitableSize"> suitableVehicleSize : {{ParkLotDetail.suitableVehicleSize}} </p>
+        <p id="rate"> rating : {{ParkLotDetail.rating}} </p>
+        <p id="capacity">Capacity: {{ParkLotDetail.parkingLotCapacity}}</p>
+    </div>
+    
+
+
+
     
     <div class="comment-list" id="commentList">
-        {{#each commentsList}} {{> comment }} {{/each}}
+        <span>
+            <br>
+            {{#each commentsList}} {{> comment }} {{/each}}
+            <br>
+        </span>
     </div>
     
     <div>
-        {{!-- action= "/comment/comment" method ="POST" --}}
+        
         <form id = "addNewComment" class = "comment-form"  >    
             <span class "Comment-container">
                 <label for = "comment-content">Comment content:</label>

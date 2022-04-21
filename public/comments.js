@@ -15,13 +15,22 @@
         event.preventDefault();
 
         let commentInfo = commentContent.val().trim();
+        if(!commentInfo) alert('You must need have comment content!');
+        
         let rating =commentRating.val();
+        if(!rating) alert('You must need have rating!');
+        if(rating < 1 || rating >5) alert('The rating must between 1~5 !');
+        if(!parseInt(rating)) alert("You must input a number in the rating area!");
+        if(rating % 1 != 0) alert("The rating must be an Interger !")
+
         let parkLotId = parkingId.val();
 
         let check_val = [];
         for (x in commentTag){
             if (commentTag[x].checked) check_val.push(commentTag[x].value);
         };
+
+        if(check_val.length === 0 ) check_val.push('N/A')
 
         let body = {            
             commentTag : check_val,
@@ -43,10 +52,13 @@
                 // return shows;
                 commentsListArea.hide();
                 error.show();
-                error.html('No show is mathched this term');
+                error.html('can not add the comments');
 
             }else{
-                alert('You have successfully comment !')
+                error.hide();
+                addNewComment.trigger('reset');
+                commentContent.val('');
+                alert('You have successfully comment, refresh to see your comment!');
             }
     
         });
