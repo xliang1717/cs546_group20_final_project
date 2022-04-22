@@ -137,7 +137,6 @@ router.delete('/:id', async(req,res) =>{
 
 
 // //////建seed的时候用的
-// ;
 // router.get('/:id', async (req, res) =>{
 //     let id = req.params.id;
 //     // try {
