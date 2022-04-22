@@ -4,12 +4,13 @@ const user = method.user;
 const parklot = method.parklot;
 const comment = method.comment;
 const petrolStation = method.petrolStation;
+const myCollection = method.myCollection;
 
 async function main() {
     const db = await dbConnection.dbConnection();
     await db.dropDatabase();
 
-    const A = await user.create(false,'A Flourish Tree','LosBoger','Nick','nicklosboger@gmail.com',[],['Hudson River',' 2en street'], ['medium','small'],'123456password', ['hudson river parklot', 'little man parklot'], ['stevens parklot', 'Tree parklot'], 'hudson river parklot 2C');
+    const A = await user.create(false,'A Flourish Tree','LosBoger','Nick','nicklosboger@gmail.com',[],['Hudson River',' 2en street'], ['medium','small'],'123456password', [], ['stevens parklot', 'Tree parklot'], 'hudson river parklot 2C');
     //const B = await user.create('Simpsons','Hanmierten','luyis','luyis@gmail.com',['Hudson River',' 5th street'], ['large','small'],'7890password', ['little man parklot'], ['stevens parklot'], 'little man parklot 4a');
     
 
@@ -23,6 +24,16 @@ async function main() {
 
     const idPA = PA._id.toString();
     //const idPB = PB._id.toString();
+
+    // Testing myCollection method
+    let userCollection = await myCollection.getCollectionForUser(idUA);
+    console.log('Initial Empty Collection: ' + userCollection);
+    await myCollection.addParkingLotToUserCollection(idPA, idUA);
+    userCollection = await myCollection.getCollectionForUser(idUA);
+    console.log('One parking lot has been added into User Collection: ' + userCollection);
+    await myCollection.removeParkingLotToUserCollection(idPA, idUA);
+    userCollection = await myCollection.getCollectionForUser(idUA);
+    console.log('One parking lot has been removed into User Collection: ' + userCollection);
 
     const comm1 =  await comment.create(false, 'Harry pot',['new driver friendly','small size'],'09/12/2020', idPA, idUA,'The best parklot ever',5);
     const comm2 = await comment.create(false,'Panda Smith',['low fee'],'07/13/2022', idPA, idUA,'very nice parking lot ',4);
