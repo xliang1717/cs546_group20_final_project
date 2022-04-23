@@ -22,7 +22,7 @@ module.exports = {
 
     // Remove parking lot from user's collection
     // Throw error when could not remove the parking lot or it doesn't exists
-    async removeParkingLotToUserCollection(parkingLotId, userId) {
+    async removeParkingLotFromUserCollection(parkingLotId, userId) {
         const userCollection = await users();
         await userCollection.updateOne(
             { _id: ObjectId(userId) },

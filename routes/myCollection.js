@@ -31,7 +31,7 @@ router.delete('/', async (req, res) => {
     let userId = myCollectionPostInfo.userId;
     let parkingLotId = myCollectionPostInfo.parkingLotId;
     try {
-        await myCollectionData.removeParkingLotToUserCollection(parkingLotId, userId);
+        await myCollectionData.removeParkingLotFromUserCollection(parkingLotId, userId);
         res.status(200).json({mesage: 'Parking lot has been removed from my collection successfully.'});
     } catch (e) {
         res.status(500).json({ error: e });
