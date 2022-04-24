@@ -8,7 +8,16 @@ router.get('/:id', async (req, res) => {
     let id = req.params.id;
     try {
         let myCollectionParkingLots = await myCollectionData.getCollectionForUser(id);
-        res.status(200).json(myCollectionParkingLots);
+        for (let i = 0; i < myCollectionParkingLots.length; i++) {
+            if (myCollectionParkingLots[i].parkingChargeStandard != undefined) {
+                myCollectionParkingLots[i].parkingFeeMessage = 'Parking Fee';
+            } else {
+                myCollectionParkingLots[i].parkingFeeMessage = 'No Parking Fee';
+            }
+            myCollectionParkingLots[i].userId = id;
+        }
+        let myCollectionExists = myCollectionParkingLots.length == 0 ? true : false;
+        res.render('user/myCollection', { title: 'My Collection', myCollection: myCollectionParkingLots, myCollectionExists: myCollectionExists });
     } catch (e) {
         res.status(500).json({ error: e });
     }
@@ -20,19 +29,19 @@ router.post('/', async (req, res) => {
     let parkingLotId = myCollectionPostInfo.parkingLotId;
     try {
         await myCollectionData.addParkingLotToUserCollection(parkingLotId, userId);
-        res.status(200).json({mesage: 'Parking lot has been added to my collection successfully.'});
+        res.status(200).json({ mesage: 'Parking lot has been added to my collection successfully.' });
     } catch (e) {
         res.status(500).json({ error: e });
     }
 });
 
-router.delete('/', async (req, res) => {
+router.post('/delete', async (req, res) => {
     let myCollectionPostInfo = req.body;
     let userId = myCollectionPostInfo.userId;
     let parkingLotId = myCollectionPostInfo.parkingLotId;
     try {
         await myCollectionData.removeParkingLotFromUserCollection(parkingLotId, userId);
-        res.status(200).json({mesage: 'Parking lot has been removed from my collection successfully.'});
+        res.status(200).json({ mesage: 'Parking lot has been removed from my collection successfully.' });
     } catch (e) {
         res.status(500).json({ error: e });
     }

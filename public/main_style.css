@@ -1,0 +1,45 @@
+h1 {
+    text-align: center;
+}
+
+.collectionBox {
+    padding: 1em;
+    border: solid thin;
+    margin: 1em;
+    background: #f5fdfa;
+    height: 150px;
+}
+
+.collectionBoxImage {
+    float: left;
+    padding: 8px;
+}
+
+.collectionRightTextBox {
+    padding: 8px;
+}
+
+.collectionBoxLine1 {
+    font-family: verdana;
+    font-size: 2em;
+    color: #9d8f8f;
+}
+
+.collectionBoxLine2 {
+    font-size: 1em;
+    color: #d99b69;
+}
+
+.collectionBoxLine3 {
+    font-size: 5px;
+    color: #d99b69;
+}
+
+.collectionBoxCancelBtn {
+    border: 1em;
+    font-size: 1em;
+    color: #f9e8dc;
+    background: #d79560;
+    float: right;
+    bottom: 0px;
+}
