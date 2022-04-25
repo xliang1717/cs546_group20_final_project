@@ -16,7 +16,7 @@ router.get('/:id', async (req, res) => {
             }
             myCollectionParkingLots[i].userId = id;
         }
-        let myCollectionExists = myCollectionParkingLots.length == 0 ? true : false;
+        let myCollectionExists = myCollectionParkingLots.length !== 0 ? true : false;
         res.render('user/myCollection', { title: 'My Collection', myCollection: myCollectionParkingLots, myCollectionExists: myCollectionExists });
     } catch (e) {
         res.status(500).json({ error: e });
@@ -35,12 +35,21 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.post('/delete', async (req, res) => {
-    let myCollectionPostInfo = req.body;
-    let userId = myCollectionPostInfo.userId;
-    let parkingLotId = myCollectionPostInfo.parkingLotId;
+router.delete('/:id', async (req, res) => {
+    let userId = req.params.id;
+    let parkingLotId = req.query.parkingLotId;
     try {
         await myCollectionData.removeParkingLotFromUserCollection(parkingLotId, userId);
+        let myCollectionParkingLots = await myCollectionData.getCollectionForUser(userId);
+        for (let i = 0; i < myCollectionParkingLots.length; i++) {
+            if (myCollectionParkingLots[i].parkingChargeStandard != undefined) {
+                myCollectionParkingLots[i].parkingFeeMessage = 'Parking Fee';
+            } else {
+                myCollectionParkingLots[i].parkingFeeMessage = 'No Parking Fee';
+            }
+            myCollectionParkingLots[i].userId = userId;
+        }
+        let myCollectionExists = myCollectionParkingLots.length == 0 ? true : false;
         res.status(200).json({ mesage: 'Parking lot has been removed from my collection successfully.' });
     } catch (e) {
         res.status(500).json({ error: e });
