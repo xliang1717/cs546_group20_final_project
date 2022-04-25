@@ -4,6 +4,10 @@
     
     var emptycollectionBoxDiv = $('#emptycollectionBox');
 
+    if (showMyCollectionBoxDiv.children().length == 0) {
+        emptycollectionBoxDiv.show();
+    }
+
     function bindEventsToMyCollectionItem(collectionBoxItem) {
         collectionBoxItem.find('.collectionBoxCancelBtn').on('click', function (event) {
             event.preventDefault();
@@ -19,7 +23,7 @@
             $.ajax(requestConfig).then(function (responseMessage) {
                 console.log(responseMessage);
                 collectionBoxItem.remove();
-                if (!showMyCollectionBoxDiv.hasClass( "collectionBox" )) {
+                if (showMyCollectionBoxDiv.children().length == 0) {
                     emptycollectionBoxDiv.show();
                 }
             });

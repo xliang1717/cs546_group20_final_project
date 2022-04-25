@@ -44,6 +44,15 @@ h1 {
     bottom: 0px;
 }
 
+.backToHomeBtn {
+    border: 1em;
+    font-size: 1em;
+    color: #f9e8dc;
+    background: #5a756a;
+    float: right;
+    bottom: 0px;
+}
+
 #emptycollectionBox {
     text-align: center;
     font-family: verdana;
