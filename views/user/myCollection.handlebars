@@ -5,27 +5,12 @@
     <div id="showCollections">
         {{!-- Display existing parkingLots in my Collection --}}
         {{!-- Display empty collection if no parkingLot were added for this user --}}
-        {{#if myCollectionExists}} 
-            <div class="collectionBox"> Currently no collection for this user. </div>
-        {{/if}}
-        {{#each myCollection}}
-        <div class="collectionBox">
-            <div class="collectionBoxImage">
-                <img src="/public/parkingLotImage.jpeg" width="210" height="140" />
-            </div>
-            <div class="collectionRightTextBox">
-                <div class="collectionBoxLine1"> {{this.parkLotname}} <span style="float: right"> {{this.rating}}
-                    </span></div>
-                <div class="collectionBoxLine2"> {{this.parkingFeeMessage}} | {{this.suitableVehicleSize}} |
-                    {{this.disabilityFriendly}} </div>
-                <div class="collectionBoxLine3"> {{this.parkLotname}} </div>
-                <div class="collectionBoxLine4">
-                    <button class="collectionBoxCancelBtn"
-                        onclick="myCollectionDelete({{this._id}}, {{this.userId}})">Cancel Collection</button>
-                </div>
-            </div>
+        <div class="collectionBox" id="emptycollectionBox">
+            Currently no collection for this user.
         </div>
-        {{/each}}
+        <div id="showMyCollectionBox">
+        {{#each myCollection}} {{> myCollection }} {{/each}}
+        </div>
     </div>
-
+</div>
 </div>

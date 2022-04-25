@@ -43,3 +43,11 @@ h1 {
     float: right;
     bottom: 0px;
 }
+
+#emptycollectionBox {
+    text-align: center;
+    font-family: verdana;
+    font-size: 2em;
+    color: #9d8f8f;
+    display: none;
+}
