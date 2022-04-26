@@ -32,14 +32,12 @@ async function main() {
     let userCollection = await myCollection.getCollectionForUser(idUA);
     console.log('Initial Empty Collection, the size is: ' + userCollection.length);
     await myCollection.addParkingLotToUserCollection(idPA, idUA);
-    await myCollection.addParkingLotToUserCollection(idPC, idUA);
-    userCollection = await myCollection.getCollectionForUser(idUA);
+    userCollection = await myCollection.addParkingLotToUserCollection(idPC, idUA);
     console.log('Two parking lots have been added into User Collection: ');
     for (let i = 0; i < userCollection.length; i++) {
         console.log(userCollection[i]);
     }
-    await myCollection.removeParkingLotFromUserCollection(idPA, idUA);
-    userCollection = await myCollection.getCollectionForUser(idUA);
+    userCollection = await myCollection.removeParkingLotFromUserCollection(idPA, idUA);
     console.log('After one parking lot has been removed into User Collection, the size is: ' + userCollection.length);
     // Add it back for future API test
     await myCollection.addParkingLotToUserCollection(idPA, idUA);
