@@ -12,7 +12,7 @@ module.exports = {
         let myCollectionParkingLotIds = await this.getCollectionParkingLotIdsForUser(userId);
         if (myCollectionParkingLotIds.length > 0) {
             if (myCollectionParkingLotIds.includes(parkingLotId)) {
-                throw 'This parking lot has been added for the user collection.';
+                throw 'ERROR: This parking lot has been added for the user collection.';
             }
         }
         let updateAddParkingLotInfo = await userCollection.updateOne(
@@ -20,7 +20,7 @@ module.exports = {
             { $push: { collectionCarParks: parkingLotId } }
         );
         if (!updateAddParkingLotInfo.matchedCount && !updateAddParkingLotInfo.modifiedCount)
-            throw 'Error: Add parking lot to user collection failed.';
+            throw 'ERROR: Add parking lot to user collection failed.';
         return this.getCollectionParkingLotIdsForUser(userId);
     },
 
@@ -31,14 +31,14 @@ module.exports = {
         let myCollectionParkingLotIds = await this.getCollectionParkingLotIdsForUser(userId);
         if (myCollectionParkingLotIds.length == 0 || 
             (myCollectionParkingLotIds.length > 0 && !myCollectionParkingLotIds.includes(parkingLotId))) {
-            throw 'This parking lot does not exist in the user collection.'; 
+            throw 'ERROR: This parking lot does not exist in the user collection.'; 
         }
         let updateRemoveParkingLotInfo = await userCollection.updateOne(
             { _id: ObjectId(userId) },
             { $pull: { collectionCarParks: parkingLotId } }
         );
         if (!updateRemoveParkingLotInfo.matchedCount && !updateRemoveParkingLotInfo.modifiedCount)
-            throw 'Error: Remove parking lot to user collection failed.';
+            throw 'ERROR: Remove parking lot to user collection failed.';
         return this.getCollectionParkingLotIdsForUser(userId);
     },
 
