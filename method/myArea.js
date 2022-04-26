@@ -25,7 +25,7 @@ module.exports = {
     async removeAreaFromUser(myArea, userId) {
         const userCollection = await users();
         let myAreas = await this.getMyAreasForUser(userId);
-        if (myAreas.length == 0 || (myAreas.length > 0 && !myAreas.includes(newArea))) {
+        if (myAreas.length == 0 || (myAreas.length > 0 && !myAreas.includes(myArea))) {
             throw "ERROR: This area dose not exist for the user areas.";
         }
         let updateInfo = await userCollection.updateOne(

@@ -81,4 +81,11 @@ module.exports = {
         return parkLot
     },
 
+
+    async findAllParkingLotsByUploaderId(userId) {
+        const parkLotCollection = await parklot();
+        const parkLotData = await parkLotCollection.find( {idfromUploader : userId }).toArray();
+        return parkLotData;
+    }
+
 }
