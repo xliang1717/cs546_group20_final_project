@@ -148,6 +148,31 @@ router.post('/', async(req, res) =>{
 
 });
 
+
+router.delete('/deleteParkLot', async(req,res) =>{
+    try{
+        let id =xss(req.body.commentID); //comment Id
+        let UserId = xss(req.body.UserId);
+        if(req.session.user){
+            if(req.session.user.UserId === UserId){
+                let message =  await parklotsData.remove(id)
+                if(message){
+                    res.status(200).json("You have successfully add the new comment!");
+                }else{
+                    // res.status(500).render('partials/parkLot',{layout:null, error: "Can't delete this comment!"});
+                }
+            }else{
+                // res.status(403).render('partials/parkLot',{layout:null, error: "You are not allowed to delete this comment!"});
+            }
+        }else{
+            res.status(403).render('result/login',{title : 'Login'});
+        }
+    }catch(e){
+        res.status(400).render('partials/parkLot',{layout:null, error: e})
+    }
+
+})
+
 // router.put('/:id', async(req,res) =>{
 //     let id = req.params.id;
 //     let bandPutInfo = req.body;
