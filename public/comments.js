@@ -14,14 +14,38 @@
     addNewComment.submit((event) =>{
         event.preventDefault();
 
+        let e = false;
+
         let commentInfo = commentContent.val().trim();
-        if(!commentInfo) alert('You must need have comment content!');
+        if(!commentInfo) {
+            alert('You must have comment content!');
+            e = true;
+        }
         
         let rating =commentRating.val();
-        if(!rating) alert('You must need have rating!');
-        if(rating < 1 || rating >5) alert('The rating must between 1~5 !');
-        if(!parseInt(rating)) alert("You must input a number in the rating area!");
-        if(rating % 1 != 0) alert("The rating must be an Interger !")
+        if(!rating) {
+            alert('You must need have rating!');
+            e = true;
+        }
+
+
+        if(rating < 1 || rating >5) {
+            alert('The rating must between 1~5 !');
+            e = true;
+        }
+
+
+        if(!parseInt(rating)) {
+            alert("You must input a number in the rating area!");
+            e = true;
+        }
+
+
+        if(rating % 1 != 0) {
+            alert("The rating must be an Interger !");
+            e = true;
+        }
+
 
         let parkLotId = parkingId.val();
 
@@ -47,21 +71,25 @@
             data : JSON.stringify(body),
         };
 
-        $.ajax(requestConfig).then(function(responseMessage){
-            if(responseMessage.length === 0) {
-                // return shows;
-                commentsListArea.hide();
-                error.show();
-                error.html('can not add the comments');
+        if(!e){
+            $.ajax(requestConfig).then(function(responseMessage){
+                if(responseMessage.length === 0) {
+                    // return shows;
+                    commentsListArea.hide();
+                    error.show();
+                    error.html('can not add the comments');
 
-            }else{
-                error.hide();
-                addNewComment.trigger('reset');
-                commentContent.val('');
-                alert('You have successfully comment, refresh to see your comment!');
-            }
+                }else{
+                    error.hide();
+                    addNewComment.trigger('reset');
+                    commentContent.val('');
+                    alert('You have successfully comment, refresh to see your comment!');
+                }
+        
+            });
     
-        });
+        };
+    
     });
     
 

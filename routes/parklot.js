@@ -7,26 +7,35 @@ const parklotsData = method.parklot;
 //const { ObjectId } = require('mongodb');
 //const users = mongoCollections.user;
 
-router.get('/', async (req,res) => {
-    try {
+// router.get('/', async (req,res) => {
+//     try {
         
-        // let bandCollection = await bands();
-        // let allBandsList = await bandCollection.find({},{projection : {name : 1}}).toArray();
+//         // let bandCollection = await bands();
+//         // let allBandsList = await bandCollection.find({},{projection : {name : 1}}).toArray();
 
-        // if (allBandsList.length !== 0) {
-        //     for (let i = 0; i < allBandsList.length; i++) {
-        //         allBandsList[i]._id = allBandsList[i]._id.toString();
-        //     }
-        // }
-        // res.status(200).json(allBandsList);
+//         // if (allBandsList.length !== 0) {
+//         //     for (let i = 0; i < allBandsList.length; i++) {
+//         //         allBandsList[i]._id = allBandsList[i]._id.toString();
+//         //     }
+//         // }
+//         // res.status(200).json(allBandsList);
 
-        let parklotsDataList = await parklotsData.getAll();
-        //let result = allusersDataList.map(({_id, name}) =>({_id,name}));
-        res.status(200).json(parklotsDataList);
+//         let parklotsDataList = await parklotsData.getAll();
+//         //let result = allusersDataList.map(({_id, name}) =>({_id,name}));
+//         res.status(200).json(parklotsDataList);
+//     } catch(e) {
+//         res.status(500).json({error : e});
+//     }
+// });
+
+router.get('/addNewParkLot', async (req,res) => {
+    try {
+        res.render('result/parkLots',{title : 'Add new parklot'});
     } catch(e) {
         res.status(500).json({error : e});
     }
 });
+
 
 router.get('/:id', async (req, res) =>{
     let id = req.params.id;
@@ -44,9 +53,14 @@ router.get('/:id', async (req, res) =>{
     }
 });
 
-// router.post('/', async(req, res) =>{
+
+
+
+router.post('/', async(req, res) =>{
     
-//     let bandPostInfo = req.body;
+    req.session.user = {UserId : '62616e5169c3b43a2e6f38f1'}
+    let ParkLotInfo = req.body;
+    let idfromUploader = req.session.user.UserId;
 
 //     try{
 //         if(!bandPostInfo) throw 'There is no bandPostInfo in the post body !';
@@ -108,21 +122,31 @@ router.get('/:id', async (req, res) =>{
 //         return res.status(400).json({error:e});
 //     }
 
-//     try {
-//         const newBand = await bandsData.create(
-//             bandPostInfo.name,
-//             bandPostInfo.genre,
-//             bandPostInfo.website,
-//             bandPostInfo.recordLabel,
-//             bandPostInfo.bandMembers,
-//             bandPostInfo.yearFormed
-//         )
-//         res.status(200).json(newBand);
-//     }catch(e){
-//         res.status(500).json({error: e});
-//     }
+    try {
+        const newParkLot = await parklotsData.create(
+            false,
+            ParkLotInfo.ParkLotName,
+            ParkLotInfo.parkingChargeStandard,
+            ParkLotInfo.parkingLotCoordinates,
+            ParkLotInfo.ParkingLotLocationZipCode,
+            ParkLotInfo.DisabilityFriendly,
+            ParkLotInfo.suitableVehicleSize,
+            idfromUploader,
+            ParkLotInfo.TrafficConditions,
+            ParkLotInfo.capacity,
 
-// });
+
+        )
+        if(newParkLot){
+            res.status(200).json("You have successfully add the new comment!");
+        }else{
+            res.status(500).json({error : e});
+        }
+    }catch(e){
+        res.status(500).json({error: e});
+    }
+
+});
 
 // router.put('/:id', async(req,res) =>{
 //     let id = req.params.id;

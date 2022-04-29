@@ -4,6 +4,7 @@ const method = require('../method');
 const commentsData = method.comment;
 const parkLotData = method.parklot;
 const xss = require('xss');
+const { render } = require('express/lib/response');
 //const validation = require('../validation');
 //const mongoCollections = require('../config/mongoCollections');
 //const { ObjectId } = require('mongodb');
@@ -107,9 +108,9 @@ router.post('/comment', async(req, res) =>{
 
 });
 
-router.delete('/:id', async(req,res) =>{
+router.delete('/usercomment', async(req,res) =>{
     try{
-        let id =xss(req.params.id);
+        let id =xss(req.body.commentID); //comment Id
         let UserId = xss(req.body.UserId);
         if(req.session.user){
             if(req.session.user.UserId === UserId){
@@ -131,6 +132,18 @@ router.delete('/:id', async(req,res) =>{
 
 })
 
+//直接在载入用户信息的页面添加所有的comments就行
+// router.get('user/comments', async(req,res) =>{
+    
+//     let comment = await commentsData.getUserAllComments(id);
+
+//     if(req.session.user){
+//         if(comment){
+//             res.render('partials/parkLot',{})
+//         }
+//     }
+
+// } )
 
 
 

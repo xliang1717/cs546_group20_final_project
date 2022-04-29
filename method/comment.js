@@ -22,6 +22,10 @@ module.exports = {
     return commentsList;
     },
 
+    async getUserAllComments(ID) {
+
+    },
+
 
     async create ( isDelete,userName, commentTag, commentdate, parkLotId, UserId, commentInfo, level) {
 

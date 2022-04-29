@@ -31,7 +31,7 @@ module.exports = {
     },
 
 
-    async create ( isDelete,parkLotname, parkingChargeStandard, parkingLotCoordinates, parklotLocationZipCode, disabilityFriendly, suitableVehicleSize, idfromUploader,trafficConditions, grade, capacity) {
+    async create ( isDelete,parkLotname, parkingChargeStandard, parkingLotCoordinates, parklotLocationZipCode, disabilityFriendly, suitableVehicleSize, idfromUploader,trafficConditions,  capacity) {
 
         // if (arguments.length !== 6) {
         //     throw "There must be 6 arguments !"
@@ -67,7 +67,7 @@ module.exports = {
             suitableVehicleSize : suitableVehicleSize, 
             idfromUploader : idfromUploader,
             trafficConditions : trafficConditions,
-            rating : grade,
+            rating : 0,
             parkingLotCapacity : capacity,
             totalCommentRating : 0,
             totalCommentNumber : 0
