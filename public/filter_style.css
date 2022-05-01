@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+ul,li{
+    list-style: none;
+}
+
+#Filter {
+    width: 550px;
+    margin: 80px auto;
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    color: #666;
+    font-size: 12px;
+}
+
+.Conditions{
+    border-bottom: 1px solid #eee;
+}
+
+.Condition-title,
+.Condition-list{
+  display: inline-block;  
+}
+
+.Condition-title{
+    padding-left: 2em;
+}
+
+.Subcondition{
+    display: inline-block;
+    margin: 15px 7px;
+    padding: 5px 6px;
+    color: rgb(87, 116, 95);
+    cursor: pointer;
+}
+
+.Subcondition:hover{
+    color: rgb(87, 116, 95);
+    background-color: rgb(224, 240, 234);
+}
+
+.Subcondition.Subcondition--active{
+    color: #fff;
+    background-color: rgb(125, 219, 184);
+}
