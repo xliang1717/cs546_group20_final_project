@@ -17,7 +17,7 @@ router.get('/:id', async (req, res) => {
             myCollectionParkingLots[i].userId = id;
         }
         let myCollectionExists = myCollectionParkingLots.length !== 0 ? true : false;
-        res.render('user/myCollection', { title: 'My Collection', myCollection: myCollectionParkingLots, myCollectionExists: myCollectionExists });
+        res.render('user/myCollection', { layout: 'user', title: 'My Collection', myCollection: myCollectionParkingLots, myCollectionExists: myCollectionExists });
     } catch (e) {
         res.status(500).json({ error: e });
     }

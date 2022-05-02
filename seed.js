@@ -73,6 +73,7 @@ async function main() {
     console.log(allParkingLotsForUser);
 
 
+
     const comm1 = await comment.create(false, 'Harry pot', ['new driver friendly', 'small size'], '09/12/2020', idPA, idUA, 'The best parklot ever', 5);
     const comm2 = await comment.create(false, 'Panda Smith', ['low fee'], '07/13/2022', idPA, idUA, 'very nice parking lot ', 4);
 
@@ -91,6 +92,9 @@ async function main() {
     await user.addComment(idUA, comment2Id);
 
     await user.getAll();
+
+
+    console.log("User this link to test myCollection: http://localhost:3000/myCollection/" + idUA);
 
 
     await dbConnection.closeConnection();

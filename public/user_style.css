@@ -1,5 +1,23 @@
 h1 {
     text-align: center;
+    color: #f9e8dc;
+}
+
+.userMainBox {
+    background: #b2c6bd;
+    padding: 16px;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.userLogo {
+    text-align: center;
+}
+
+.userOuterBox {
+    background: #757575;
+    padding: 16px;
+    padding-bottom: 36px;
 }
 
 .collectionBox {
@@ -44,13 +62,24 @@ h1 {
     bottom: 0px;
 }
 
+.mainInfo {
+    background: #b2c6bd;
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    padding: 16px;
+    padding-top: 10px;
+    padding-bottom: 100px;
+}
+
 .backToHomeBtn {
     border: 1em;
     font-size: 1em;
     color: #f9e8dc;
     background: #5a756a;
-    float: right;
-    bottom: 0px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 #emptycollectionBox {

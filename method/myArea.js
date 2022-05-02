@@ -1,6 +1,5 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.user;
-const parklotsData = require('./parklot');
 const { ObjectId } = require('mongodb');
 
 module.exports = {
