@@ -21,7 +21,9 @@ ul,li{
 }
 
 .Condition-title,
-.Condition-list{
+.Condition-list-PF,
+.Condition-list-CT,
+.Condition-list-DF{
   display: inline-block;  
 }
 
@@ -45,4 +47,16 @@ ul,li{
 .Subcondition.Subcondition--active{
     color: #fff;
     background-color: rgb(125, 219, 184);
+}
+
+.Search{
+    display: inline-block;
+    width: 550px;
+    border-bottom: 1px solid #eee;
+}
+
+.searchButton{
+    float: right;
+    margin: 15px 7px;
+    padding: 2px 6px;
 }
