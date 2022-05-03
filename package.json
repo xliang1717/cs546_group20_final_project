@@ -1,0 +1,22 @@
+{
+  "name": "finalcode",
+  "version": "1.0.0",
+  "description": "UParker",
+  "main": "app.js",
+  "scripts": {
+    "seed":"node seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node app.js"
+  },
+  "author": "Zihui Liu 10474425",
+  "license": "ISC",
+  "dependencies": {
+		"bcryptjs": "^2.4.3",
+    "bcrypt": "^5.0.0",
+		"express-session": "^1.17.0",
+    "mongodb": "^4.4.0",
+    "express": "^4.17.3",
+    "express-handlebars": "^5.3.4",
+    "xss": "^1.0.6"
+	}
+}

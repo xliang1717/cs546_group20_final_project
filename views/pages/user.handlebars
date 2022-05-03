@@ -1,0 +1,71 @@
+<div id="usercontainer" class="usercontainer" data-userId="{{userId}}">
+<div>Username:</div>
+<div id="nickname">{{ userInfo.nickname }}</div>
+<div>Firstname:</div>
+<div id="firstName">{{ userInfo.firstName }}</div>
+<div>Lastname:</div>
+<div id="lastName">{{ userInfo.lastName }}</div>
+<div>Email:</div>
+<div id="email">{{ userInfo.email }}</div>
+<div><a href="/user/myprofile">Edit Profile</a></div>
+
+<div>My Parking Spot</div>
+<div id="carParkingLocation">{{ userInfo.carParkingLocation }}</div>
+<br>
+
+{{!-- <div>My Car</div>
+<div id="carlistDiv" class="carlistDiv">
+<ul id="carlist" class="carlist">
+{{#each userInfo.myCar}}
+<li id={{this}} class = "eachcar">{{ this }}</li>
+<button class="removecarBtn" data-userid="{{req.session.user.userId}}" data-carname="{{this}}" >Delete</button>
+{{!-- <button id="{{this}}Btn" class="removecarBtn" data-eachcar="{{userInfo.myCar}}" >Delete</button> --}}
+{{!-- {{/each}}
+</ul>
+</div>
+<a id="addcar" class="addcar" href="/myCar">Add New Car</a>  --}}
+
+<div>My Car</div>
+<div id="carlistDiv" class="carlistDiv" data-userId={{userInfo._id}}>
+{{!-- <div id="carlist" class="carlist"> --}}
+{{#each userInfo.myCar}}
+<div id={{this}} class = "eachcar">{{this}}
+  <button class="removecarBtn"  data-carname="{{this}}"  data-userId="{{../userId}}">Delete</button>
+  
+</div>
+{{!-- <button id="{{this}}Btn" class="removecarBtn" data-eachcar="{{userInfo.myCar}}" >Delete</button> --}}
+{{/each}}
+{{!-- </div> --}}
+</div>
+<a id="addcar" class="addcar" href="/myCar">Add New Car</a>
+
+
+
+<div>My Area</div>
+<ul>
+{{#each userInfo.preferLocation}}
+<li class="myArea" >{{ this }}</li>
+{{/each}}
+</ul>
+<a id="addarea" class="addarea" href="/myArea">Add New Area</a>
+
+<div>My Parking Lot Collection</div>
+<ul>
+{{#each userInfo.collectionCarParks}}
+<li class="myCollection" >{{ this }}</li>
+{{/each}}
+</ul>
+
+<div>My Comment</div>
+<ul>
+{{#each commentInfoList}}
+<li class="myComments">{{this.commentInfo}}</li>
+{{/each}}
+</ul>
+
+<a id="addParkinglot" class="addParkinglot" href="/">Add New Parking Lot</a>
+</div>
+
+
+
+

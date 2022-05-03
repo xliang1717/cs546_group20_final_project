@@ -1,0 +1,43 @@
+* {
+	box-sizing: border-box;
+}
+
+
+body {
+	background: #a3e0d1;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+main {
+	max-width: 75%;
+	margin: auto;
+}
+
+h1 {
+	color: #222;
+	margin-bottom: 5px;
+  font-size: 2rem;
+}
+
+label {
+	font-weight: bold;
+}
+
+a {
+	color: rgb(156, 154, 149);
+	text-decoration: none;
+	font-size: 18pt;
+}
+button{
+	background-color: white;
+  color: black;
+  border: 2px solid rgb(88, 169, 189);
+ }
+
+button:hover {
+  background-color: rgb(88, 169, 189);; 
+  color: white;
+}
+.error-to-show{
+	color:red;
+}

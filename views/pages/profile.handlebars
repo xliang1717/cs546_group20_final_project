@@ -1,0 +1,42 @@
+{{!-- <div>Username:</div>
+<div id="nickname">{{nickname}}</div>
+<div>Firstname:</div>
+<div id="firstName">{{firstName}}</div>
+<div>Lastname:</div>
+<div id="lastName">{{lastName}}</div>
+<div>Email:</div>
+<div id="email">{{email}}</div> --}}
+
+<p>Edit Profile here</p>
+<div id="error" class="error" hidden>error</div>
+
+<form method="POST" action="/user/myprofile" id="myProfile">
+  <div>
+    {{#if error}}
+    <p class="error-to-show">{{error}}</p>
+    {{/if}}
+  </div>
+
+    <label for="nickname_input">username </label>
+    <input id="nickname_input" type="text" name="nickname_input" placeholder="Enter username" />
+<br>
+    <label for="firstname_input">first name </label>
+    <input id="firstname_input" type="text" name="firstname_input" placeholder="Enter firstname" />
+<br>
+    <label for="lastname_input">last name </label>
+    <input id="lastname_input" type="text" name="lastname_input" placeholder="Enter lastname" />
+<br>
+    <label for="email_input">email </label>
+    <input id="email_input" type="text" name="email_input" placeholder="Enter email" />
+<br>
+    <label for="password_input">password </label>
+    <input id="password_input" type="text" name="password_input" placeholder="Enter password" />
+<br>
+    <button type="submit">submit</button>
+
+</form>
+
+{{#if content}}
+<div>{{content}}</div>
+{{/if}}
+<a href="/user">Back to Home</a>
