@@ -9,6 +9,11 @@
 * You can also do "Cancel Collection" action or click "Back to Home" button to redirect to Home page.
 
 
+### Instruction for testing user detail page
+
+* Use same userId to pen user detail page ```http://localhost:3000/user/XXXX```
+
+
 ### Instruction from Guan for seed
 
 #### 要使用seed.js 之前，要先注释掉几个地方。 

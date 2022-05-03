@@ -1,0 +1,32 @@
+<div class="userPage">
+    <div id="userProfile">
+
+    </div>
+    <div id="myCars">
+
+    </div>
+    {{!-- User page --}}
+    {{!-- https://modao.cc/app/Vy1f8dN6r9jszj4dSrSRwx#screen=sl1qweef0v9t387 --}}
+    {{!-- 用户界面 - 经常浏览的地区（用户自填） --}}
+    {{!-- This is for myArea --}}
+    <div id="myArea">
+        {{!-- View existing myArea --}}
+        <div id="showMyAreaBox">
+            {{#each user.preferLocation}}
+            <div class="myAreaItem">
+                <div class="myAreaItemText">
+                    {{this}}
+                </div>
+                <hr style="width:40%;margin-block-start:2px;margin-block-end:2px;" , size="1" , color=white>
+            </div>
+            {{/each}}
+        </div>
+        {{!-- Button and text to add new Area --}}
+        <div id="addNewAreaBox">
+            <button id="addNewAreaButton" data-userid="{{userId}}">Add New Area</button>
+        </div>
+    </div>
+    <div id="detailPageMyCollection">My Collection</div>
+    <div id="detailPageMyComments">My Comments</div>
+    <div id="detailPageAddNewParkingLot">Add New Parking Lot</div>
+</div>

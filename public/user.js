@@ -1,5 +1,6 @@
 (function ($) {
 
+    // My Collection 
     var showMyCollectionBoxDiv = $('#showMyCollectionBox');
     
     var emptycollectionBoxDiv = $('#emptycollectionBox');
@@ -33,5 +34,7 @@
     showMyCollectionBoxDiv.children().each(function (index, element) {
         bindEventsToMyCollectionItem($(element));
     });
+
+    
 
 })(window.jQuery);

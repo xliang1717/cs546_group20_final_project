@@ -89,3 +89,68 @@ h1 {
     color: #9d8f8f;
     display: none;
 }
+
+#myArea {
+    padding: 1em;
+    border: solid thin;
+    margin: 1em;
+    background: #95bfad;
+}
+
+.myAreaItem {
+    padding: 2px;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.myAreaItemText {
+    text-align: center;
+    color: #f5fdfa;
+    font-weight: bold;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+#addNewAreaBox {
+    display: grid;
+}
+
+#addNewAreaButton {
+    margin: auto;  
+}
+
+#detailPageMyCollection {
+    text-align: center;
+    padding: 1em;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin: 1em;
+    margin-top: 6px;
+    margin-bottom: 1px;
+    color: #5a8c8a;
+    background: #bbeae8;
+}
+
+#detailPageMyComments {
+    text-align: center;
+    padding: 1em;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin: 1em;
+    margin-top: 6px;
+    margin-bottom: 1px;
+    color: #5a8c8a;
+    background: #bbeae8;
+}
+
+#detailPageAddNewParkingLot {
+    text-align: center;
+    padding: 1em;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin: 1em;
+    margin-top: 6px;
+    margin-bottom: 1px;
+    color: #5a8c8a;
+    background: #bbeae8;
+}
