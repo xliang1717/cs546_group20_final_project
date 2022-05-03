@@ -17,7 +17,7 @@ router.get('/:id', async (req, res) => {
     let id = req.params.id;
     try {
         let user = await usersData.get(id);
-        res.render('user/detail', { layout: 'user', title: 'User Detail', user: user });
+        res.render('user/detail', { layout: 'user', title: 'User Detail', user: user, userId: id });
         // Below should not be required. Will remove later.
         // res.status(200).json(user);
     } catch (e) {
