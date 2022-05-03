@@ -1,9 +1,10 @@
-const user = require('./user');
-const comment = require('./comment');
-const parklot = require('./parklot');
-const petrolStation = require('./petrolStation');
-const myCar = require('./myCar');
-const myCollection = require('./myCollection');
+
+
+const mongoCollections = require('../config/mongoCollections');
+const comments = mongoCollections.comment;
+const parklot = mongoCollections.parklot;
+const { ObjectId } = require('mongodb');
+const validation = require('../validation');
 
 
 module.exports = {
