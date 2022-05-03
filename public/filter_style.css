@@ -60,3 +60,18 @@ ul,li{
     margin: 15px 7px;
     padding: 2px 6px;
 }
+
+.Selections{
+    border-bottom: 1px solid #eee;
+}
+
+#locationSelect,
+#zipCodeSelect{
+    display: inline-block;
+    margin: 15px 7px;
+    padding: 5px 6px;
+}
+
+.Selection-title{
+    padding-left: 2em;
+}

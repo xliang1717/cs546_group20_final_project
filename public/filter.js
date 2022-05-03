@@ -48,8 +48,14 @@
     searchButton.on('click', function (event) {
         event.preventDefault();
         valArr = [];
+        let locOption = $("#locationSelect option:selected");
+        let locVal = (locOption.val() ? locOption.text() : null);
+        let zipOption = $("#zipCodeSelect option:selected");
+        let zipVal = (zipOption.val() ? zipOption.text() : null);
         valArr.push(valPF);
         valArr.push(valCT);
         valArr.push(valDF);
+        valArr.push(locVal);
+        valArr.push(zipVal);
     })
 })(window.jQuery)
