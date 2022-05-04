@@ -31,7 +31,7 @@ router.post('/area', async (req, res) => {
     let newArea = req.body.newArea;
     try {
         let myAreas = await myAreaData.addNewAreaToUser(newArea, userId);
-        res.render('partials/area', {layout: null, ...myAreas});
+        res.render('partials/areas', {layout: null, userArea: myAreas});
     } catch (e) {
         res.status(404).json({ error: e });
     }
