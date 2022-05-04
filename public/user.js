@@ -59,6 +59,7 @@
             var newElement = $(responseMessage);
             showMyAreaBox.replaceWith(newElement);
             newAreaInput.val('');
+            showMyAreaBox = newElement;
         });
 
     });
