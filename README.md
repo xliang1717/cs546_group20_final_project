@@ -9,9 +9,10 @@
 * You can also do "Cancel Collection" action or click "Back to Home" button to redirect to Home page.
 
 
-### Instruction for testing user detail page
+### Instruction for testing user detail page including myArea
 
 * Use same userId to pen user detail page ```http://localhost:3000/user/XXXX```
+* You will be able to view myArea in user page
 
 
 ### Instruction from Guan for seed
