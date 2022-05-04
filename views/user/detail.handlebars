@@ -13,20 +13,39 @@
         {{!-- View existing myArea --}}
         <div id="showMyAreaBox">
             {{#each user.preferLocation}}
-            <div class="myAreaItem">
-                <div class="myAreaItemText">
-                    {{this}}
-                </div>
-                <hr style="width:40%;margin-block-start:2px;margin-block-end:2px;" , size="1" , color=white>
-            </div>
+                {{> area }}
             {{/each}}
         </div>
         {{!-- Button and text to add new Area --}}
         <div id="addNewAreaBox">
-            <button id="addNewAreaButton" data-userid="{{userId}}">Add New Area</button>
+            <button id="addNewAreaBtn" data-userid="{{userId}}" data-toggle="modal" data-target="#myAreaModal">Add New Area</button>
+        </div>
+        <!-- Modal -->
+        {{!-- Refer from https://getbootstrap.com/docs/4.0/components/modal/#live-demo --}}
+        <div class="modal fade" id="myAreaModal" tabindex="-1" role="dialog" aria-labelledby="myAreaModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myAreaModalLabel">My New Area</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control" id="newAreaInput" placeholder="Area Tag">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="addNewAreaConfrimBtn" data-dismiss="modal">Confirm</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <a href="/myCollection/{{userId}}" style="text-decoration: none;"><div id="detailPageMyCollection">My Collection</div></a>
+    <a href="/myCollection/{{userId}}" style="text-decoration: none;">
+        <div id="detailPageMyCollection">My Collection</div>
+    </a>
     <div id="detailPageMyComments">My Comments</div>
     <div id="detailPageAddNewParkingLot">Add New Parking Lot</div>
 </div>

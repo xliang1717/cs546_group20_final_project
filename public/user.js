@@ -2,7 +2,7 @@
 
     // My Collection 
     var showMyCollectionBoxDiv = $('#showMyCollectionBox');
-    
+
     var emptycollectionBoxDiv = $('#emptycollectionBox');
 
     if (showMyCollectionBoxDiv.children().length == 0) {
@@ -35,6 +35,38 @@
         bindEventsToMyCollectionItem($(element));
     });
 
-    
+    // My Area
+    var newAreaInput = $('#newAreaInput');
+    var addNewAreaBtn = $('#addNewAreaBtn');
+    var addNewAreaConfrimBtn = $('#addNewAreaConfrimBtn');
+    var showMyAreaBox = $('#showMyAreaBox');
+    var myAreaModal = $('#myAreaModal');
+
+    addNewAreaConfrimBtn.on('click', function (event) {
+        event.preventDefault();
+        var newArea = newAreaInput.val();
+        var userId = addNewAreaBtn.data('userid');
+
+        var requestConfig = {
+          method: 'POST',
+          url: '/user/area',
+          data: {
+            userId: userId,
+            newArea: newArea
+          }
+        };
+  
+        $.ajax(requestConfig).then(function (responseMessage) {
+          var newElement = $(responseMessage);
+          showMyAreaBox.replaceWith(newElement);
+        });
+
+        // myAreaModal.modal('hide');
+        // $('body').removeClass('modal-open');
+        // $('.modal-backdrop').remove();
+
+      });
+
+
 
 })(window.jQuery);
