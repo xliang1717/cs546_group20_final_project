@@ -20,7 +20,7 @@ h1 {
     padding-bottom: 36px;
 }
 
-.collectionBox {
+.collectionBox, .parkingLotBox {
     padding: 1em;
     border: solid thin;
     margin: 1em;
@@ -28,16 +28,16 @@ h1 {
     height: 180px;
 }
 
-.collectionBoxImage {
+.collectionBoxImage, .parkingLotBoxImage {
     float: left;
     padding: 8px;
 }
 
-.collectionRightTextBox {
+.collectionRightTextBox, .parkingLotRightTextBox {
     padding: 8px;
 }
 
-.collectionBoxLine1 {
+.collectionBoxLine1, .parkingLotBoxLine1 {
     font-family: verdana;
     font-size: 2em;
     color: #9d8f8f;
@@ -53,13 +53,17 @@ h1 {
     color: #d99b69;
 }
 
-.collectionBoxCancelBtn {
+.collectionBoxCancelBtn, .parkingLotBoxViewBtn {
     border: 1em;
     font-size: 1em;
     color: #f9e8dc;
     background: #d79560;
     float: right;
     bottom: 0px;
+}
+
+.parkingLotBoxViewBtn {
+    margin-top: 2em;
 }
 
 .mainInfo {
@@ -82,7 +86,7 @@ h1 {
     right: 0;
 }
 
-#emptycollectionBox {
+#emptycollectionBox, #emptyParkingLotBox {
     text-align: center;
     font-family: verdana;
     font-size: 2em;
@@ -116,7 +120,7 @@ h1 {
 }
 
 #addNewAreaBtn {
-    margin: auto;  
+    margin: auto;
 }
 
 #detailPageMyCollection {

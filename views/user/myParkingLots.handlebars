@@ -1,10 +1,23 @@
-<div class="myParkingLots">
-    {{!-- Show user added parking lots and can add new parking lot --}}
-    {{!-- https://modao.cc/app/Vy1f8dN6r9jszj4dSrSRwx#screen=sl1rdy8iifynw3k --}}
-    {{!-- 用户界面 - 我的停车位 --}}
-    <div id="myArea">
-        {{!-- View existing myParkingLots --}}
-        {{!-- button to add new parking lot --}}
+<div class="userMainBox">
+    <div class="mainInfo">
+        <h1>{{title}}</h1>
+        <div class="myParkingLots">
+            {{!-- Show user added parking lots and can add new parking lot --}}
+            {{!-- https://modao.cc/app/Vy1f8dN6r9jszj4dSrSRwx#screen=sl1rdy8iifynw3k --}}
+            {{!-- 用户界面 - 我的停车位 --}}
+            <div id="viewMyParkingLots">
+                {{!-- View existing myParkingLots --}}
+                {{!-- Display empty if no parkingLot were uploaded by this user --}}
+                <div class="parkingLotBox" id="emptyParkingLotBox">
+                    Currently no parking lot uploaded by this user.
+                </div>
+                <div id="showMyParkingLotsBox">
+                    {{#each myParkingLots}} {{> myParkingLot }} {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="backToHomeDiv">
+            <button onclick="window.location.href='/';" class="backToHomeBtn">Back to Home</button>
+        </div>
     </div>
-
 </div>
