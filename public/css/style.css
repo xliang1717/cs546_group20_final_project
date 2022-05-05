@@ -49,3 +49,23 @@ button:hover {
 	color: rgb(221, 217, 217);
 	font-size: 18pt;
 }
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-top: 1em;
+  margin-bottom: 1 em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+}
+button {
+  border: none;
+  color: white;
+	background-color:green;
+  padding: 8px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 2px 1px;
+  cursor: pointer;
+}

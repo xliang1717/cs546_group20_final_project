@@ -2,7 +2,7 @@ const userRoutes = require('./user');
 const parklotRoutes =  require('./parklot');
 const myCarRoutes =  require('./myCar');
 const myCollectionRoutes = require('./myCollection');
-//const commentRoutes =  require('./comment');
+const commentRoutes =  require('./comment');
 //const petrolStationRoutes =  require('./petrolStation');
 
 
@@ -11,8 +11,7 @@ const constructorMethod = (app) => {
     app.use('/parklot', parklotRoutes);
     app.use('/myCar', myCarRoutes);
     app.use('/myCollection', myCollectionRoutes);
-
-   // app.use('/comment', commentRoutes);
+    app.use('/comment', commentRoutes);
     //app.use('/petrolStation', petrolStationRoutes);
     
 

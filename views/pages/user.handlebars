@@ -62,9 +62,12 @@
   </ul>
 
   <div class="titleDiv">My Comment</div>
-  <ul>
+
+  <ul id="commentul" class="commentul">
     {{#each commentInfoList}}
-    <li class="myComments">{{this.commentInfo}}</li>
+    <li class="myComments">{{this.commentInfo}}
+       <button class="removecommentBtn" data-commentid="{{this._id}}" data-userId="{{this.UserId}}">Delete</button>
+    </li>
     {{/each}}
   </ul>
 
