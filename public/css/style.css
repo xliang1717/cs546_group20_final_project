@@ -4,7 +4,7 @@
 
 
 body {
-	background: #a3e0d1;
+	background: #84b3a7;
 	font-family: Georgia, "Times New Roman", Times, serif;
 }
 
@@ -24,9 +24,9 @@ label {
 }
 
 a {
-	color: rgb(156, 154, 149);
+	color: rgb(117, 115, 110);
 	text-decoration: none;
-	font-size: 18pt;
+	font-size: 14pt;
 }
 button{
 	background-color: white;
@@ -40,4 +40,12 @@ button:hover {
 }
 .error-to-show{
 	color:red;
+}
+.titleDiv{
+	color: rgb(221, 217, 217);
+	font-size: 18pt;
+}
+.titleDt{
+	color: rgb(221, 217, 217);
+	font-size: 18pt;
 }

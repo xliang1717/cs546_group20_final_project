@@ -1,57 +1,45 @@
 (function ($) {
-
-  // $(document).on('click', '.removecarBtn', function(event){
-  //   event.preventDefault();
-  //   const id = $(this).attr('id');
-  //   $(`#${id}`).hide();
-  //   $(`#${id.slice(0,id.length-3)}`).hide();
-  // });
   var carlistDiv = $('#carlistDiv');
-  var eachcar =$('.eachcar');
-  //var userId = carlistDiv.data('userId');
-  //console.log(userId);
-  //console.log(carlistDiv.data('userId'))
+  var eachcar = $('.eachcar');
   var carlist = $('#carlist');
-  console.log(1);
+  var emptyDiv = $('#emptyDiv');
+  emptyDiv.hide();
+  if (carlistDiv.children().length == 0) {
+    emptyDiv.show();
+  }
+
   function bindEventsToMyCarItem(carlistItem) {
-    console.log(2);
+
     carlistItem.find('.removecarBtn').on('click', function (event) {
-          event.preventDefault();
-          var currentremove= $(this);
-          console.log(3);
-          //var carlistDiv = $('#carlistDiv');
-          var userId = currentremove.context.dataset.userid;
-          console.log(userId)
-          var carname = currentremove.data('carname');
-          console.log(carname);
+      event.preventDefault();
+      var currentremove = $(this);
+      var userId = currentremove.context.dataset.userid;
+      var carname = currentremove.data('carname');
 
-          var requestConfig = {
-              method: 'DELETE',
-              url: '/myCar/'+userId,
-              contentType: 'application/json',
-              data: JSON.stringify({
-                myCar:carname,
-                userId:userId
-              })
-          };
+      var requestConfig = {
+        method: 'DELETE',
+        url: '/myCar/' + userId,
+        contentType: 'application/json',
+        data: JSON.stringify({
+          myCar: carname,
+          userId: userId
+        })
+      };
 
-          $.ajax(requestConfig).then(function (responseMessage) {
-            // newElement = $(responseMessage);
-            // bindEventsToMyCarItem(newElement)
-              console.log(responseMessage);
-               carlistItem.remove();
-             
-          });
-           console.log(4);
-          // $('eachCar').hide();
+      $.ajax(requestConfig).then(function (responseMessage) {
+
+        console.log(responseMessage);
+        carlistItem.remove();
+        if (carlistDiv.children().length == 0) {
+          emptyDiv.show();
+        }
+
       });
+    });
   }
 
   carlistDiv.children().each(function (index, element) {
     bindEventsToMyCarItem($(element));
   });
-  // carlistDiv.children().each(function (index, element) {
-  //   bindEventsToMyCarItem($(element));
-  // });
 
 })(window.jQuery);
