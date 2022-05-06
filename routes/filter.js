@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
         filter.push(valDF);
         filter.push(locVal);
         filter.push(zipVal);
-        console.log(filter);
+        // console.log(filter);
         await method.filter.getFilterParkLot(filter);
         res.redirect('/filter');
     } catch (e) {

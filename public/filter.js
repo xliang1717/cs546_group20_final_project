@@ -8,6 +8,7 @@
     let valCT = null;
     let valDF = null;
 
+
     conditionParkFee.on('click', 'li', function (event) {
         event.preventDefault();
         if (this.className == 'Subcondition Subcondition--active') {

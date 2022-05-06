@@ -41,7 +41,7 @@ module.exports = {
         // 40.74119115392377, -74.02962195701149;
         const parkLotCollection = await parkLot();
         let filterArr = filter;
-        filterArr[2] == 'Yes' ? (filterArr[2] = true) : (filterArr[2] = false);
+        filterArr[2] == 'Yes' ? (filterArr[2] = "True") : (filterArr[2] = "False");
         let nearBy = filterArr[3] ? parseInt(filterArr[3]) : null;
         let zipCode = filterArr[4] ? filterArr[4] : null;
         let parkLotList = null;
@@ -79,6 +79,8 @@ module.exports = {
                 let parkLot = result[i];
                 let Longitude1 = parkLot.parkingLotCoordinates.Longitude;
                 let Latitude1 = parkLot.parkingLotCoordinates.Latitude;
+                Longitude1 = parseFloat(Longitude1);
+                Latitude1 = parseFloat(Latitude1);
                 let Longitude2 = Location[nearBy].Longitude;
                 let Latitude2 = Location[nearBy].Latitude;
                 if (distance(Longitude1, Latitude1, Longitude2, Latitude2) <= 5) {

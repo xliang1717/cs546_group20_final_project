@@ -12,8 +12,9 @@ ul,li{
     margin: 80px auto;
     padding: 5px 15px;
     border: 1px solid #ddd;
-    color: #666;
+    color: #6A9382;
     font-size: 12px;
+    background-color: #F1F9F5;
 }
 
 .Conditions{
@@ -57,8 +58,14 @@ ul,li{
 
 .searchButton{
     float: right;
+    height: 30px;
+    width: 100px;
     margin: 15px 7px;
     padding: 2px 6px;
+    border:none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #9FCAB8;
 }
 
 .Selections{
@@ -74,4 +81,13 @@ ul,li{
 
 .Selection-title{
     padding-left: 2em;
+}
+
+#ResultList {
+    width: 550px;
+    margin: 80px auto;
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    color: #666;
+    font-size: 12px;
 }
