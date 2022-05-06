@@ -27,15 +27,11 @@ module.exports = {
     // },
 
 
-    async create(isDelete, userName, commentTag, commentdate, parkLotId, UserId, commentInfo, level) {
+    async create(userName, commentTag, commentdate, parkLotId, UserId, commentInfo, level) {
 
-        if (arguments.length !== 8) {
+        if (arguments.length !== 7) {
             throw "There must be 7 arguments !"
-        }
-
-        if (typeof isDelete !== 'boolean') {
-            throw 'isDelete should be Boolean'
-        }
+        };
 
         userName = validation.checkString(userName, 'Username');
 
@@ -59,7 +55,7 @@ module.exports = {
 
         let newComment = {
 
-            isDelete: isDelete,
+            isDelete: false,
             userName: userName,
             commentTag: commentTag,
             commentdate: commentdate,

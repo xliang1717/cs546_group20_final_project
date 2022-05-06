@@ -38,7 +38,7 @@ const validation = require('../validation');
 //     }
 // });
 
-//建seed时候要注释掉
+//建seed时候要注释掉（现在不需要了）
 router.get('/:id', async (req, res) =>{
     let id = req.params.id; //这个id 是停车场的id
     try {
@@ -46,8 +46,7 @@ router.get('/:id', async (req, res) =>{
     }catch(e){
         res.status(400).render('result/comment',{title : 'The parklot comment',  haserror : true,   error : e});
         return;
-    }
-    
+    };
 
     try{
         let ParkLotDetail = await parkLotData.get(id);
@@ -71,42 +70,39 @@ router.get('/:id', async (req, res) =>{
 });
 
 router.post('/comment', async (req, res) => {
-    try {
-        req.session.user = { username: 'shuang', userId: '66666666666' }; //test
-        if (req.session.user) {
+    req.session.user = { username: 'shuang', userId: '66666666666' }; //test
+    
+    if (req.session.user) {
 
-            let date = new Date().toUTCString();
-            let parklotId = xss('62616e5169c3b43a2e6f38f2');
-            parklotId = validation.checkId(parklotId, 'ParkLotId');
-            let tag = xss(req.body.commentTag); 
-            tag = validation.checkString(tag, 'CommentTag');
-            let commentS = xss(req.body.commentInfo);
-            commentS = validation.checkString(commentS, 'Comment contents');
-            let rating= xss(req.body.level);
-            rating = validation.checkRate(rating, 'Rating');
+        let date = new Date().toUTCString();
+        let parklotId = xss(req.body.parkLotId);
+        parklotId = validation.checkId(parklotId, 'ParkLotId');
+        let tag = xss(req.body.commentTag); 
+        tag = validation.checkString(tag, 'CommentTag');
+        let commentS = xss(req.body.commentInfo);
+        commentS = validation.checkString(commentS, 'Comment contents');
+        let rating= xss(req.body.level);
+        rating = validation.checkRate(rating, 'Rating');
 
-            let newComment = await commentsData.create(
-                false,
-                req.session.user.username,
-                xss(tag),
-                date,
-                xss(parklotId),//commentPostInfo.parkLotId
-                req.session.user.userId,
-                xss(commentS),
-                xss(rating)
-            );
+        let newComment = await commentsData.create(
+            
+            req.session.user.username,
+            xss(tag),
+            date,
+            xss(parklotId),//commentPostInfo.parkLotId
+            req.session.user.userId,
+            xss(commentS),
+            xss(rating)
+        );
 
-            if (newComment) {
-                res.status(200).json("You have successfully add the new comment!");
-            } else {
-                res.status(500).render('partials/parkLot', { layout: null, error: "Can't add new comment!" });
-            }
-
+        if (newComment) {
+            res.json({success : true});
         } else {
-            res.status(403).render('result/login', { title: 'Login' });
+            return res.json({success : false , error : e});
         }
-    } catch (e) {
-        res.status(404).render('partials/parkLot', { layout: null, error: e });
+
+    } else {
+        return res.json({success : false , error : 'You need login first'});
     }
 
 });
@@ -152,43 +148,43 @@ router.delete('/usercomment', async (req, res) => {
 
 
 
-    // //////建seed的时候用的
+    // //////建seed的时候用的(现在不需要了)
     ;
-router.get('/:id', async (req, res) => {
-    let id = req.params.id;
-    // try {
-    //     id = validation.checkId(id, 'ID URL Param');
-    // }catch(e){
-    //     return res.status(400).json({error : e });
-    // }
+// router.get('/:id', async (req, res) => {
+//     let id = req.params.id;
+//     // try {
+//     //     id = validation.checkId(id, 'ID URL Param');
+//     // }catch(e){
+//     //     return res.status(400).json({error : e });
+//     // }
 
-    try {
-        let comment = await commentsData.get(id);
-        res.status(200).json(comment);
-    } catch (e) {
-        res.status(404).json({ error: e });
-    }
-});
-////建seed的时候用的
-router.get('/', async (req, res) => {
-    try {
+//     try {
+//         let comment = await commentsData.get(id);
+//         res.status(200).json(comment);
+//     } catch (e) {
+//         res.status(404).json({ error: e });
+//     }
+// });
+////建seed的时候用的(现在不需要了)
+// router.get('/', async (req, res) => {
+//     try {
 
-        // let bandCollection = await bands();
-        // let allBandsList = await bandCollection.find({},{projection : {name : 1}}).toArray();
+//         // let bandCollection = await bands();
+//         // let allBandsList = await bandCollection.find({},{projection : {name : 1}}).toArray();
 
-        // if (allBandsList.length !== 0) {
-        //     for (let i = 0; i < allBandsList.length; i++) {
-        //         allBandsList[i]._id = allBandsList[i]._id.toString();
-        //     }
-        // }
-        // res.status(200).json(allBandsList);
+//         // if (allBandsList.length !== 0) {
+//         //     for (let i = 0; i < allBandsList.length; i++) {
+//         //         allBandsList[i]._id = allBandsList[i]._id.toString();
+//         //     }
+//         // }
+//         // res.status(200).json(allBandsList);
 
-        let commentsDataList = await commentsData.getAll();
-        //let result = allusersDataList.map(({_id, name}) =>({_id,name}));
-        res.status(200).json(commentsDataList);
-    } catch (e) {
-        res.status(500).json({ error: e });
-    }
-});
+//         let commentsDataList = await commentsData.getAll();
+//         //let result = allusersDataList.map(({_id, name}) =>({_id,name}));
+//         res.status(200).json(commentsDataList);
+//     } catch (e) {
+//         res.status(500).json({ error: e });
+//     }
+// });
 
 module.exports = router;

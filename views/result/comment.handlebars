@@ -1,15 +1,13 @@
 <div>
     {{#if haserror}}
         <p class="error">We're sorry, but {{error}}.</p>
-        <a href="/comment">Click here to back home!</a> 
-        {{!-- 到时候更改链接 --}}
 
     {{else}}
 
 
     <div class="parkLotAllComments">
 
-        {{!-- <div id = 'ParkLotId' hidden>{{ParkLotID}}</div> --}}
+        <div id = 'ParkLotId' hidden>{{ParkLotDetail._id}}</div>
         
         <div id="result" hidden>
         </div>
@@ -69,4 +67,8 @@
     </div>
 
     {{/if}}
+</div>
+
+<div>
+    <a href="/comment">Click here to back home!</a> 
 </div>

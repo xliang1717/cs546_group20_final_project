@@ -135,7 +135,11 @@
         }
 
 
-        let suitableVehicleSize = suitableVehicleSizea.val();
+        suitableVehicleSize = suitableVehicleSizea.val();
+        if(suitableVehicleSize.length === 0){
+            alert('You need choose the suitable vehicle');
+            e = true;
+        }
 
 
         let body = {
@@ -163,11 +167,11 @@
 
         if(!e){
             $.ajax(requestConfig).then(function(responseMessage){
-                if(responseMessage.length === 0) {
+                if(!responseMessage.success) {
                     form.show();
                     result.hide();
                     addNewParkLot.trigger('reset');
-                    error.html('can not add the parkingLot');
+                    error.html(responseMessage.error);
                     error.show();
 
                 }else{

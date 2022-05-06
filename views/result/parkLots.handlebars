@@ -1,4 +1,10 @@
 <div>
+    {{#if haserror}}
+        <p class="error">We're sorry, but {{error}}.</p>
+        <a href="/comment">Click here to back home!</a> 
+        {{!-- 到时候更改链接 --}}
+
+    {{else}}
         
     <div id="form">
         <form id = "addNewParkLot" class = "parkLot-form">
@@ -94,5 +100,7 @@
     <div>
         <a href="/comment">Click here to back home!</a> 
     </div>
+
+    {{/if}}
 
 </div>

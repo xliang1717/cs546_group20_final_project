@@ -51,7 +51,7 @@
         }
 
 
-        let parkLotId = parkingId.val();
+        let parkLotId = parkingId[0].innerHTML;
 
         let check_val = [];
         for (x in commentTag){
@@ -82,11 +82,13 @@
 
         if(!e){
             $.ajax(requestConfig).then(function(responseMessage){
-                if(responseMessage.length === 0) {
+                if(!responseMessage.success) {
                     // return shows;
                     commentsListArea.hide();
+                    $('.parklotInfo').hide();
+                    error.html(responseMessage.error);
                     error.show();
-                    error.html('can not add the comments');
+                    
 
                 }else{
                     error.hide();

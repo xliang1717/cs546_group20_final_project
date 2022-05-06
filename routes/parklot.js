@@ -1,32 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const method = require('../method');
+const validation = require('../validation');
 const parklotsData = method.parklot;
-//const validation = require('../validation');
-//const mongoCollections = require('../config/mongoCollections');
-//const { ObjectId } = require('mongodb');
-//const users = mongoCollections.user;
-
-// router.get('/', async (req,res) => {
-//     try {
-        
-//         // let bandCollection = await bands();
-//         // let allBandsList = await bandCollection.find({},{projection : {name : 1}}).toArray();
-
-//         // if (allBandsList.length !== 0) {
-//         //     for (let i = 0; i < allBandsList.length; i++) {
-//         //         allBandsList[i]._id = allBandsList[i]._id.toString();
-//         //     }
-//         // }
-//         // res.status(200).json(allBandsList);
-
-//         let parklotsDataList = await parklotsData.getAll();
-//         //let result = allusersDataList.map(({_id, name}) =>({_id,name}));
-//         res.status(200).json(parklotsDataList);
-//     } catch(e) {
-//         res.status(500).json({error : e});
-//     }
-// });
 
 router.get('/addNewParkLot', async (req,res) => {
     try {
@@ -59,75 +35,52 @@ router.get('/:id', async (req, res) =>{
 router.post('/', async(req, res) =>{
     try{
         req.session.user = {UserId : '62616e5169c3b43a2e6f38f1'};
+        if(!req.session.user) throw 'You need log in first!'
         idfromUploader = req.session.user.UserId;
     }catch(e){
-        return res.status(403).render('result/login',{title : 'Login'});
+        return res.json({success : false, error : e});;
     }
 
     let ParkLotInfo = req.body;
     
     try{
         if(!ParkLotInfo) throw 'There is no ParkLotInfo in the post body !';
+
+        ParkLotName = validation.checkString(ParkLotInfo.ParkLotName),
+
+        parkingChargeStandard =  Object.values(ParkLotInfo.parkingChargeStandard);
+        for (x in parkingChargeStandard) {
+            parkingChargeStandard[x] = Number(parkingChargeStandard[x]);
+            if (typeof parkingChargeStandard[x] !== 'number' ||  isNaN(parkingChargeStandard[x]) ) throw 'The parkingChargeStandard should only contain numbers';
+        };
+
+        parkingLotCoordinates = Object.values(ParkLotInfo.parkingLotCoordinates);
+
+        for (x in parkingLotCoordinates) {
+            parkingLotCoordinates[x] = Number(parkingLotCoordinates[x]);
+            if (typeof parkingLotCoordinates[x] !== 'number' ||  isNaN(parkingLotCoordinates[x]) ) throw 'The parkingLotCoordinates should only contain numbers';
+        };
+
+        if(!ParkLotInfo.ParkingLotLocationZipCode.match(/^\d{5}(?:[-\s]\d{4})?$/)) throw 'The zip code not valid.';
+
+        if( ParkLotInfo.DisabilityFriendly !== 'True' && disabilityFriendly !== 'False') throw 'The disabilityFriendly should be Boolean';
+
+        suitableVehicleSize = validation.checkStringArray(ParkLotInfo.suitableVehicleSize, 'suitableVehicleSize');
+        
+        idfromUploader = validation.checkId(idfromUploader, 'idfromUploader');
+
+        let  Conditions=  Object.values(ParkLotInfo.TrafficConditions);
+        for (x in Conditions) {
+            validation.checkString (Conditions[x], 'trafficConditions');
+        };
+
+        capacity = validation.checkIntNumber(ParkLotInfo.capacity, 'capacity'); 
+
     }catch(e){
-        return res.status(400).json({error:e});
+        return res.json({success : false , error : e});
 
-    }
+    };
     
-
-//     try{
-//         if(Object.keys(bandPostInfo).length !== 6) throw 'There is wrong bandPostInfo number in the post body !';
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         bandPostInfo.name = validation.checkString(bandPostInfo.name, 'Name');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         bandPostInfo.genre = validation.checkStringArray(bandPostInfo.genre,'Genre');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-        
-//         bandPostInfo.website = validation.checkString(bandPostInfo.website,'Website');
-
-//         if (!bandPostInfo.website.match(/^[hH][tT][tT][pP]:\/\/[wW][wW][wW]\.[a-zA-Z0-9][^\s]{4,}\.[cC][oO][mM]$/)) {
-//             throw "The website format is invalid !"
-//         };
-        
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         bandPostInfo.genre = validation.checkStringArray(bandPostInfo.genre,'Genre');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         bandPostInfo.recordLabel = validation.checkString(bandPostInfo.recordLabel,'RecordLabel');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         bandPostInfo.bandMembers = validation.checkStringArray(bandPostInfo.bandMembers,'BandMembers');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         bandPostInfo.yearFormed = validation.checkYear(bandPostInfo.yearFormed,'YearFormed');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
     try {
         const newParkLot = await parklotsData.create(
 
@@ -144,12 +97,12 @@ router.post('/', async(req, res) =>{
 
         )
         if(newParkLot){
-            res.status(200).json("You have successfully add the new parkLot");
+            res.json({success : true});
         }else{
-            res.status(500).json({error : e});
+            res.json({success : false, error : e});
         }
     }catch(e){
-        res.status(500).json({error: e});
+        res.json({success : false ,error : e});
     }
 
 });

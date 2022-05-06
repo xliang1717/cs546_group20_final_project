@@ -17,15 +17,14 @@ async function main() {
     //const idUB = B._id.toString();
 
 
-    const PA = await parklot.create(false,'little man', {"half hour ~ 1 hour" : '5', "1 hour ~ 1 and half hour" : '10', "1 and half hour ~ 2 hour" : '13', " above 2 hour" : '20 '}, {"Longitude" : '137W' , "latitude" : '50N'}, 700037, true, ['medium', 'small'], idUA, {"8:00 ~ 15: 00" : 'light', "15:00 ~ 17:00": 'heavy'},5, 560)
-    //const PB = await parklot.create('stevens park lot', {"half hour ~ 1 hour" : '$5', "1 hour ~ 1 and half hour" : '$10', "1 and half hour ~ 2 hour" : '$13', " above 2 hour" : ' $20 '}, {"Longitude" : '138W' , "latitude" : '51N'}, 944458, true, ['medium', 'small'], idUB, {"8:00 ~ 15: 00" : 'light', "15:00 ~ 17:00": 'heavy'})
+    const PA = await parklot.create('little man', {"half hour ~ 1 hour" : '5', "1 hour ~ 1 and half hour" : '10', "1 and half hour ~ 2 hour" : '13', " above 2 hour" : '20 '}, {"Longitude" : '137' , "latitude" : '50'}, '07030', 'True', ['medium', 'small'], idUA, {"8:00 ~ 15: 00" : 'light', "15:00 ~ 17:00": 'heavy'}, 560)
 
 
     const idPA = PA._id.toString();
     //const idPB = PB._id.toString();
 
-    const comm1 =  await comment.create(false, 'Harry pot',['new driver friendly','small size'],'09/12/2020', idPA, idUA,'The best parklot ever',5);
-    const comm2 = await comment.create(false,'Panda Smith',['low fee'],'07/13/2022', idPA, idUA,'very nice parking lot ',4);
+    const comm1 =  await comment.create('Harry pot','Good, nice ,clean','09/12/2020', idPA, idUA,'The best parklot ever',5);
+    const comm2 = await comment.create('Panda Smith','Good, nice ,clean','07/13/2022', idPA, idUA,'very nice parking lot ',4);
 
     
 

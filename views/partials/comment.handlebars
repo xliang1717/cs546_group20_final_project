@@ -1,14 +1,26 @@
 
-<div class="comment-content">
-    <br>
-    <p class="comment-content-name">UserName : {{userName}}</p>
-    <p class="comment-content-article">Comment :{{commentInfo}}</p>
-    <p class="comment-content-footer">
-        <span class="comment-content-footer-tag">Tag :{{commentTag}}</span>
-        <span class="comment-content-footer-rating">Rating :{{rating}}</span>
-        <span class="comment-content-footer-timestamp"> date : {{commentdate}}</span>
-    </p>
-    <br>
+<div>
+    {{#if haserror}}
+        <p class="error">We're sorry, but {{error}}.</p>
+        <a href="/comment">Click here to back home!</a> 
+        {{!-- 到时候更改链接 --}}
+
+    {{else}}
+
+
+    <div class="comment-content">
+        <br>
+        <p class="comment-content-name">UserName : {{userName}}</p>
+        <p class="comment-content-article">Comment :{{commentInfo}}</p>
+        <p class="comment-content-footer">
+            <span class="comment-content-footer-tag">Tag :{{commentTag}}</span>
+            <span class="comment-content-footer-rating">Rating :{{rating}}</span>
+            <span class="comment-content-footer-timestamp"> date : {{commentdate}}</span>
+        </p>
+        <br>
+    </div>
+    <div class="cls"></div>
+
+    {{/if}}
 </div>
-<div class="cls"></div>
          
