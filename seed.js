@@ -46,7 +46,7 @@ async function main() {
     //await comment.remove(comment1Id);
     // await comment.remove(comment2Id);
 
-    await petrolStation.create('Hoboken', { longitude: '137.6W', latitude: '50.1N' }, 'Thirsty station', [
+    await petrolStation.create('Hoboken', { longitude: '137.6', latitude: '50.1' }, 'Thirsty station', [
         'gaslion',
         'diesel',
     ]);

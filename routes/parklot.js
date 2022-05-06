@@ -4,6 +4,7 @@ const method = require('../method');
 const validation = require('../validation');
 const parklotsData = method.parklot;
 
+
 router.get('/addNewParkLot', async (req,res) => {
     try {
         res.render('result/parkLots',{title : 'Add new parklot'});
