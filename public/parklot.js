@@ -123,7 +123,7 @@
         }
 
         let parkingLotCoordinatesa = {
-            Longitude : Longitudea,
+            longitude : Longitudea,
             latitude : Latitudea
         }
 

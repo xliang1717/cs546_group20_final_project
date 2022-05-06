@@ -29,7 +29,7 @@ async function main() {
     //const idUB = B._id.toString();
 
 
-    const PA = await parklot.create('little man', {"half hour ~ 1 hour" : '5', "1 hour ~ 1 and half hour" : '10', "1 and half hour ~ 2 hour" : '13', " above 2 hour" : '20 '}, {"Longitude" : '137' , "latitude" : '50'}, '07030', 'True', ['medium', 'small'], idUA, {"8:00 ~ 15: 00" : 'light', "15:00 ~ 17:00": 'heavy'}, 560)
+    const PA = await parklot.create('little man', {"half hour ~ 1 hour" : '5', "1 hour ~ 1 and half hour" : '10', "1 and half hour ~ 2 hour" : '13', " above 2 hour" : '20 '}, {"longitude" : '40.741' , "latitude" : '74.029'}, '07030', 'True', ['medium', 'small'], idUA, {"8:00 ~ 15: 00" : 'light', "15:00 ~ 17:00": 'heavy'}, 560)
 
     const idPA = PA._id.toString();
     //const idPB = PB._id.toString();
@@ -46,7 +46,7 @@ async function main() {
     //await comment.remove(comment1Id);
     // await comment.remove(comment2Id);
 
-    await petrolStation.create('Hoboken', { Longitude: '137.6W', latitude: '50.1N' }, 'Thirsty station', [
+    await petrolStation.create('Hoboken', { longitude: '137.6W', latitude: '50.1N' }, 'Thirsty station', [
         'gaslion',
         'diesel',
     ]);
