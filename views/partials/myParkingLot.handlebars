@@ -1,0 +1,11 @@
+<div class="parkingLotBox">
+    <div class="parkingLotBoxImage">
+        <img src="/public/parkingLotImage.jpeg" width="210" height="140" />
+    </div>
+    <div class="parkingLotRightTextBox" id="{{parkLotname}}">
+        <div class="parkingLotBoxLine1"> {{parkLotname}} </div>
+        <div class="parkingLotBoxLine2">
+            <button class="parkingLotBoxViewBtn" onclick="window.location.href='/parklot/{{_id}}';" data-userid="{{userId}}" data-parkinglotid="{{_id}}">View</button>
+        </div>
+    </div>
+</div>

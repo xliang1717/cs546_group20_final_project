@@ -1,0 +1,23 @@
+<div class="userMainBox">
+    <div class="mainInfo">
+        <h1>{{title}}</h1>
+        <div class="myCollection">
+            {{!-- Show user favorite parking lots collection and can remove favrite parking lot from collection--}}
+            {{!-- https://modao.cc/app/Vy1f8dN6r9jszj4dSrSRwx#screen=sl1rcthwx07gq2c --}}
+            {{!-- 用户界面 - 收藏功能（查看我的收藏） --}}
+            <div id="showCollections">
+                {{!-- Display existing parkingLots in my Collection --}}
+                {{!-- Display empty collection if no parkingLot were added for this user --}}
+                <div class="collectionBox" id="emptycollectionBox">
+                    Currently no collection for this user.
+                </div>
+                <div id="showMyCollectionBox">
+                    {{#each myCollection}} {{> myCollection }} {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="backToHomeDiv">
+            <button onclick="window.location.href='/user/{{userId}}';" class="backToHomeBtn">Back to Home</button>
+        </div>
+    </div>
+</div>

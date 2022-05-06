@@ -3,6 +3,8 @@ const comment = require('./comment');
 const parklot = require('./parklot');
 const petrolStation = require('./petrolStation');
 const filter = require('./filter');
+const myCollection = require('./myCollection');
+const myArea = require('./myArea');
 
 
 module.exports = {
@@ -10,5 +12,7 @@ module.exports = {
     petrolStation : petrolStation,
     comment : comment,
     parklot : parklot,
-    filter : filter
+    filter : filter,
+    myCollection: myCollection,
+    myArea: myArea
 };
