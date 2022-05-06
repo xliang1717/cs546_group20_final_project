@@ -40,27 +40,37 @@
     var addNewAreaBtn = $('#addNewAreaBtn');
     var addNewAreaConfrimBtn = $('#addNewAreaConfrimBtn');
     var showMyAreaBox = $('#showMyAreaBox');
+    var modalInputError = $('#modalInputError');
 
     addNewAreaConfrimBtn.on('click', function (event) {
         event.preventDefault();
         var newArea = newAreaInput.val();
-        var userId = addNewAreaBtn.data('userid');
-
-        var requestConfig = {
-            method: 'POST',
-            url: '/user/area',
-            data: {
-                userId: userId,
-                newArea: newArea
-            }
-        };
-
-        $.ajax(requestConfig).then(function (responseMessage) {
-            var newElement = $(responseMessage);
-            showMyAreaBox.replaceWith(newElement);
+        if (!newArea || newArea.trim().length == 0) {
+            modalInputError.text("Input should not be empty.");
+            modalInputError.show();
+            event.stopPropagation();
             newAreaInput.val('');
-            showMyAreaBox = newElement;
-        });
+        } else {
+            modalInputError.hide();
+
+            var userId = addNewAreaBtn.data('userid');
+
+            var requestConfig = {
+                method: 'POST',
+                url: '/user/area',
+                data: {
+                    userId: userId,
+                    newArea: newArea
+                }
+            };
+
+            $.ajax(requestConfig).then(function (responseMessage) {
+                var newElement = $(responseMessage);
+                showMyAreaBox.replaceWith(newElement);
+                newAreaInput.val('');
+                showMyAreaBox = newElement;
+            });
+        }
 
     });
 

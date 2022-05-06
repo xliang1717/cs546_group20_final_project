@@ -123,6 +123,11 @@ h1 {
     margin: auto;
 }
 
+#modalInputError {
+    margin-left: 6px;
+    color: red;
+}
+
 #detailPageMyCollection {
     text-align: center;
     padding: 1em;

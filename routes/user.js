@@ -14,6 +14,9 @@ router.get('/', async (req, res) => {
     }
 });
 
+// This is the entry point for user detail page, when customer open http://localhost:3000/user/XXXX(userId),
+// This method internally calling userData by userId to fetch User information, and it will set the data and 
+// then render the user detail page using layout views/layout/user.handlebars and /views/user/detail.handlebars
 router.get('/:id', async (req, res) => {
     let id = req.params.id;
     try {
