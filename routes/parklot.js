@@ -1,32 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const method = require('../method');
+const validation = require('../validation');
 const parklotsData = method.parklot;
-//const validation = require('../validation');
-//const mongoCollections = require('../config/mongoCollections');
-//const { ObjectId } = require('mongodb');
-//const users = mongoCollections.user;
 
-router.get('/', async (req,res) => {
+router.get('/addNewParkLot', async (req,res) => {
     try {
-        
-        // let bandCollection = await bands();
-        // let allBandsList = await bandCollection.find({},{projection : {name : 1}}).toArray();
-
-        // if (allBandsList.length !== 0) {
-        //     for (let i = 0; i < allBandsList.length; i++) {
-        //         allBandsList[i]._id = allBandsList[i]._id.toString();
-        //     }
-        // }
-        // res.status(200).json(allBandsList);
-
-        let parklotsDataList = await parklotsData.getAll();
-        //let result = allusersDataList.map(({_id, name}) =>({_id,name}));
-        res.status(200).json(parklotsDataList);
+        res.render('result/parkLots',{title : 'Add new parklot'});
     } catch(e) {
         res.status(500).json({error : e});
     }
 });
+
 
 router.get('/:id', async (req, res) =>{
     let id = req.params.id;
@@ -44,85 +29,108 @@ router.get('/:id', async (req, res) =>{
     }
 });
 
-// router.post('/', async(req, res) =>{
+
+
+
+router.post('/', async(req, res) =>{
+    try{
+        req.session.user = {UserId : '62616e5169c3b43a2e6f38f1'};
+        if(!req.session.user) throw 'You need log in first!'
+        idfromUploader = req.session.user.UserId;
+    }catch(e){
+        return res.json({success : false, error : e});;
+    }
+
+    let ParkLotInfo = req.body;
     
-//     let bandPostInfo = req.body;
+    try{
+        if(!ParkLotInfo) throw 'There is no ParkLotInfo in the post body !';
 
-//     try{
-//         if(!bandPostInfo) throw 'There is no bandPostInfo in the post body !';
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
+        ParkLotName = validation.checkString(ParkLotInfo.ParkLotName),
 
-//     try{
-//         if(Object.keys(bandPostInfo).length !== 6) throw 'There is wrong bandPostInfo number in the post body !';
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
+        parkingChargeStandard =  Object.values(ParkLotInfo.parkingChargeStandard);
+        for (x in parkingChargeStandard) {
+            parkingChargeStandard[x] = Number(parkingChargeStandard[x]);
+            if (typeof parkingChargeStandard[x] !== 'number' ||  isNaN(parkingChargeStandard[x]) ) throw 'The parkingChargeStandard should only contain numbers';
+        };
 
-//     try{
-//         bandPostInfo.name = validation.checkString(bandPostInfo.name, 'Name');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
+        parkingLotCoordinates = Object.values(ParkLotInfo.parkingLotCoordinates);
 
-//     try{
-//         bandPostInfo.genre = validation.checkStringArray(bandPostInfo.genre,'Genre');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
+        for (x in parkingLotCoordinates) {
+            parkingLotCoordinates[x] = Number(parkingLotCoordinates[x]);
+            if (typeof parkingLotCoordinates[x] !== 'number' ||  isNaN(parkingLotCoordinates[x]) ) throw 'The parkingLotCoordinates should only contain numbers';
+        };
 
-//     try{
+        if(!ParkLotInfo.ParkingLotLocationZipCode.match(/^\d{5}(?:[-\s]\d{4})?$/)) throw 'The zip code not valid.';
+
+        if( ParkLotInfo.DisabilityFriendly !== 'True' && disabilityFriendly !== 'False') throw 'The disabilityFriendly should be Boolean';
+
+        suitableVehicleSize = validation.checkStringArray(ParkLotInfo.suitableVehicleSize, 'suitableVehicleSize');
         
-//         bandPostInfo.website = validation.checkString(bandPostInfo.website,'Website');
+        idfromUploader = validation.checkId(idfromUploader, 'idfromUploader');
 
-//         if (!bandPostInfo.website.match(/^[hH][tT][tT][pP]:\/\/[wW][wW][wW]\.[a-zA-Z0-9][^\s]{4,}\.[cC][oO][mM]$/)) {
-//             throw "The website format is invalid !"
-//         };
-        
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
+        let  Conditions=  Object.values(ParkLotInfo.TrafficConditions);
+        for (x in Conditions) {
+            validation.checkString (Conditions[x], 'trafficConditions');
+        };
 
-//     try{
-//         bandPostInfo.genre = validation.checkStringArray(bandPostInfo.genre,'Genre');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
+        capacity = validation.checkIntNumber(ParkLotInfo.capacity, 'capacity'); 
 
-//     try{
-//         bandPostInfo.recordLabel = validation.checkString(bandPostInfo.recordLabel,'RecordLabel');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
+    }catch(e){
+        return res.json({success : false , error : e});
 
-//     try{
-//         bandPostInfo.bandMembers = validation.checkStringArray(bandPostInfo.bandMembers,'BandMembers');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
+    };
+    
+    try {
+        const newParkLot = await parklotsData.create(
 
-//     try{
-//         bandPostInfo.yearFormed = validation.checkYear(bandPostInfo.yearFormed,'YearFormed');
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
+            ParkLotInfo.ParkLotName,
+            ParkLotInfo.parkingChargeStandard,
+            ParkLotInfo.parkingLotCoordinates,
+            ParkLotInfo.ParkingLotLocationZipCode,
+            ParkLotInfo.DisabilityFriendly,
+            ParkLotInfo.suitableVehicleSize,
+            idfromUploader,
+            ParkLotInfo.TrafficConditions,
+            ParkLotInfo.capacity,
 
-//     try {
-//         const newBand = await bandsData.create(
-//             bandPostInfo.name,
-//             bandPostInfo.genre,
-//             bandPostInfo.website,
-//             bandPostInfo.recordLabel,
-//             bandPostInfo.bandMembers,
-//             bandPostInfo.yearFormed
-//         )
-//         res.status(200).json(newBand);
-//     }catch(e){
-//         res.status(500).json({error: e});
-//     }
 
-// });
+        )
+        if(newParkLot){
+            res.json({success : true});
+        }else{
+            res.json({success : false, error : e});
+        }
+    }catch(e){
+        res.json({success : false ,error : e});
+    }
+
+});
+
+
+router.delete('/deleteParkLot', async(req,res) =>{
+    try{
+        let id =xss(req.body.commentID); //comment Id
+        let UserId = xss(req.body.UserId);
+        if(req.session.user){
+            if(req.session.user.UserId === UserId){
+                let message =  await parklotsData.remove(id)
+                if(message){
+                    res.status(200).json("You have successfully add the new comment!");
+                }else{
+                    // res.status(500).render('partials/parkLot',{layout:null, error: "Can't delete this comment!"});
+                }
+            }else{
+                // res.status(403).render('partials/parkLot',{layout:null, error: "You are not allowed to delete this comment!"});
+            }
+        }else{
+            res.status(403).render('result/login',{title : 'Login'});
+        }
+    }catch(e){
+        res.status(400).render('partials/parkLot',{layout:null, error: e})
+    }
+
+})
 
 // router.put('/:id', async(req,res) =>{
 //     let id = req.params.id;

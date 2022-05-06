@@ -1,0 +1,93 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+ul,li{
+    list-style: none;
+}
+
+#Filter {
+    width: 550px;
+    margin: 80px auto;
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    color: #6A9382;
+    font-size: 12px;
+    background-color: #F1F9F5;
+}
+
+.Conditions{
+    border-bottom: 1px solid #eee;
+}
+
+.Condition-title,
+.Condition-list-PF,
+.Condition-list-CT,
+.Condition-list-DF{
+  display: inline-block;  
+}
+
+.Condition-title{
+    padding-left: 2em;
+}
+
+.Subcondition{
+    display: inline-block;
+    margin: 15px 7px;
+    padding: 5px 6px;
+    color: rgb(87, 116, 95);
+    cursor: pointer;
+}
+
+.Subcondition:hover{
+    color: rgb(87, 116, 95);
+    background-color: rgb(224, 240, 234);
+}
+
+.Subcondition.Subcondition--active{
+    color: #fff;
+    background-color: rgb(125, 219, 184);
+}
+
+.Search{
+    display: inline-block;
+    width: 550px;
+    border-bottom: 1px solid #eee;
+}
+
+.searchButton{
+    float: right;
+    height: 30px;
+    width: 100px;
+    margin: 15px 7px;
+    padding: 2px 6px;
+    border:none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #9FCAB8;
+}
+
+.Selections{
+    border-bottom: 1px solid #eee;
+}
+
+#locationSelect,
+#zipCodeSelect{
+    display: inline-block;
+    margin: 15px 7px;
+    padding: 5px 6px;
+}
+
+.Selection-title{
+    padding-left: 2em;
+}
+
+#ResultList {
+    width: 550px;
+    margin: 80px auto;
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    color: #666;
+    font-size: 12px;
+}

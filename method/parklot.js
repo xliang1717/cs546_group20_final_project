@@ -1,17 +1,17 @@
 const mongoCollections = require('../config/mongoCollections');
 const parklot = mongoCollections.parklot;
 const { ObjectId } = require('mongodb');
-//const validation = require('../validation');
+const validation = require('../validation');
 
 
 module.exports = {
     async get(id) {
-    //     if (arguments.length !== 1)  throw " You must provide an id and only one id to search for!";
-    //     id = validation.checkId(id,'ID');
+        if (arguments.length !== 1)  throw " You must provide an id and only one id to search for!";
+        id = validation.checkId(id,'ID');
         
         const parkLotCollection = await parklot();
         const parkLotData = await parkLotCollection.findOne( {_id : ObjectId(id) });
-        if (parkLotData=== null) throw 'No band with that id';
+        if (parkLotData=== null) throw 'No parkLot with that id';
         parkLotData._id = parkLotData._id.toString();
         return parkLotData;
     },
@@ -31,34 +31,46 @@ module.exports = {
     },
 
 
-    async create ( isDelete,parkLotname, parkingChargeStandard, parkingLotCoordinates, parklotLocationZipCode, disabilityFriendly, suitableVehicleSize, idfromUploader,trafficConditions, grade, capacity) {
+    async create ( parkLotname, parkingChargeStandard, parkingLotCoordinates, parklotLocationZipCode, disabilityFriendly, suitableVehicleSize, idfromUploader,trafficConditions,  capacity) {
 
-        // if (arguments.length !== 6) {
-        //     throw "There must be 6 arguments !"
-        // }
+        if (arguments.length !== 9) {
+            throw "There must be 9 arguments !"
+        }
 
-        // name = validation.checkString(name, 'Name');
+        parkLotname = validation.checkString(parkLotname, 'parkLotname');
 
-        // website = validation.checkString(website, 'Website');
-        
-        // if (!website.match(/^[hH][tT][tT][pP]:\/\/[wW][wW][wW]\.[a-zA-Z0-9][^\s]{4,}\.[cC][oO][mM]$/)) {
-        //     throw "The website format is invalid!"
-        // }
+        let standard =  Object.values(parkingChargeStandard);
+        for (x in standard) {
+            standard[x] = Number(standard[x]);
+            if (typeof standard[x] !== 'number' ||  isNaN(standard[x]) ) throw 'The parkingChargeStandard should only contain numbers';
+        }
 
-        // recordLabel = validation.checkString(recordLabel, 'RecordLabel');
+        let coordinates =  Object.values(parkingLotCoordinates);
+        for (x in coordinates) {
+            coordinates[x] = Number(coordinates[x]);
+            if (typeof coordinates[x] !== 'number' ||  isNaN(coordinates[x]) ) throw 'The parkingLotCoordinates should only contain numbers';
+        }
 
-        // genre = validation.checkStringArray(genre, 'Genre');
+        if(!parklotLocationZipCode.match(/^\d{5}(?:[-\s]\d{4})?$/)) throw 'The zip code not valid.';
 
-        // bandMembers = validation.checkStringArray(bandMembers,'BandMembers');
+        if(disabilityFriendly !== 'True' && disabilityFriendly !== 'False') throw 'The disabilityFriendly should be Boolean';
 
-        // yearFormed =validation.checkYear(yearFormed,'YearFormed');
+        suitableVehicleSize = validation.checkStringArray(suitableVehicleSize, 'suitableVehicleSize');
 
+        idfromUploader = validation.checkId(idfromUploader, 'idfromUploader');
+
+        let  Conditions=  Object.values(trafficConditions);
+        for (x in Conditions) {
+            validation.checkString (Conditions[x], 'trafficConditions');
+        };
+
+        capacity = validation.checkIntNumber(capacity, 'capacity');
         
         const parkLotCollection = await parklot();
 
         let newParkLot = {
 
-            isDelete: isDelete,
+            isDelete: false,
             parkLotname : parkLotname , 
             parkingChargeStandard : parkingChargeStandard, 
             parkingLotCoordinates : parkingLotCoordinates,  
@@ -67,7 +79,7 @@ module.exports = {
             suitableVehicleSize : suitableVehicleSize, 
             idfromUploader : idfromUploader,
             trafficConditions : trafficConditions,
-            rating : grade,
+            rating : 0,
             parkingLotCapacity : capacity,
             totalCommentRating : 0,
             totalCommentNumber : 0
