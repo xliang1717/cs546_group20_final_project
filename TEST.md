@@ -19,3 +19,18 @@
 * You can click "View" button to view parking lot with the parkinglot ID
 * You can navigate to this page from user detail page's "Add New Parking Lot" button
 
+
+## Resources
+
+Squash commits into one
+https://www.internalpointers.com/post/squash-commits-into-one-git
+
+```
+
+git rebase -i HEAD~N
+
+Change all newer commits(except first one) from 'pick' to 's' and save the file
+
+Update the commit message and save the file
+
+```
