@@ -1,5 +1,4 @@
 <div id = "Filter">
-
     <div class = "Conditions">
         <div class="Condition-title">Parking Fee:</div>
         <ul class="Condition-list-PF">
@@ -11,9 +10,9 @@
     <div class = "Conditions">
         <div class="Condition-title">Car Type:</div>
         <ul class="Condition-list-CT">
-            <li class="Subcondition">Small</li>
-            <li class="Subcondition">Medium</li>
-            <li class="Subcondition">Large</li>
+            <li class="Subcondition">small</li>
+            <li class="Subcondition">medium</li>
+            <li class="Subcondition">large</li>
         </ul>
     </div>
 
@@ -29,10 +28,10 @@
         <div class="Selection-title">Nearby Location:</div>
         <select name="" id="locationSelect">
             <option value="">--Locations--</option>
-            <option value="Stevens Institute of Technology">Stevens Institute of Technology</option>
-            <option value="Pier C Park">Pier C Park</option>
-            <option value="Sheraton Lincoln Harbor">Sheraton Lincoln Harbor</option>
-            <option value="Hoboken PATH Station">Hoboken PATH Station</option>
+            <option value="0">Stevens Institute of Technology</option>
+            <option value="1">Pier C Park</option>
+            <option value="2">Sheraton Lincoln Harbor</option>
+            <option value="3">Hoboken PATH Station</option>
         </select>
     </div>
 
@@ -50,5 +49,21 @@
     <div class = "Search">
        <button class="searchButton">Search</button>
     </div>
-
+    <div>
+        {{#if data.length}}
+            <div>
+                {{#each data}}
+                <div class = "Conditions">
+                    <div class="Condition-title">
+                        <a href="/parklot/{{_id}}">{{parkLotname}}</a>
+                    </div>
+                        <ul class="Condition-list-CT">
+                            <li class="Subcondition">{{rating}}</li>
+                        </ul>
+                </div>
+                {{/each}}
+            </div>
+            
+        {{/if}}
+    </div>
 </div>
