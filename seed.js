@@ -9,16 +9,27 @@ async function main() {
     const db = await dbConnection.dbConnection();
     await db.dropDatabase();
 
-    const A = await user.create(false,'A Flourish Tree','LosBoger','Nick','nicklosboger@gmail.com',[],['Hudson River',' 2en street'], ['medium','small'],'123456password', ['hudson river parklot', 'little man parklot'], ['stevens parklot', 'Tree parklot'], 'hudson river parklot 2C');
+    const A = await user.create(
+        false,
+        'A Flourish Tree',
+        'LosBoger',
+        'Nick',
+        'nicklosboger@gmail.com',
+        [],
+        ['Hudson River', ' 2en street'],
+        ['medium', 'small'],
+        '123456password',
+        ['hudson river parklot', 'little man parklot'],
+        ['stevens parklot', 'Tree parklot'],
+        'hudson river parklot 2C'
+    );
     //const B = await user.create('Simpsons','Hanmierten','luyis','luyis@gmail.com',['Hudson River',' 5th street'], ['large','small'],'7890password', ['little man parklot'], ['stevens parklot'], 'little man parklot 4a');
-    
 
     const idUA = A._id.toString();
     //const idUB = B._id.toString();
 
 
     const PA = await parklot.create('little man', {"half hour ~ 1 hour" : '5', "1 hour ~ 1 and half hour" : '10', "1 and half hour ~ 2 hour" : '13', " above 2 hour" : '20 '}, {"Longitude" : '137' , "latitude" : '50'}, '07030', 'True', ['medium', 'small'], idUA, {"8:00 ~ 15: 00" : 'light', "15:00 ~ 17:00": 'heavy'}, 560)
-
 
     const idPA = PA._id.toString();
     //const idPB = PB._id.toString();
@@ -35,14 +46,16 @@ async function main() {
     //await comment.remove(comment1Id);
     // await comment.remove(comment2Id);
 
-    await petrolStation.create('Hoboken', {"Longitude" : '137.6W' , "latitude" : '50.1N'}, 'Thirsty station', ['gaslion', 'diesel'] )
-   
-    await user.addComment(idUA,comment1Id );
-    await user.addComment(idUA,comment2Id);
+    await petrolStation.create('Hoboken', { Longitude: '137.6W', latitude: '50.1N' }, 'Thirsty station', [
+        'gaslion',
+        'diesel',
+    ]);
 
-   await user.getAll();
+    await user.addComment(idUA, comment1Id);
+    await user.addComment(idUA, comment2Id);
 
-    
+    await user.getAll();
+
     await dbConnection.closeConnection();
 }
 
