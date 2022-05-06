@@ -57,16 +57,22 @@ router.get('/:id', async (req, res) =>{
 
 
 router.post('/', async(req, res) =>{
-    
-    req.session.user = {UserId : '62616e5169c3b43a2e6f38f1'}
-    let ParkLotInfo = req.body;
-    let idfromUploader = req.session.user.UserId;
+    try{
+        req.session.user = {UserId : '62616e5169c3b43a2e6f38f1'};
+        idfromUploader = req.session.user.UserId;
+    }catch(e){
+        return res.status(403).render('result/login',{title : 'Login'});
+    }
 
-//     try{
-//         if(!bandPostInfo) throw 'There is no bandPostInfo in the post body !';
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
+    let ParkLotInfo = req.body;
+    
+    try{
+        if(!ParkLotInfo) throw 'There is no ParkLotInfo in the post body !';
+    }catch(e){
+        return res.status(400).json({error:e});
+
+    }
+    
 
 //     try{
 //         if(Object.keys(bandPostInfo).length !== 6) throw 'There is wrong bandPostInfo number in the post body !';
@@ -124,7 +130,7 @@ router.post('/', async(req, res) =>{
 
     try {
         const newParkLot = await parklotsData.create(
-            false,
+
             ParkLotInfo.ParkLotName,
             ParkLotInfo.parkingChargeStandard,
             ParkLotInfo.parkingLotCoordinates,
@@ -138,7 +144,7 @@ router.post('/', async(req, res) =>{
 
         )
         if(newParkLot){
-            res.status(200).json("You have successfully add the new comment!");
+            res.status(200).json("You have successfully add the new parkLot");
         }else{
             res.status(500).json({error : e});
         }

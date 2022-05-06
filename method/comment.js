@@ -22,9 +22,9 @@ module.exports = {
     return commentsList;
     },
 
-    async getUserAllComments(ID) {
+    // async getUserAllComments(ID) {
 
-    },
+    // },
 
 
     async create ( isDelete,userName, commentTag, commentdate, parkLotId, UserId, commentInfo, level) {
@@ -37,17 +37,23 @@ module.exports = {
             throw 'isDelete should be Boolean'
         }
 
-        // commentTag = validation.checkStringArray(commentTag, 'commentTag');
+        userName = validation.checkString(userName, 'Username');
 
-        // commentdate = validation.checkValidDate(commentdate, 'commentdate'); 
+        commentTag = validation.checkString(commentTag, 'commentTag');
 
-        // parkLotId = validation.checkId(parkLotId,'parkLotId');
+        parkLotId = validation.checkId(parkLotId,'parkLotId');
 
-        // UserId = validation.checkId(UserId,'UserId');
+        // UserId = validation.checkId(UserId,'UserId'); 到时候要取消注释
 
-        // commentInfo = validation.checkString(commentInfo, 'CommentInfo');
+        commentInfo = validation.checkString(commentInfo, 'CommentInfo');
 
-        // level = validation.checkRate(level,'Level');
+        level = validation.checkRate(level,'Level');
+
+
+        //commentTag 不是array
+
+        //  coommentdate 是（字符） 而且是我们自己拿的不用查
+
         
         const commentCollection = await comments();
 
@@ -96,8 +102,9 @@ module.exports = {
     },
 
     async remove(id) {
+
         if(arguments.length !== 1) throw "There must be one and one only argument !";
-        id = validation.checkId(id, 'ID');
+        id = validation.checkId(id,'CommentId');
 
         const commentCollection = await comments();
                 

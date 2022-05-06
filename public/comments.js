@@ -21,6 +21,10 @@
             alert('You must have comment content!');
             e = true;
         }
+        if(typeof commentInfo !== 'string') {
+            alert('The comment content must be string !');
+            e = true;
+        }
         
         let rating =commentRating.val();
         if(!rating) {
@@ -54,7 +58,12 @@
             if (commentTag[x].checked) check_val.push(commentTag[x].value);
         };
 
-        if(check_val.length === 0 ) check_val.push('N/A')
+        // 如果tag 可以不选的话，就保留push那一行，然后在validation单独写checktag，可以没有输入的， 要先判断有没有输入
+        if(check_val.length === 0 ) {
+            check_val.push('N/A');
+            alert("You should checked some comment Tag !"); 
+            e = true;
+        }
 
         let body = {            
             commentTag : check_val,

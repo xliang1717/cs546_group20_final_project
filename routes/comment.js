@@ -4,8 +4,7 @@ const method = require('../method');
 const commentsData = method.comment;
 const parkLotData = method.parklot;
 const xss = require('xss');
-const { render } = require('express/lib/response');
-//const validation = require('../validation');
+const validation = require('../validation');
 //const mongoCollections = require('../config/mongoCollections');
 //const { ObjectId } = require('mongodb');
 //const users = mongoCollections.user;
@@ -42,11 +41,12 @@ const { render } = require('express/lib/response');
 //建seed时候要注释掉
 router.get('/:id', async (req, res) =>{
     let id = req.params.id; //这个id 是停车场的id
-    // try {
-    //     id = validation.checkId(id, 'ID URL Param');
-    // }catch(e){
-    //     return res.status(400).json({error : e });
-    // }
+    try {
+        id = validation.checkId(id, 'ID');
+    }catch(e){
+        res.status(400).render('result/comment',{title : 'The parklot comment',  haserror : true,   error : e});
+        return;
+    }
     
 
     try{
@@ -57,7 +57,7 @@ router.get('/:id', async (req, res) =>{
 
         if(commentsList && ParkLotDetail){
             if(typeof commentsList === 'string'){
-                res.render('result/comment',{title : 'The parklot comment', result : commentsList});
+                res.render('result/comment',{title : 'The parklot comment',  haserror : true,   error : commentsList});
             }else{
                 res.render('result/comment',{title : 'The parklot comment', commentsList, ParkLotDetail});
             }
@@ -77,10 +77,14 @@ router.post('/comment', async(req, res) =>{
             
             
             let date = new Date().toUTCString();
-            let parklotId = '62616e5169c3b43a2e6f38f2';
-            let tag = req.body.commentTag; 
-            let commentS = req.body.commentInfo;
-            let rating= req.body.level;
+            let parklotId = xss('62616e5169c3b43a2e6f38f2');
+            parklotId = validation.checkId(parklotId, 'ParkLotId');
+            let tag = xss(req.body.commentTag); 
+            tag = validation.checkString(tag, 'CommentTag');
+            let commentS = xss(req.body.commentInfo);
+            commentS = validation.checkString(commentS, 'Comment contents');
+            let rating= xss(req.body.level);
+            rating = validation.checkRate(rating, 'Rating');
 
             let newComment = await commentsData.create(
                 false,
