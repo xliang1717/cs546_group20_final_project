@@ -1,25 +1,33 @@
 .error{
-    font-size: 18pt;
+    font-size: 20pt;
 	color: #ff0000;
     text-align: center;
     margin: auto;
 }
 
-.parklotInfo{
+#result{
+    font-size: 10pt;
+	color:chartreuse ;
+    text-align: center;
+    margin: auto;
+}
+
+
+.petrol-form{
     background-color: chocolate;
     text-align: center;
     margin: auto;
 }
 
-.comment-list{
-    background-color:cadetblue ;
+.btn{
+    background-color:blue ;
     text-align: center;
     margin: auto;
+    color: cyan;
 }
 
-.comment-form{
-    background-color: darksalmon;
-    text-align: center;
+.full{
+    background-color: gold;
     margin: auto;
 }
 body{
