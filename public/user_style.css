@@ -101,13 +101,27 @@ h1 {
     background: #95bfad;
 }
 
-.myAreaItem {
+#userProfile {
+    padding: 1em;
+    border: solid thin;
+    margin: 1em;
+    background: #b2c6bd;
+}
+
+#myCars {
+    padding: 1em;
+    border: solid thin;
+    margin: 1em;
+    background: #95bfad;
+}
+
+.myAreaItem, .myUserProfileItem, .myCarItem {
     padding: 2px;
     padding-left: 1em;
     padding-right: 1em;
 }
 
-.myAreaItemText {
+.myAreaItemText, .myUserProfileText, .myCarItemText {
     text-align: center;
     color: #f5fdfa;
     font-weight: bold;
@@ -115,11 +129,11 @@ h1 {
     padding-right: 20%;
 }
 
-#addNewAreaBox {
+#addNewAreaBox, #addNewCarBox {
     display: grid;
 }
 
-#addNewAreaBtn {
+#addNewAreaBtn, #addNewCarBtn {
     margin: auto;
 }
 

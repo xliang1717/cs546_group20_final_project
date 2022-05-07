@@ -73,6 +73,7 @@ module.exports = {
       comment: reviews,
       preferLocation: preferLocation,
       carsSize: carsSize,
+      myCar: [],
       password: password,
       collectionCarParks: collectionCarParks,
       addedCarParks: addedCarParks,

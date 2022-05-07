@@ -74,6 +74,44 @@
 
     });
 
+    // My Cars
+    var newCarInput = $('#newCarInput');
+    var addNewCarBtn = $('#addNewCarBtn');
+    var addNewCarConfrimBtn = $('#addNewCarConfrimBtn');
+    var showMyCarsBox = $('#showMyCarsBox');
+    var modalMyCarsInputError = $('#modalMyCarsInputError');
+
+    addNewCarConfrimBtn.on('click', function (event) {
+        event.preventDefault();
+        var newCar = newCarInput.val();
+        if (!newCar || newCar.trim().length == 0) {
+            modalMyCarsInputError.text("Input should not be empty.");
+            modalMyCarsInputError.show();
+            event.stopPropagation();
+            newCarInput.val('');
+        } else {
+            modalMyCarsInputError.hide();
+
+            var userId = addNewCarBtn.data('userid');
+
+            var requestConfig = {
+                method: 'POST',
+                url: '/myCar',
+                data: {
+                    userId: userId,
+                    newCar: newCar
+                }
+            };
+
+            $.ajax(requestConfig).then(function (responseMessage) {
+                var newElement = $(responseMessage);
+                showMyCarsBox.replaceWith(newElement);
+                newCarInput.val('');
+                showMyCarsBox = newElement;
+            });
+        }
+
+    });
 
 
 })(window.jQuery);
