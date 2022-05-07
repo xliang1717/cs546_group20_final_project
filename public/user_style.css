@@ -10,6 +10,22 @@ h1 {
     margin: 0 auto;
 }
 
+.parklotBox {
+    background: #f4fdfa;
+    padding: 16px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.parklotInfo {
+    background: #f4fdfa;
+    width: 90%;
+    margin: 0 auto;
+    padding: 16px;
+    padding-top: 10px;
+    padding-bottom: 100px;
+}
+
 .userLogo {
     text-align: center;
 }

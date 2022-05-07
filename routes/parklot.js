@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
             return;
         }
 
-        res.render('pages/parkinglot', { title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo: commentList });
+        res.render('user/parklot', { layout: 'parklot', title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo: commentList });
 
     } catch (e) {
         res.status(500).json({ error: e });
