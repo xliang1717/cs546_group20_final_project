@@ -17,6 +17,9 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/myprofile', async (req, res) => {
+  if (!req.session.user) {
+    res.render("pages/login");
+  }
   try {
     res.render('pages/profile', { title: 'My Profile' });
   } catch (e) {
