@@ -24,7 +24,7 @@
 
 Why ```git rebase``` is required?
 
-This helps making sure alway team member fixing conflicts and having code fully tested in feature branch. So dev branch can be ready for anyone developing their feature and they do not need to worry about any corrputed code imported to their feature branch and impact their work.
+This helps making sure team member fixing conflicts and having code fully tested in feature branch. So dev branch can be ready for anyone developing their feature and they do not need to worry about any corrputed code imported to their feature branch and impact their work.
 
 * Always develop you code in feature branch
 
