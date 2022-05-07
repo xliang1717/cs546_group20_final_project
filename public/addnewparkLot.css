@@ -1,3 +1,65 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+ul,li{
+    list-style: none;
+}
+
+ul{
+    display: inline-block;
+}
+
+li{
+    float: left;
+    margin: 15px 7px;
+    padding: 5px 6px;
+}
+
+p{
+    margin: 15px 7px;
+    padding: 15px 6px;
+}
+
+#form {
+    width: 880px;
+    margin: 80px auto;
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    color: #6A9382;
+    font-size: 16px;
+    background-color: #F1F9F5;
+    border-radius: 5px;
+}
+
+.lotName,
+.parkCharge,
+.location_Co,
+.disableSelection,
+.sizeSelection,
+.trafficCondition,
+.parklotCapa{
+    margin: 10px 15px;
+    border-bottom: 1px solid rgb(188, 186, 186);
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.lotName label,
+.disableSelection label,
+.sizeSelection label,
+.parklotCapa label{
+    display: inline-block;
+    margin: 15px 7px;
+    padding: 15px 6px;
+}
+
+.sizeSelection select{
+    position: relative;
+    margin-top: 25px;
+}
+
 .error{
     font-size: 18pt;
 	color: #ff0000;
@@ -6,11 +68,23 @@
 }
 
 .parkLot-form{
-    background-color: chocolate;
+    /* background-color: chocolate; */
     text-align: center;
     margin: auto;
 }
 
-body{
-    background-color: indianred;
+.btn-pl{
+    display: inline-block;
+    height: 30px;
+    width: 150px;
+    margin: 15px 7px;
+    padding: 2px 6px;
+    border:none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #9FCAB8;
+    cursor: pointer;
 }
+/* body{
+    background-color: indianred;
+} */
