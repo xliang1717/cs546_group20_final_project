@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const data = require('../data');
+const data = require('../method');
 const myCollectionData = data.myCollection;
 const parklotData= data.parklot;
 const commentData = data.comment;

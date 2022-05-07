@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const data= require('../data');
+const data= require('../method');
 const myCarData = data.myCar;
 const validation= require("../validation");
 const xss = require('xss');

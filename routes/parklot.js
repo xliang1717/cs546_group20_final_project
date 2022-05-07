@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const data = require('../data');
+const data = require('../method');
 const commentData = data.comment;
 const parkinglots = data.parklot;
 //const { ObjectId } = require('mongodb');
