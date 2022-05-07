@@ -14,7 +14,7 @@ router.get('/addNewParkLot', async (req,res) => {
     }
 });
 
-
+//这个是子慧的function
 router.get('/:id', async (req, res) =>{
     let id = req.params.id;
     // try {
@@ -122,7 +122,7 @@ router.post('/', async(req, res) =>{
 
 });
 
-
+// 还需要更改返回信息，要根据删除按钮的hanlderbar
 router.delete('/deleteParkLot', async(req,res) =>{
     try{
         let id =xss(req.body.commentID); //comment Id
@@ -146,122 +146,5 @@ router.delete('/deleteParkLot', async(req,res) =>{
     }
 
 })
-
-// router.put('/:id', async(req,res) =>{
-//     let id = req.params.id;
-//     let bandPutInfo = req.body;
-//     let bandCollection = await bands();
-//     try{
-//         if(!bandPutInfo) throw 'There is no bandPutInfo in the put body !';
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-//     try{
-//         if(Object.keys(bandPutInfo).length !== 6) throw 'There is wrong bandPutInfo number in the put body !';
-//     }catch(e){
-//         return res.status(400).json({error:e});
-//     }
-
-    
-//     try {
-//         id = validation.checkId(id, 'ID URL Param');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try {
-//         bandPutInfo.name = validation.checkString(bandPutInfo.name, 'Name');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try{
-//         bandPutInfo.genre = validation.checkStringArray(bandPutInfo.genre,'Genre');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try{
-        
-//         bandPutInfo.website = validation.checkString(bandPutInfo.website, 'Website');
-        
-//         if (!bandPutInfo.website.match(/^[hH][tT][tT][pP]:\/\/[wW][wW][wW]\.[a-zA-Z0-9][^\s]{4,}\.[cC][oO][mM]$/)) {
-//             throw "The website format is invalid !"
-//         };
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try{
-//         bandPutInfo.recordLabel = validation.checkString(bandPutInfo.recordLabel, ' RecordLabel');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try{
-//         bandPutInfo.bandMembers = validation.checkStringArray(bandPutInfo.bandMembers, 'BandMembers');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try{
-//         bandPutInfo.yearFormed = validation.checkYear(bandPutInfo.yearFormed , 'YearFormed');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try{
-//         let checkTheBand = await bandCollection.findOne({_id : ObjectId(id)});  
-//         if (!checkTheBand) throw " No band with that id !"     
-//     }catch(e){
-//         return res.status(404).json({error : e});
-//     }
-
-//     try{
-//         await bandsData.update(
-//             id,
-//             bandPutInfo.name,
-//             bandPutInfo.genre,
-//             bandPutInfo.website,
-//             bandPutInfo.recordLabel,
-//             bandPutInfo.bandMembers,
-//             bandPutInfo.yearFormed
-//         );  
-//     }catch(e){
-//         return res.status(500).json({error : e});
-//     }
-
-//     try {
-//         let theBandNew = await bandsData.get(id);
-//         res.status(200).json(theBandNew);
-//     }catch(e){
-//         res.status(404).json({error : e});
-//     }
-
-// });
-
-// router.delete('/:id', async(req,res) =>{
-//     let id = req.params.id;
-//     let bandCollection = await bands();
-//     try {
-//         id = validation.checkId(id, 'ID URL Param');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try {
-//         await bandsData.get(id);
-//     }catch(e){
-//         return res.status(404).json({error : e});
-//     }
-
-//     try {
-//         await bandCollection.deleteOne({_id : ObjectId(id)});
-//         res.status(200).json({bandId : id, deleted : true});
-//     }catch(e){
-//         res.status(500).json({error : e})
-//     }
-// })
 
 module.exports = router;

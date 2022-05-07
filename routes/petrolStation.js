@@ -18,22 +18,6 @@ router.get('/', async (req,res) => {
     }
 });
 
-// router.get('/:id', async (req, res) =>{
-//     let id = req.params.id;
-//     // try {
-//     //     id = validation.checkId(id, 'ID URL Param');
-//     // }catch(e){
-//     //     return res.status(400).json({error : e });
-//     // }
-
-//     try{
-//         let petrolStation = await petrolStationsData.get(id);
-//         res.status(200).json(petrolStation);
-//     }catch(e){
-//         res.status(404).json({error : e});
-//     }
-// });
-
 router.get('/addnewpetrolStation', async (req, res) =>{
     
     try {
@@ -89,28 +73,5 @@ router.post('/addnewpetrol', async(req, res) =>{
         return res.json({success : false , error : 'You need login first',  exe : "There is an error"});
     }
 });
-
-// router.delete('/:id', async(req,res) =>{
-//     let id = req.params.id;
-//     let bandCollection = await bands();
-//     try {
-//         id = validation.checkId(id, 'ID URL Param');
-//     }catch(e){
-//         return res.status(400).json({error : e});
-//     }
-
-//     try {
-//         await bandsData.get(id);
-//     }catch(e){
-//         return res.status(404).json({error : e});
-//     }
-
-//     try {
-//         await bandCollection.deleteOne({_id : ObjectId(id)});
-//         res.status(200).json({bandId : id, deleted : true});
-//     }catch(e){
-//         res.status(500).json({error : e})
-//     }
-// })
 
 module.exports = router;
