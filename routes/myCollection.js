@@ -40,16 +40,7 @@ router.delete('/:id', async (req, res) => {
     let parkingLotId = req.query.parkingLotId;
     try {
         await myCollectionData.removeParkingLotFromUserCollection(parkingLotId, userId);
-        let myCollectionParkingLots = await myCollectionData.getCollectionForUser(userId);
-        for (let i = 0; i < myCollectionParkingLots.length; i++) {
-            if (myCollectionParkingLots[i].parkingChargeStandard != undefined) {
-                myCollectionParkingLots[i].parkingFeeMessage = 'Parking Fee';
-            } else {
-                myCollectionParkingLots[i].parkingFeeMessage = 'No Parking Fee';
-            }
-            myCollectionParkingLots[i].userId = userId;
-        }
-        let myCollectionExists = myCollectionParkingLots.length == 0 ? true : false;
+        await myCollectionData.getCollectionForUser(userId);
         res.status(200).json({ mesage: 'Parking lot has been removed from my collection successfully.' });
     } catch (e) {
         res.status(500).json({ error: e });
