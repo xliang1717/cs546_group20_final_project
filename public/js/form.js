@@ -13,7 +13,7 @@
     carlistItem.find('.removecarBtn').on('click', function (event) {
       event.preventDefault();
       var currentremove = $(this);
-      var userId = currentremove.context.dataset.userid;
+      var userId = currentremove.data('userid');
       var carname = currentremove.data('carname');
 
       var requestConfig = {

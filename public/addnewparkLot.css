@@ -1,0 +1,16 @@
+.error{
+    font-size: 18pt;
+	color: #ff0000;
+    text-align: center;
+    margin: auto;
+}
+
+.parkLot-form{
+    background-color: chocolate;
+    text-align: center;
+    margin: auto;
+}
+
+body{
+    background-color: indianred;
+}

@@ -1,0 +1,17 @@
+<div>
+    {{#if haserror}}
+        <p class="error">We're sorry, but {{exe}}{{error}}.</p>
+        <a href="/comment">Click here to back home!</a> 
+        {{!-- 到时候更改链接 --}}
+
+    {{else}}
+
+    <div class="petrolStation-list" id="petrolStationList">
+
+        <br>
+        {{#each petrolStationsDataList}} {{> petrolStation }} {{/each}}
+        <br>
+        <a href="/comment">Click here to back home!</a>
+    </div>
+    {{/if}}
+</div>

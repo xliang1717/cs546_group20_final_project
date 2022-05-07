@@ -1,0 +1,104 @@
+<div>
+    {{#if haserror}}
+        <p class="error">We're sorry, but {{error}}.</p>
+        <a href="/comment">Click here to back home!</a> 
+        {{!-- 到时候更改链接 --}}
+
+    {{else}}
+        
+    <div id="form">
+        <form id = "addNewParkLot" class = "parkLot-form">
+            <label for="ParkLotName">ParkLotName : </label>
+            <input type="text" id="ParkLotName" name="ParkLotName" placeholder="add the parkLotName">
+            <p>parkingChargeStandard:</p>
+            <label for="half-hour-one-hour"> half hour ~ 1 hour: </label>
+            <input type="number" id="half-hour-one-hour" name="half-hour-one-hour" step="any" >
+
+            <label for="one-hour-one-and-half-hour"> 1 hour ~ 1 and half hour: </label>
+            <input type="number" id="one-hour-one-and-half-hour" name="one-hour-one-and-half-hour" step="any">
+
+            <label for="one-and-half-hour-two-hour"> 1 and half hour ~ 2 hour: </label>
+            <input type="number" id="one-and-half-hour-two-hour" name="one-and-half-hour-two-hour" step="any">
+            
+            <label for="above-two-hour">above 2 hours: </label>
+            <input type="number" id="above-two-hour" name="above-two-hour" step="any" >  
+
+            <p>parkingLotCoordinates:</p> 
+
+            <label for="Longitude"> Longitude: </label>
+            <input type="number" id="Longitude" name="Longitude" step="any">
+
+            <label for="Latitude"> Latitude: </label>
+            <input type="number" id="Latitude" name="Latitude" step="any">
+
+            <label for="ParkingLotLocationZipCode">ParkingLotLocationZipCode: </label>
+            <input type="Number" id="ParkingLotLocationZipCode" name="ParkingLotLocationZipCode" placeholder="Zip Code">
+
+            <label for="DisabilityFrendly">Choose disabilityFrendly :</label>
+            <select name="DisabilityFrendly" id="DisabilityFrendly">
+                <option value="True">True</option>
+                <option value="False">False</option>
+            </select>
+
+            
+            <label for="suitableVehicleSize">Choose Suitable VehicleSize :</label>
+            <select id="suitableVehicleSize" multiple="multiple">
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+
+
+
+
+            <p>TrafficConditions:</p>
+            <label for="m">8:00~15:00 :</label>
+            <select name="m" id="m">
+                <option value="light">light</option>
+                <option value="Heavy">Heavy</option>
+                <option value="Fine">Fine</option>
+            </select>
+
+            <label for="a">15:00~17:00 :</label>
+            <select name="a" id="a">
+                <option value="light">light</option>
+                <option value="Heavy">Heavy</option>
+                <option value="Fine">Fine</option>
+            </select>
+
+            
+            <label for="e">17:00~24:00 :</label>
+            <select name="e" id="e">
+                <option value="light">light</option>
+                <option value="Heavy">Heavy</option>
+                <option value="Fine">Fine</option>
+            </select>
+
+            <label for="n">24:00~8:00 :</label>
+            <select name="n" id="n">
+                <option value="light">light</option>
+                <option value="Heavy">Heavy</option>
+                <option value="Fine">Fine</option>
+            </select>
+            
+            <label for="ParkingLotCapacity"> ParkingLotCapacity: </label>
+            <input type="number" id="ParkingLotCapacity" name="ParkingLotCapacity">
+
+            <button type="submit" name="submit" class="btn">Submit</button>
+
+        </form>
+    </div>
+
+    <div id="error" hidden> 
+    </div>
+
+    <div id="result" hidden >
+    </div>
+
+    <div>
+        <a href="/comment">Click here to back home!</a> 
+    </div>
+
+    {{/if}}
+
+</div>

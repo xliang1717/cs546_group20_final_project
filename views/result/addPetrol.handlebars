@@ -1,0 +1,47 @@
+<div class="full">
+    {{#if haserror}}
+        <p class="error">We're sorry, but {{error}}.</p>
+        <a href="/comment">Click here to back home!</a> 
+        {{!-- 到时候更改链接 --}}
+
+    {{else}}
+    <div id="form">
+        <form id = "addNewPetrol" class = "petrol-form">
+
+        <label for="PetrolName">PetrolName : </label>
+        <input type="text" id="PetrolName" name="PetrolName" placeholder="add the Petrol Name">
+
+        <label for="PetrolLocation">PetrolLocation : </label>
+        <input type="text" id="PetrolLocation" name="PetrolLocation" placeholder="add the Petrol Location">
+
+        <p>Coordinates:</p> 
+        <label for="Longitude"> Longitude: </label>
+        <input type="number" id="Longitude" name="Longitude" step="any">
+
+        <label for="Latitude"> Latitude: </label>
+        <input type="number" id="Latitude" name="Latitude" step="any">
+
+        <label for="type">fuel Type :</label>
+        <select name="type" id="type" multiple="multiple">
+            <option value="gaslion">gaslion</option>
+            <option value="diesel">diesel</option>
+        </select>
+
+        <button type="submit" name="submit" class="btn">Submit</button>
+
+        </form>
+    </div>
+
+    <div id="error" hidden>
+    </div>
+
+    <div id="result" hidden>
+    </div>
+
+    <div>
+        <a href="/comment">Click here to back home!</a> 
+    </div>
+
+    {{/if}}
+
+</div>

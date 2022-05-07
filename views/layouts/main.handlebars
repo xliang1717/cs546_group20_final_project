@@ -1,16 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="utf-8">
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/comment_style.css">
+    <link rel="stylesheet" href="/public/addnewparkLot.css">
+    <link rel="stylesheet" href="/public/filter_style.css">
+    <link rel="stylesheet" href="/public/petrollist.css">
+    <link rel="stylesheet" href="/public/addnewpetrol.css">
 </head>
+
+
 <body>
+<header>
+    {{!-- <p>{{temp}}</p> --}}
+    {{!-- <h1>{{title}}</h1> --}}
+</header>
+
+
+
     <main>
-     {{{body}}}
+        {{{body}}}
     </main>
-      <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <script src="/public/js/form.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous">
+        </script>
+    <script src="../../public/js/form.js"></script>
+    <script src="../../public/comments.js"></script>
+    <script src="../../public/parklot.js"></script>
+    <script src="../../public/filter.js"></script>
+    <script src="../../public/addpetrol.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,87 @@
+<div class="pageTitle">
+    <p>Parking Search</p>
+</div>
+
+{{!-- <div>Hello</div> --}}
+
+<div id = "Filter">
+    <div class = "Conditions">
+        <div class="Condition-title">Parking Fee:</div>
+        <ul class="Condition-list-PF">
+            <li class="Subcondition">No</li>
+            <li class="Subcondition">Yes</li>
+        </ul>
+    </div>
+
+    <div class = "Conditions">
+        <div class="Condition-title">Car Type:</div>
+        <ul class="Condition-list-CT">
+            <li class="Subcondition">small</li>
+            <li class="Subcondition">medium</li>
+            <li class="Subcondition">large</li>
+        </ul>
+    </div>
+
+    <div class = "Conditions">
+        <div class="Condition-title">Disabled Facilities:</div>
+        <ul class="Condition-list-DF">
+            <li class="Subcondition">No</li>
+            <li class="Subcondition">Yes</li>
+        </ul>
+    </div>
+
+    <div class = "Selections">
+        <div class="Selection-title">Nearby Location (optional):</div>
+        <select name="" id="locationSelect">
+            <option value="">--Locations--</option>
+            <option value="0">Stevens Institute of Technology</option>
+            <option value="1">Pier C Park</option>
+            <option value="2">Sheraton Lincoln Harbor</option>
+            <option value="3">Hoboken PATH Station</option>
+        </select>
+    </div>
+
+    <div class = "Selections">
+        <div class="Selection-title">Zip Code (optional):</div>
+        <select name="" id="zipCodeSelect">
+            <option value="">--Zip Code--</option>
+            <option value="07030">07030</option>
+            <option value="07097">07097</option>
+            <option value="07305">07305</option>
+            <option value="07310">07310</option>
+        </select>
+    </div>
+
+    <div class = "Search">
+       <button class="searchButton">Search</button>
+    </div>
+
+</div>
+
+<div id = "ResultList">
+
+    
+        <div class="resultIndex">
+            <div class="parkLotName">
+                <p>Park Lots</p>
+            </div>
+            <ul class="ratingTitle">
+                <li class="parkRating">Ratings</li>
+            </ul>
+        </div> 
+
+        {{#if data.length}}
+                {{#each data}}
+                <div class="eachResult">
+                    <div class="parkLotName">
+                        <a href="/parklot/{{_id}}">{{parkLotname}}</a>
+                    </div>
+                    <ul class="Rating">
+                        <li class="parkRating">{{rating}}</li>
+                    </ul>
+                </div> 
+                {{/each}}
+        {{/if}}
+    
+
+</div>

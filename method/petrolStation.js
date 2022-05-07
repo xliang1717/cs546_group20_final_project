@@ -1,14 +1,11 @@
 const mongoCollections = require('../config/mongoCollections');
 const petrolStations = mongoCollections.petrolStation;
 const { ObjectId } = require('mongodb');
-//const validation = require('../validation');
+const validation = require('../validation');
 
 
 module.exports = {
     async get(id) {
-    //     if (arguments.length !== 1)  throw " You must provide an id and only one id to search for!";
-    //     id = validation.checkId(id,'ID');
-        
         const petrolStationCollection = await petrolStations();
         const petrolStationData = await petrolStationCollection.findOne( {_id : ObjectId(id) });
         if (petrolStationData=== null) throw 'No band with that id';
@@ -23,27 +20,36 @@ module.exports = {
         if (petrolStationsList.length== 0) return [];
         for(let i = 0; i < petrolStationsList.length; i++) {
             petrolStationsList[i]._id = petrolStationsList[i]._id.toString();
-        }
-        
-        console.log(petrolStationsList)        
+        }     
         return petrolStationsList;
     },
 
     async create (location, coordinate, name, type) {
 
-        // if (arguments.length !== 6) {
-        //     throw "There must be 6 arguments !"
-        // }
+        if (arguments.length !== 4) {
+            throw "There must be 4 arguments !"
+        }
 
+        let namE = validation.checkString(name, 'Name');
+
+        let locatioN = validation.checkString(location, 'location');
+
+        let position = Object.values(coordinate);
+        for(x in position) {
+            position[x] = Number(position[x])
+            if (typeof position[x] !=='number' || isNaN(position[x]) ) throw 'The coodinate should only contain number!';
+        };
+
+        let typE = validation.checkStringArray(type,'type');
         
         const petrolStationsCollection = await petrolStations();
 
         let newpetrolStation = {
 
-            location : location, 
+            location : locatioN, 
             coordinate : coordinate, 
-            name : name, 
-            type : type
+            name : namE, 
+            type : typE
 
         };
 
@@ -54,6 +60,4 @@ module.exports = {
         const petrolStation = await this.get(newId);
         return petrolStation
     }
-
-
 }

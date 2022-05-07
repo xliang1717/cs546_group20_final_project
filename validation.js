@@ -93,7 +93,18 @@ module.exports = {
     }
     if (count < 2) throw 'provided variable does not have at LEAST 2 LETTERS after the dot';
     if (email.charAt(0) === '.') throw 'provided variable should contain domain name';
-    
-  }
+    return email;
+  },
+  
+  checkIntNumber(num, varName){
+    if (!num) throw `There need ${varName}`;
+    if(typeof num === 'boolean') throw `${varName} must be a number`
+    num = Number(num);
+    if (typeof num !== 'number' || isNaN(num)) throw `${varName} must be a number`;
+    if (num % 1 !== 0){
+      throw `${varName} must be a Int number`
+    };
+    return num;
+  } 
 
 };
