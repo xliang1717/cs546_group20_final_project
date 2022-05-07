@@ -7,6 +7,16 @@ ul,li{
     list-style: none;
 }
 
+.pageTitle {
+    width: 170px;
+    margin: 0 auto;
+    margin-top: 50px;
+    font-size: 24px;
+    color: #6A9382;
+    /* 水平居中 */
+}
+
+
 #Filter {
     width: 550px;
     margin: 80px auto;
@@ -15,10 +25,14 @@ ul,li{
     color: #6A9382;
     font-size: 12px;
     background-color: #F1F9F5;
+    border-radius: 5px;
 }
 
 .Conditions{
-    border-bottom: 1px solid #eee;
+    margin: 10px 15px;
+    border-bottom: 3px solid rgb(188, 186, 186);
+    background-color: #fff;
+    border-radius: 5px;
 }
 
 .Condition-title,
@@ -53,7 +67,6 @@ ul,li{
 .Search{
     display: inline-block;
     width: 550px;
-    border-bottom: 1px solid #eee;
 }
 
 .searchButton{
@@ -66,20 +79,27 @@ ul,li{
     border-radius: 5px;
     color: #fff;
     background-color: #9FCAB8;
+    cursor: pointer;
+}
+
+.searchButtonActive{
+    background-color: #6A9382;
 }
 
 .Selections{
-    border-bottom: 1px solid #eee;
+    display: inline-block;
 }
 
 #locationSelect,
 #zipCodeSelect{
-    display: inline-block;
+    /* display: inline-block; */
+    float: right;
     margin: 15px 7px;
     padding: 5px 6px;
 }
 
 .Selection-title{
+    margin-top: 10px;
     padding-left: 2em;
 }
 
@@ -90,4 +110,65 @@ ul,li{
     border: 1px solid #ddd;
     color: #666;
     font-size: 12px;
+    border-radius: 5px;
+    background-color: #F1F9F5;
 }
+
+.resultIndex{
+    margin: 5px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.eachResult{
+    margin: 5px 15px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.parkLotName{
+    display: inline-block;
+    margin: 15px 7px;
+    padding: 5px 6px;
+    padding-left: 2em;
+    cursor: pointer;
+}
+
+.parkLotName p{
+    cursor: default;
+    font-weight: 800;
+    color:#36403c
+}
+
+.parkLotName a{
+    text-decoration:none;
+    color: #6A9382;
+}
+
+.Rating{
+    cursor: default;
+    float: right;
+    padding-right: 2em;
+}
+
+.ratingTitle{
+    cursor: default;
+    float: right;
+    padding-right: 2em;
+    font-weight: 800;
+}
+
+.parkRating{
+    display: inline-block;
+    margin: 15px 7px;
+    padding: 5px 6px;
+    color: #36403c;
+}
+
+.Rating .parkRating{
+    display: inline-block;
+    margin: 15px 7px;
+    padding: 5px 6px;
+    color: rgb(162, 52, 52);
+}
+

@@ -73,5 +73,17 @@
         $.ajax(requestConfig).done(function (data) {
             location.replace('/filter');
         });
+
+
     });
+
+    searchButton.ready(function () {
+        searchButton.mousedown(function () {
+            searchButton.addClass("searchButtonActive");
+        });
+        searchButton.mouseup(function () {
+            searchButton.removeClass("searchButtonActive");
+        })
+    })
+
 })(window.jQuery);

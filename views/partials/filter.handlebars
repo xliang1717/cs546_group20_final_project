@@ -1,3 +1,9 @@
+<div class="pageTitle">
+    <p>Parking Search</p>
+</div>
+
+{{!-- <div>Hello</div> --}}
+
 <div id = "Filter">
     <div class = "Conditions">
         <div class="Condition-title">Parking Fee:</div>
@@ -54,21 +60,28 @@
 
 <div id = "ResultList">
 
-    <div class="Results">
+    
+        <div class="resultIndex">
+            <div class="parkLotName">
+                <p>Park Lots</p>
+            </div>
+            <ul class="ratingTitle">
+                <li class="parkRating">Ratings</li>
+            </ul>
+        </div> 
+
         {{#if data.length}}
-            <div>
                 {{#each data}}
-                <div class = "Conditions">
-                    <div class="Condition-title">
+                <div class="eachResult">
+                    <div class="parkLotName">
                         <a href="/parklot/{{_id}}">{{parkLotname}}</a>
                     </div>
-                        <ul class="Condition-list-CT">
-                            <li class="Subcondition">{{rating}}</li>
-                        </ul>
-                </div>
+                    <ul class="Rating">
+                        <li class="parkRating">{{rating}}</li>
+                    </ul>
+                </div> 
                 {{/each}}
-            </div>
         {{/if}}
-    </div>
+    
 
 </div>
