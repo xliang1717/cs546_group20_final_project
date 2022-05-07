@@ -19,6 +19,9 @@
 * You can click "View" button to view parking lot with the parkinglot ID
 * You can navigate to this page from user detail page's "Add New Parking Lot" button
 
+
+### Instruction
+
 ### Instruction from Guan for seed
 
 #### 要使用seed.js 之前，要先注释掉几个地方。 
