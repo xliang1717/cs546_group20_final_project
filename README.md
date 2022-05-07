@@ -19,6 +19,20 @@
 * You can click "View" button to view parking lot with the parkinglot ID
 * You can navigate to this page from user detail page's "Add New Parking Lot" button
 
+### Instruction for testing Zihui user Detail page
+
+* You can visit http://localhost:3000/user/temp/626dcbb98ce6dca27a55ea18, replace with userId in mongodb 
+
+** You can test user profile update.
+** You can also add or delete new car.
+** Delete Comment currently still needs update.
+
+
+### Instruction for testing Zihui add parklinglot to collection page
+
+* You can visit http://localhost:3000/myCollection/favorite/626dcbb98ce6dca27a55ea19, replace with parking lot ID
+
+** You can click "Add to My Collection" button.
 
 ### Instruction for git rebase and git merge
 

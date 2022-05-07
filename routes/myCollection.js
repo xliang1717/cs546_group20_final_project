@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const method = require('../method');
 const myCollectionData = method.myCollection;
+const parklotData= method.parklot;
+const commentData = method.comment;
 
 //TODO: Add validation for all below APIs.
 router.get('/:id', async (req, res) => {
@@ -46,5 +48,22 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ error: e });
     }
 });
+
+router.get('/favorite/:id', async (req, res) => {
+    let id = req.params.id;
+    req.session.user.userId="626dcbb98ce6dca27a55ea18";
+    try {
+      
+        await myCollectionData.addParkingLotToUserCollectionTemp(id, req.session.user.userId);
+        let parkinglot = await parklotData.get(id);
+        let commentList = await commentData.getAllCommentsOfTheOneParkLotID(id);
+        res.render('pages/parkinglot', { title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo:commentList,content:"Parking lot has been added to my collection successfully." });
+    } catch (e) {
+      let parkinglot = await parklotData.get(id);
+      let commentList = await commentData.getAllCommentsOfTheOneParkLotID(id);
+      res.status(500).render('pages/parkinglot',{ title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo:commentList,error: e});
+    }
+  });
+  
 
 module.exports = router;

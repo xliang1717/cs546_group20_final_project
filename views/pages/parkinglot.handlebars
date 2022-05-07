@@ -1,0 +1,97 @@
+<article>
+  <h1>{{parkinglotInfo.parkLotname}}</h1>
+  <a id="favorite" class="favorite" href="/myCollection/favorite/{{parkinglotInfo._id}}">Add to My Collection</a>
+  {{#if error}}
+  <div>{{error}}</div>
+  {{/if}}
+  {{#if content}}
+  <div>{{content}}</div>
+  {{/if}}
+
+  <dl>
+    <dt class="titleDt">Charge Standard</dt>
+    {{#if parkinglotInfo.parkingChargeStandard}}
+    {{#each parkinglotInfo.parkingChargeStandard}}
+    <dd>{{@key}}：{{this}}</dd>
+    {{/each}}
+
+    {{else}}
+    <dd>Free</dd>
+    {{/if}}
+
+    <dt class="titleDt">Position</dt>
+    {{#if parkinglotInfo.parkingLotCoordinates}}
+    {{#each parkinglotInfo.parkingLotCoordinates}}
+    <dd>{{@key}}：{{this}}</dd>
+    {{/each}}
+    {{/if}}
+
+
+    {{!-- <dt>Zip Code</dt>
+    {{#if parkinglotInfo.parklotLocationZipCode}}
+    <dd>{{parkinglotInfo.parklotLocationZipCode}}</dd>
+    {{/if}} --}}
+
+    <dt class="titleDt">Disabled Friendly:</dt>
+    {{#if parkinglotInfo.disabilityFriendly}}
+    <dd>Yes</dd>
+    {{else}}
+    <dd>No</dd>
+    {{/if}}
+
+    {{#if parkinglotInfo.suitableVehicleSize}}
+    <dt class="titleDt">Suitable Vehicle Size</dt>
+    <dd>{{{parkinglotInfo.suitableVehicleSize}}}</dd>
+    {{/if}}
+
+    {{#if parkinglotInfo.trafficConditions}}
+    <dt class="titleDt">Traffic</dt>
+    {{#each parkinglotInfo.trafficConditions}}
+    <dd>{{@key}}：{{this}}</dd>
+    {{/each}}
+
+    {{/if}}
+
+    {{#if parkinglotInfo.rating}}
+    <dt class="titleDt">Rating</dt>
+    <dd>{{{parkinglotInfo.rating}}}</dd>
+    {{/if}}
+
+    {{#if parkinglotInfo.parkingLotCapacity}}
+    <dt class="titleDt">Capacity</dt>
+    <dd>{{{parkinglotInfo.parkingLotCapacity}}}</dd>
+    {{/if}}
+
+  </dl>
+
+  <h2>Reviews</h2>
+  <div class="comment-list" id="commentList">
+
+
+    {{#each commentlistInfo}}
+    <div>user
+      <div>{{this.UserId}}</div>
+    </div>
+
+    <div>comment date
+      <div>{{this.commentdate}}</div>
+    </div>
+
+    <div>
+      {{#each this.commenttag}}
+      <div>#{{this}}</div>
+      {{/each}}
+    </div>
+
+    <div class="reviewerRating">
+      <div class="rating">Rating: {{this.rating}}/5</div>
+    </div>
+    <p>{{this.commentInfo}}</p>
+
+    {{/each}}
+
+  </div>
+
+  <a href="/">Back to Home</a>
+
+</article>

@@ -20,6 +20,16 @@ module.exports = {
         return commentsList;
     },
 
+    async getByUserId(id) {
+        if (arguments.length !== 1) throw " You must provide an id and only one id to search for!";
+        id = validation.checkId(id, 'ID');
+        const commentCollection = await comments();
+        const commentsList = await commentCollection.find({ UserId: id }).toArray();
+        if (commentsList.length == 0) return "This user has no comments";
+        return commentsList;
+    },
+
+
     async create(userName, commentTag, commentdate, parkLotId, UserId, commentInfo, level) {
 
         if (arguments.length !== 7) {
@@ -30,20 +40,20 @@ module.exports = {
 
         commentTag = validation.checkString(commentTag, 'commentTag');
 
-        parkLotId = validation.checkId(parkLotId,'parkLotId');
+        parkLotId = validation.checkId(parkLotId, 'parkLotId');
 
         // UserId = validation.checkId(UserId,'UserId'); 到时候要取消注释
 
         commentInfo = validation.checkString(commentInfo, 'CommentInfo');
 
-        level = validation.checkRate(level,'Level');
+        level = validation.checkRate(level, 'Level');
 
 
         //commentTag 不是array
 
         //  coommentdate 是（字符） 而且是我们自己拿的不用查
 
-        
+
         const commentCollection = await comments();
 
         let newComment = {
@@ -92,8 +102,8 @@ module.exports = {
 
     async remove(id) {
 
-        if(arguments.length !== 1) throw "There must be one and one only argument !";
-        id = validation.checkId(id,'CommentId');
+        if (arguments.length !== 1) throw "There must be one and one only argument !";
+        id = validation.checkId(id, 'CommentId');
 
         const commentCollection = await comments();
 

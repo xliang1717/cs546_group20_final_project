@@ -1,0 +1,75 @@
+<div id="usercontainer" class="usercontainer" data-userId="{{userId}}">
+  <div>Username:
+    <span id="nickname">{{ userInfo.nickname }}</span>
+  </div>
+
+  <div>Firstname:
+    <span id="firstName">{{ userInfo.firstName }}</span>
+  </div>
+
+  <div>Lastname:
+    <span id="lastName">{{ userInfo.lastName }}</span>
+  </div>
+
+  <div>Email:
+    <span id="email">{{ userInfo.email }}</span>
+  </div>
+
+  <div><a href="/user/myprofile">Edit Profile</a></div>
+
+  <div class="titleDiv">My Parking Spot</div>
+  <div id="carParkingLocation">{{ userInfo.carParkingLocation }}</div>
+  <br>
+
+  {{!-- <div>My Car</div>
+  <div id="carlistDiv" class="carlistDiv">
+    <ul id="carlist" class="carlist">
+      {{#each userInfo.myCar}}
+      <li id={{this}} class="eachcar">{{ this }}</li>
+      <button class="removecarBtn" data-userid="{{req.session.user.userId}}" data-carname="{{this}}">Delete</button>
+      {{!-- <button id="{{this}}Btn" class="removecarBtn" data-eachcar="{{userInfo.myCar}}">Delete</button> --}}
+      {{!-- {{/each}}
+    </ul>
+  </div>
+  <a id="addcar" class="addcar" href="/myCar">Add New Car</a> --}}
+
+  <div class="titleDiv">My Car</div>
+  <div id="carlistDiv" class="carlistDiv" data-userId={{userInfo._id}}>
+    {{#each userInfo.myCar}}
+    <div id={{this}} class="eachcar">{{this}}
+      <button class="removecarBtn" data-carname="{{this}}" data-userId="{{../userId}}">Delete</button>
+    </div>
+    {{/each}}
+  </div>
+  <div class="emptyDiv" id="emptyDiv">
+    Currently no car for this user.
+  </div>
+  <a id="addcar" class="addcar" href="/myCar">Add New Car</a>
+
+  <div class="titleDiv">My Area</div>
+  <ul>
+    {{#each userInfo.preferLocation}}
+    <li class="myArea">{{ this }}</li>
+    {{/each}}
+  </ul>
+  <a id="addarea" class="addarea" href="/myArea">Add New Area</a>
+
+  <div class="titleDiv">My Parking Lot Collection</div>
+  <ul>
+    {{#each userInfo.collectionCarParks}}
+    <li class="myCollection">{{ this }}</li>
+    {{/each}}
+  </ul>
+
+  <div class="titleDiv">My Comment</div>
+
+  <ul id="commentul" class="commentul">
+    {{#each commentInfoList}}
+    <li class="myComments">{{this.commentInfo}}
+       <button class="removecommentBtn" data-commentid="{{this._id}}" data-userId="{{this.UserId}}">Delete</button>
+    </li>
+    {{/each}}
+  </ul>
+
+  <a id="addParkinglot" class="addParkinglot" href="/">Add New Parking Lot</a>
+</div>

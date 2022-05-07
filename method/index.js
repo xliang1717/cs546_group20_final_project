@@ -5,6 +5,7 @@ const petrolStation = require('./petrolStation');
 const filter = require('./filter');
 const myCollection = require('./myCollection');
 const myArea = require('./myArea');
+const myCar = require('./myCar');
 
 
 module.exports = {
@@ -14,5 +15,6 @@ module.exports = {
     parklot : parklot,
     filter : filter,
     myCollection: myCollection,
-    myArea: myArea
+    myArea: myArea,
+    myCar : myCar
 };

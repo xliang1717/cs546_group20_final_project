@@ -5,6 +5,7 @@ const petrolStationRoutes = require('./petrolStation');
 const filterRoutes = require('./filter');
 const myCollectionRoutes =  require('./myCollection');
 const myParkingLotsRoutes =  require('./myParkingLots');
+const myCarRoutes =  require('./myCar');
 
 const constructorMethod = (app) => {
     app.use('/user', userRoutes);
@@ -14,6 +15,7 @@ const constructorMethod = (app) => {
     app.use('/filter', filterRoutes);
     app.use('/myCollection', myCollectionRoutes);
     app.use('/myParkingLots', myParkingLotsRoutes);
+    app.use('/myCar', myCarRoutes);
 
     app.use('*', (req, res) => {
         res.status(404).json({ error: 'Not found' });;

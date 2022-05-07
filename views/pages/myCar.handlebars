@@ -1,0 +1,23 @@
+<p>Add new a car here</p>
+<div id="error" class="error" hidden>error</div>
+<br>
+
+<form method="POST" action="/myCar" id="carForm">
+   {{#if error}}
+    <p class="error-to-show">{{error}}</p>
+    {{/if}}
+	{{!-- <label id="formLabel"> --}}
+		<label for="carname_input">car name </label>
+		<input id="carname_input" type="text" name="carname_input" placeholder="Enter car name" />
+		{{!-- <input type="text" id="carname_input" />
+		<input type="text" id="carsize_input" /> --}}
+		<button type="submit">Add Car</button>
+	{{!-- </label> --}}
+</form>
+
+{{#if content}}
+<div>{{content}}</div>
+{{/if}}
+<ul id="carlist"></ul>
+
+{{!-- <a href="/user/{{id}}">Back to Profile</a> --}}
