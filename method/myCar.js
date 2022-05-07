@@ -13,7 +13,7 @@ module.exports = {
       }else{
         throw 'No same car is allowed to add.';
       }
-   
+      return this.getMyCarForUser(userId);
   },
 
   async removeCarFromUser(carname, userId) {
