@@ -1,5 +1,5 @@
 
-(function($){
+(function ($) {
     var ParkLotName = $('#ParkLotName'),
         HHOH = $('#half-hour-one-hour'),
         OHOAHH = $('#one-hour-one-and-half-hour'),
@@ -14,167 +14,168 @@
         Evening = $('#e'),
         Night = $('#n'),
         capacitya = $('#ParkingLotCapacity');
-        addNewParkLot = $('#addNewParkLot');
-        error = $('#error');
-        result = $('#result');
-        form = $('#form');
-        suitableVehicleSizea = $('#suitableVehicleSize');
-        
+    addNewParkLot = $('#addNewParkLot');
+    error = $('#error');
+    result = $('#result');
+    form = $('#form');
+    suitableVehicleSizea = $('#suitableVehicleSize');
+    backButton = $('.btn-back')
 
 
-    
-    
-    addNewParkLot.submit((event) =>{
+
+
+
+    addNewParkLot.submit((event) => {
         event.preventDefault();
 
         let e = false;
-        
+
         let ParkLotNamea = ParkLotName.val().trim();
-        if(!ParkLotNamea) {
+        if (!ParkLotNamea) {
             alert('You must have ParkLotName');
             e = true;
         }
 
         let HHOHa = HHOH.val();
-        if(!HHOHa) {
+        if (!HHOHa) {
             alert('You must give the price of half hour ~ 1 hour');
             e = true;
         }
 
         let OHOAHHa = OHOAHH.val();
-        if(!OHOAHHa) {
+        if (!OHOAHHa) {
             alert('You must give the price of 1 hour ~ 1 and half hour');
             e = true;
         }
 
         let OAHHTHa = OAHHTH.val();
-        if(!OAHHTHa) {
+        if (!OAHHTHa) {
             alert('You must give the price of 1 and half hour ~ 2 hour');
             e = true;
         }
 
         let ATHa = ATH.val();
-        if(!ATHa) {
+        if (!ATHa) {
             alert('You must give the price of above 2 hours');
             e = true;
         }
 
         let Longitudea = Longitude.val();
-        if(!Longitudea) {
+        if (!Longitudea) {
             alert('You must give the Longitude');
             e = true;
         }
 
 
         let Latitudea = Latitude.val();
-        if(!Latitudea) {
+        if (!Latitudea) {
             alert('You must give the Latitude');
             e = true;
         }
 
         let zip = ZipCode.val();
-        if(!zip) {
-            alert ('You must input a ZipCode');
+        if (!zip) {
+            alert('You must input a ZipCode');
             e = true;
         }
 
         let df = DisabilityFriendly.val();
-        if(!df) {
-            alert ('You must choose the DisabilityFriendly');
+        if (!df) {
+            alert('You must choose the DisabilityFriendly');
             e = true;
         }
 
         let m = Morning.val();
-        if(!m){
+        if (!m) {
             alert('You need choose the traffic in 8:00~15:00');
             e = true;
         }
 
         let a = Afternoon.val();
-        if(!a){
+        if (!a) {
             alert('You need choose the traffic in 15:00~17:00');
             e = true;
         }
 
         let ev = Evening.val();
-        if(!ev){
+        if (!ev) {
             alert('You need choose the traffic in 17:00~24:00 ');
             e = true;
         }
 
         let n = Night.val();
-        if(!n){
+        if (!n) {
             alert('You need choose the traffic in 24:00~8:00 ');
             e = true;
         }
 
-        let cap = capacitya .val();
-        if(!cap){
+        let cap = capacitya.val();
+        if (!cap) {
             alert('You need input the capacity ');
             e = true;
         }
 
 
         let parkingChargeStandarda = {
-            'half hour ~ 1 hour' : HHOHa,
+            'half hour ~ 1 hour': HHOHa,
             '1 hour ~ 1 and half hour': OHOAHHa,
-            '1 and half hour ~ 2 hour' : OAHHTHa,
-            'above 2 hour' : ATHa
+            '1 and half hour ~ 2 hour': OAHHTHa,
+            'above 2 hour': ATHa
         }
 
         let parkingLotCoordinatesa = {
-            Longitude : Longitudea,
-            Latitude : Latitudea
+            Longitude: Longitudea,
+            Latitude: Latitudea
         }
 
         let TrafficConditionsa = {
-            Morn : m,
-            Afte : a,
-            Even : ev,
-            Nigh : n
+            Morn: m,
+            Afte: a,
+            Even: ev,
+            Nigh: n
         }
 
 
         suitableVehicleSize = suitableVehicleSizea.val();
-        if(suitableVehicleSize.length === 0){
+        if (suitableVehicleSize.length === 0) {
             alert('You need choose the suitable vehicle');
             e = true;
         }
 
 
         let body = {
-            ParkLotName : ParkLotNamea,
-            parkingChargeStandard : parkingChargeStandarda,
-            parkingLotCoordinates : parkingLotCoordinatesa,
-            ParkingLotLocationZipCode :zip,
-            TrafficConditions :  TrafficConditionsa,
-            DisabilityFriendly :df,
-            suitableVehicleSize :suitableVehicleSize,
-            capacity : cap,
+            ParkLotName: ParkLotNamea,
+            parkingChargeStandard: parkingChargeStandarda,
+            parkingLotCoordinates: parkingLotCoordinatesa,
+            ParkingLotLocationZipCode: zip,
+            TrafficConditions: TrafficConditionsa,
+            DisabilityFriendly: df,
+            suitableVehicleSize: suitableVehicleSize,
+            capacity: cap,
 
         };
 
 
 
         var requestConfig = {
-            url : 'http://localhost:3000/parklot/',
-            method : 'POST',
-            dataType : 'json',
-            contentType : 'application/json',
-            data : JSON.stringify(body)
+            url: 'http://localhost:3000/parklot/',
+            method: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(body)
 
         };
 
-        if(!e){
-            $.ajax(requestConfig).then(function(responseMessage){
-                if(!responseMessage.success) {
+        if (!e) {
+            $.ajax(requestConfig).then(function (responseMessage) {
+                if (!responseMessage.success) {
                     form.show();
                     result.hide();
                     addNewParkLot.trigger('reset');
                     error.html(responseMessage.error);
                     error.show();
 
-                }else{
+                } else {
                     error.hide();
                     form.hide();
                     addNewParkLot.trigger('reset');
@@ -185,5 +186,10 @@
         };
 
     });
+
+    // backButton.on('click', function (event) {
+    //     event.preventDefault();
+    //     location.redirect = "http://localhost:3000";
+    // })
 
 })(window.jQuery);

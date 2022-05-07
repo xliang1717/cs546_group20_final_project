@@ -18,11 +18,15 @@ li{
 }
 
 p{
+    font-weight: 800;
+    font-size: 18px;
+    color: #e0a43d;
     margin: 15px 7px;
     padding: 15px 6px;
 }
 
 #form {
+    position: relative;
     width: 880px;
     margin: 80px auto;
     padding: 5px 15px;
@@ -51,8 +55,16 @@ p{
 .sizeSelection label,
 .parklotCapa label{
     display: inline-block;
+    font-weight: 800;
+    font-size: 18px;
+    color: #e0a43d;
     margin: 15px 7px;
     padding: 15px 6px;
+}
+
+.parkChargeList li,
+.longLa li{
+    padding-left: 3em;
 }
 
 .sizeSelection select{
@@ -74,7 +86,8 @@ p{
 }
 
 .btn-pl{
-    display: inline-block;
+    /* display: inline-block; */
+    float: right;
     height: 30px;
     width: 150px;
     margin: 15px 7px;
@@ -83,6 +96,19 @@ p{
     border-radius: 5px;
     color: #fff;
     background-color: #9FCAB8;
+    cursor: pointer;
+}
+
+.btn-back{
+    /* display: inline-block; */
+    height: 30px;
+    width: 150px;
+    margin: 15px 7px;
+    padding: 2px 6px;
+    border:none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #e0a43d;
     cursor: pointer;
 }
 /* body{

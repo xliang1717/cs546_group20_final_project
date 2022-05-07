@@ -11,7 +11,7 @@
 
             <div class="lotName">
                 <label for="ParkLotName">Parking Lot Name : </label>
-                <input type="text" id="ParkLotName" name="ParkLotName" placeholder="add the parkLotName">
+                <input type="text" id="ParkLotName" name="ParkLotName" placeholder="Add Parking Lot Name">
             </div>
             
             <div class="parkCharge">
@@ -52,7 +52,7 @@
                        <input type="number" id="Latitude" name="Latitude" step="any">
                    </li>
                    <li>
-                       <label for="ParkingLotLocationZipCode">ParkingLotLocationZipCode: </label>
+                       <label for="ParkingLotLocationZipCode">Location Zip Code Of Your Parking Lot : </label>
                        <input type="Number" id="ParkingLotLocationZipCode" name="ParkingLotLocationZipCode" placeholder="Zip Code">
                    </li>
                </ul>
@@ -60,7 +60,7 @@
             
 
             <div class="disableSelection">
-                 <label for="DisabilityFrendly">Is There Any Disabled Friendly Facilities In This Parking Lot ?  :</label>
+                 <label for="DisabilityFrendly">Is There Any Disabled Friendly Facilities In Your Parking Lot ?  :</label>
                  <select name="DisabilityFrendly" id="DisabilityFrendly">
                      <option value="True">True</option>
                      <option value="False">False</option>
@@ -102,8 +102,8 @@
                     </li>
 
                     <li>
-                        <label for="a">17:00~24:00 :</label>
-                        <select name="a" id="a">
+                        <label for="e">17:00~24:00 :</label>
+                        <select name="e" id="e">
                             <option value="light">light</option>
                             <option value="Heavy">Heavy</option>
                             <option value="Fine">Fine</option>
@@ -111,8 +111,8 @@
                     </li>
 
                     <li>
-                        <label for="a">24:00~8:00 :</label>
-                        <select name="a" id="a">
+                        <label for="n">24:00~8:00 :</label>
+                        <select name="n" id="n">
                             <option value="light">light</option>
                             <option value="Heavy">Heavy</option>
                             <option value="Fine">Fine</option>
@@ -128,8 +128,9 @@
             </div>
            
             <button type="submit" name="submit" class="btn-pl">Submit My Parking Lot</button>
-
         </form>
+        {{!-- <a href="/comment"><button class="btn-back">Back To Home Page!</button></a> --}}
+        <button onclick="window.location.href='/comment'" class="btn-back">Back</button>
     </div>
 
     <div id="error" hidden> 
@@ -138,9 +139,9 @@
     <div id="result" hidden >
     </div>
 
-    <div class="backLink">
+    {{!-- <div class="backLink">
         <a href="/comment">Click here to back home!</a> 
-    </div>
+    </div> --}}
 
     {{/if}}
 
