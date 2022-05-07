@@ -96,10 +96,8 @@ module.exports = {
     if (typeof num !== 'number' || isNaN(num)) throw `${varName} must be a number`;
     if (num % 1 !== 0){
       throw `${varName} must be a Int number`
-    }
-  }
-
-
-  
+    };
+    return num;
+  } 
 
 };

@@ -3,6 +3,7 @@ const router = express.Router();
 const method = require('../method');
 const validation = require('../validation');
 const parklotsData = method.parklot;
+const xss = require('xss');
 
 
 router.get('/addNewParkLot', async (req,res) => {
@@ -47,35 +48,48 @@ router.post('/', async(req, res) =>{
     try{
         if(!ParkLotInfo) throw 'There is no ParkLotInfo in the post body !';
 
-        ParkLotName = validation.checkString(ParkLotInfo.ParkLotName),
+        ParkLotName = validation.checkString(xss(ParkLotInfo.ParkLotName),'parkLotName'),
 
         parkingChargeStandard =  Object.values(ParkLotInfo.parkingChargeStandard);
+        var keys =  Object.keys(ParkLotInfo.parkingChargeStandard);
         for (x in parkingChargeStandard) {
             parkingChargeStandard[x] = Number(parkingChargeStandard[x]);
             if (typeof parkingChargeStandard[x] !== 'number' ||  isNaN(parkingChargeStandard[x]) ) throw 'The parkingChargeStandard should only contain numbers';
+            ParkLotInfo.parkingChargeStandard[keys[x]] = xss(parkingChargeStandard[x]);
         };
 
         parkingLotCoordinates = Object.values(ParkLotInfo.parkingLotCoordinates);
+        var keyss =  Object.keys(ParkLotInfo.parkingLotCoordinates);
 
-        for (x in parkingLotCoordinates) {
-            parkingLotCoordinates[x] = Number(parkingLotCoordinates[x]);
-            if (typeof parkingLotCoordinates[x] !== 'number' ||  isNaN(parkingLotCoordinates[x]) ) throw 'The parkingLotCoordinates should only contain numbers';
+        for (y in parkingLotCoordinates) {
+            parkingLotCoordinates[y] = Number(parkingLotCoordinates[y]);
+            if (typeof parkingLotCoordinates[y] !== 'number' ||  isNaN(parkingLotCoordinates[y]) ) throw 'The parkingLotCoordinates should only contain numbers';
+            ParkLotInfo.parkingLotCoordinates[keyss[y]] =xss(parkingLotCoordinates[y]) 
+
         };
 
         if(!ParkLotInfo.ParkingLotLocationZipCode.match(/^\d{5}(?:[-\s]\d{4})?$/)) throw 'The zip code not valid.';
 
-        if( ParkLotInfo.DisabilityFriendly !== 'True' && disabilityFriendly !== 'False') throw 'The disabilityFriendly should be Boolean';
+        if( ParkLotInfo.DisabilityFriendly !== 'True' && ParkLotInfo.DisabilityFriendly !== 'False') throw 'The disabilityFriendly should be Boolean';
+
+        var size = ParkLotInfo.suitableVehicleSize;
+        for (i in size) {
+            size[i] = validation.checkString(xss(size[i]), 'suitableVehicleSize');
+        }
 
         suitableVehicleSize = validation.checkStringArray(ParkLotInfo.suitableVehicleSize, 'suitableVehicleSize');
+
         
         idfromUploader = validation.checkId(idfromUploader, 'idfromUploader');
 
         let  Conditions=  Object.values(ParkLotInfo.TrafficConditions);
-        for (x in Conditions) {
-            validation.checkString (Conditions[x], 'trafficConditions');
+        var keysss =  Object.keys(ParkLotInfo.TrafficConditions);
+        for (z in Conditions) {
+            validation.checkString (Conditions[z], 'trafficConditions');
+            ParkLotInfo.TrafficConditions[keysss[z]] = xss(Conditions[z])
         };
 
-        capacity = validation.checkIntNumber(ParkLotInfo.capacity, 'capacity'); 
+        var capacity = validation.checkIntNumber(xss(ParkLotInfo.capacity), 'capacity'); 
 
     }catch(e){
         return res.json({success : false , error : e});
@@ -89,11 +103,11 @@ router.post('/', async(req, res) =>{
             ParkLotInfo.parkingChargeStandard,
             ParkLotInfo.parkingLotCoordinates,
             ParkLotInfo.ParkingLotLocationZipCode,
-            ParkLotInfo.DisabilityFriendly,
-            ParkLotInfo.suitableVehicleSize,
+            xss(ParkLotInfo.DisabilityFriendly),
+            size,
             idfromUploader,
             ParkLotInfo.TrafficConditions,
-            ParkLotInfo.capacity,
+            capacity,
 
 
         )

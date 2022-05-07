@@ -4,7 +4,7 @@ const method = require('../method');
 const validation = require('../validation');
 const petrolStationsData = method.petrolStation;
 const xss = require('xss');
-const { type } = require('express/lib/response');
+
 
 router.get('/', async (req,res) => {
     try {
