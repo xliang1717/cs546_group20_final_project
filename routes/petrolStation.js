@@ -82,11 +82,11 @@ router.post('/addnewpetrol', async(req, res) =>{
         if(petrol){
             res.json({success : true});
         }else{
-            return res.json({success : false, error : e});
+            return res.json({success : false, error : e,  exe : "There is an error"});
         }
 
     }else{
-        return res.json({success : false , error : 'You need login first'});
+        return res.json({success : false , error : 'You need login first',  exe : "There is an error"});
     }
 });
 

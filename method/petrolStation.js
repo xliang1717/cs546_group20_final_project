@@ -1,7 +1,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const petrolStations = mongoCollections.petrolStation;
 const { ObjectId } = require('mongodb');
-//const validation = require('../validation');
+const validation = require('../validation');
 
 
 module.exports = {
@@ -31,35 +31,30 @@ module.exports = {
 
     async create (location, coordinate, name, type) {
 
-        // if (arguments.length !== 6) {
-        //     throw "There must be 6 arguments !"
-        // }
+        if (arguments.length !== 4) {
+            throw "There must be 4 arguments !"
+        }
 
-        // name = validation.checkString(name, 'Name');
+        let namE = validation.checkString(name, 'Name');
 
-        // website = validation.checkString(website, 'Website');
-        
-        // if (!website.match(/^[hH][tT][tT][pP]:\/\/[wW][wW][wW]\.[a-zA-Z0-9][^\s]{4,}\.[cC][oO][mM]$/)) {
-        //     throw "The website format is invalid!"
-        // }
+        let locatioN = validation.checkString(location, 'location');
 
-        // recordLabel = validation.checkString(recordLabel, 'RecordLabel');
+        let position = Object.values(coordinate);
+        for(x in position) {
+            position[x] = Number(position[x])
+            if (typeof position[x] !=='number' || isNaN(position[x]) ) throw 'The coodinate should only contain number!';
+        };
 
-        // genre = validation.checkStringArray(genre, 'Genre');
-
-        // bandMembers = validation.checkStringArray(bandMembers,'BandMembers');
-
-        // yearFormed =validation.checkYear(yearFormed,'YearFormed');
-
+        let typE = validation.checkStringArray(type,'type');
         
         const petrolStationsCollection = await petrolStations();
 
         let newpetrolStation = {
 
-            location : location, 
+            location : locatioN, 
             coordinate : coordinate, 
-            name : name, 
-            type : type
+            name : namE, 
+            type : typE
 
         };
 

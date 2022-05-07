@@ -70,14 +70,14 @@
                     form.show();
                     result.html(responseMessage.exe)
                     result.show();
-                    addNewParkLot.trigger('reset');
+                    addNewPetrol.trigger('reset');
                     error.html(responseMessage.error);
                     error.show();
 
                 }else{
                     error.hide();
                     form.hide();
-                    addNewParkLot.trigger('reset');
+                    addNewPetrol.trigger('reset');
                     result.html('You have successfully add the petrolStation!');
                     result.show();
                 }
