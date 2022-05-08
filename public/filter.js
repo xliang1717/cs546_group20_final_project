@@ -48,33 +48,35 @@
     searchButton.on('click', function (event) {
         event.preventDefault();
         valArr = [];
-        let locOption = $('#locationSelect option:selected');
-        let locVal = locOption.val() ? locOption.val() : null;
-        let zipOption = $('#zipCodeSelect option:selected');
-        let zipVal = zipOption.val() ? zipOption.text() : null;
-        valArr.push(valPF);
-        valArr.push(valCT);
-        valArr.push(valDF);
-        valArr.push(locVal);
-        valArr.push(zipVal);
-        let requestConfig = {
-            method: 'post',
-            url: '/filter',
-            data: {
-                valPF: valPF,
-                valCT: valCT,
-                valDF: valDF,
-                locVal: locVal,
-                zipVal: zipVal,
-                // filter: valArr,
-            },
-        };
+        if (!valPF || !valCT || !valDF) {
+            alert('The request(*) part must be selected!');
+        } else {
+            let locOption = $('#locationSelect option:selected');
+            let locVal = locOption.val() ? locOption.val() : null;
+            let zipOption = $('#zipCodeSelect option:selected');
+            let zipVal = zipOption.val() ? zipOption.text() : null;
+            valArr.push(valPF);
+            valArr.push(valCT);
+            valArr.push(valDF);
+            valArr.push(locVal);
+            valArr.push(zipVal);
+            let requestConfig = {
+                method: 'post',
+                url: '/filter',
+                data: {
+                    valPF: valPF,
+                    valCT: valCT,
+                    valDF: valDF,
+                    locVal: locVal,
+                    zipVal: zipVal,
+                    // filter: valArr,
+                },
+            };
 
-        $.ajax(requestConfig).done(function (data) {
-            location.replace('/filter');
-        });
-
-
+            $.ajax(requestConfig).done(function (data) {
+                location.replace('/filter');
+            });
+        }
     });
 
     searchButton.ready(function () {

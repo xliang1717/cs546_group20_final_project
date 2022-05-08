@@ -41,6 +41,8 @@ module.exports = {
         // 40.74119115392377, -74.02962195701149;
         const parkLotCollection = await parkLot();
         let filterArr = filter;
+        if (filterArr.length == 0) throw "Parameter Error, please check the input in filter.";
+        if (!filterArr[0].trim() || !filterArr[1].trim() || !filterArr[2].trim()) throw "Parameter Error, please check the input in filter."
         filterArr[2] == 'Yes' ? (filterArr[2] = "True") : (filterArr[2] = "False");
         let nearBy = filterArr[3] ? parseInt(filterArr[3]) : null;
         let zipCode = filterArr[4] ? filterArr[4] : null;
@@ -96,6 +98,7 @@ module.exports = {
         ans = answer;
         return answer;
     },
+
     async allPark() {
         return ans;
     },
