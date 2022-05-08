@@ -122,21 +122,21 @@ h1 {
     padding: 1em;
     border: solid thin;
     margin: 1em;
-    background: #95bfad;
+    background: #178463;
 }
 
 #userProfile {
     padding: 1em;
     border: solid thin;
     margin: 1em;
-    background: #b2c6bd;
+    background: #527d6b;
 }
 
 #myCars {
     padding: 1em;
     border: solid thin;
     margin: 1em;
-    background: #95bfad;
+    background: #178463;
 }
 
 .myAreaItem, .myUserProfileItem, .myCarItem {
@@ -174,7 +174,7 @@ h1 {
     margin: 1em;
     margin-top: 6px;
     margin-bottom: 1px;
-    color: #5a8c8a;
+    color: #07706d;
     background: #bbeae8;
 }
 
@@ -186,7 +186,7 @@ h1 {
     margin: 1em;
     margin-top: 6px;
     margin-bottom: 1px;
-    color: #5a8c8a;
+    color: #07706d;
     background: #bbeae8;
 }
 
@@ -198,6 +198,6 @@ h1 {
     margin: 1em;
     margin-top: 6px;
     margin-bottom: 1px;
-    color: #5a8c8a;
+    color: #07706d;
     background: #bbeae8;
 }
