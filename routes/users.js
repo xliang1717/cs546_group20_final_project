@@ -100,7 +100,11 @@ router.post('/logsign', async(req, res) => {
             return res.redirect("/");
         } catch (e) {
             console.log(e);
+<<<<<<< HEAD
             res.render("usersRY/error", { error: e });
+=======
+            res.render("usersRY/error", {error : e});;
+>>>>>>> gai le login cuowu
         }
     }
 })
