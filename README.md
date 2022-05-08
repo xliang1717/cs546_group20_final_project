@@ -79,6 +79,24 @@ git push origin
 
 ```
 
+### Instructions for git
+
+
+```
+
+git add -A
+
+git commit -m "<message>"
+
+git pull origin
+
+## if there is conflicts in your branch, resovle conflicts
+## And then redo git add and git commit
+
+git push
+
+```
+
 ### Instruction from Guan for seed
 
 #### 要使用seed.js 之前，要先注释掉几个地方。 
