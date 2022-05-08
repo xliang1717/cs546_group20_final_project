@@ -34,3 +34,6 @@ Change all newer commits(except first one) from 'pick' to 's' and save the file
 Update the commit message and save the file
 
 ```
+
+
+TEST
