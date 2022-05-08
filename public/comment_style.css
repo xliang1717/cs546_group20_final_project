@@ -6,19 +6,19 @@
 }
 
 .parklotInfo{
-    background-color: chocolate;
+    background-color: white;
     text-align: center;
     margin: auto;
 }
 
 .comment-list{
-    background-color:cadetblue ;
+    background-color:white ;
     text-align: center;
     margin: auto;
 }
 
 .comment-form{
-    background-color: darksalmon;
+    background-color: white;
     text-align: center;
     margin: auto;
 }
@@ -35,4 +35,12 @@ body{
     font-size: 18pt;
     margin: auto;
     text-align: center;
+}
+
+.color{
+    background-color:midnightblue
+}
+
+#a{
+    color:black ;
 }

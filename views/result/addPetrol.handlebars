@@ -1,27 +1,27 @@
 <div class="full">
     {{#if haserror}}
         <p class="error">We're sorry, but {{error}}.</p>
-        <a href="/comment">Click here to back home!</a> 
-        {{!-- 到时候更改链接 --}}
+        <a href="/">Click here to back home!</a> 
+        
 
     {{else}}
     <div id="form">
         <form id = "addNewPetrol" class = "petrol-form">
 
-        <label for="PetrolName">PetrolName : </label>
+        <label class="p"  for="PetrolName">PetrolName : </label>
         <input type="text" id="PetrolName" name="PetrolName" placeholder="add the Petrol Name">
 
-        <label for="PetrolLocation">PetrolLocation : </label>
+        <label  class="p" for="PetrolLocation">PetrolLocation : </label>
         <input type="text" id="PetrolLocation" name="PetrolLocation" placeholder="add the Petrol Location">
 
-        <p>Coordinates:</p> 
-        <label for="Longitude"> Longitude: </label>
+        <p class="p">Coordinates:</p> 
+        <label  class="p" for="Longitude"> Longitude: </label>
         <input type="number" id="Longitude" name="Longitude" step="any">
 
-        <label for="Latitude"> Latitude: </label>
+        <label  class="p" for="Latitude"> Latitude: </label>
         <input type="number" id="Latitude" name="Latitude" step="any">
 
-        <label for="type">fuel Type :</label>
+        <label  class="p" for="type">fuel Type :</label>
         <select name="type" id="type" multiple="multiple">
             <option value="gaslion">gaslion</option>
             <option value="diesel">diesel</option>
@@ -39,7 +39,7 @@
     </div>
 
     <div>
-        <a href="/comment">Click here to back home!</a> 
+        <a class="p" href="/">Click here to back home!</a> 
     </div>
 
     {{/if}}
