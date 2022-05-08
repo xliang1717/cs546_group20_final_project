@@ -7,6 +7,11 @@ const parklotData = method.parklot;
 router.get('/:id', async (req, res) => {
     let userId = req.params.id;
     try {
+        userId = validation.checkId(userId, 'ID');
+    } catch (e) {
+        return res.status(400).render('user/error', { layout: 'user', content: 'Invalid ID',  userId: userId});
+    }
+    try {
         let myParkingLots = await parklotData.findAllParkingLotsByUploaderId(userId);
         let myParkingLotsExists = myParkingLots.length !== 0 ? true : false;
         res.render('user/myParkingLots', { layout: 'user', title: 'Add New Parking Lot', userId: userId, myParkingLots: myParkingLots, myParkingLotsExists: myParkingLotsExists });
