@@ -74,7 +74,7 @@ app.use('/comment', (req,res,next) =>{
     //req.session.user = {username : 'Weini', userId : '1212123213'}; //test
     
     if (!req.session.user){ 
-        res.status(403).render('result/comment', {title: 'Error', content: 'you are not logged in', haserror : true});
+        res.status(403).render('result/comment', {title: 'Error', error: 'you are not logged in', haserror : true});
     }else{
         next();
     }

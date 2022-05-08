@@ -8,10 +8,15 @@ const xss = require('xss');
 
 
 router.get('/addNewParkLot', async (req, res) => {
-    try {
-        res.render('result/parkLots', { title: 'Add new parklot' });
-    } catch (e) {
-        res.status(500).json({ error: e });
+    console.log(req.session.user)
+    if(!req.session.user) {
+        return res.render('result/parkLots', { title: 'Error' , haserror: true, error: 'You need login first' });
+    }else{
+        try {
+            res.render('result/parkLots', { title: 'Add new parklot' });
+        } catch (e) {
+            res.status(500).json({ error: e });
+        }
     }
 });
 
@@ -41,12 +46,13 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+    let idfromUploader;
     try {
-        req.session.user = { UserId: '62616e5169c3b43a2e6f38f1' };
+        
         if (!req.session.user) throw 'You need log in first!'
-        idfromUploader = req.session.user.UserId;
+        idfromUploader = req.session.user.userId;
     } catch (e) {
-        return res.json({ success: false, error: e });;
+        return res.json({ success: false, error: e });
     }
 
     let ParkLotInfo = req.body;
@@ -131,6 +137,7 @@ router.post('/', async (req, res) => {
 // 还需要更改返回信息，要根据删除按钮的hanlderbar
 router.delete('/deleteParkLot', async (req, res) => {
     try {
+        //UserId 不行改成pararmet，上面网址也gai
         let id = xss(req.body.commentID); //comment Id
         let UserId = xss(req.body.UserId);
         if (req.session.user) {

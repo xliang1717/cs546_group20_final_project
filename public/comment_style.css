@@ -29,3 +29,10 @@ body{
 .full{
     background-color:aquamarine 
 }
+
+#AA{
+    color: crimson;
+    font-size: 18pt;
+    margin: auto;
+    text-align: center;
+}
