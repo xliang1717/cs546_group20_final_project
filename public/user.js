@@ -98,12 +98,16 @@
                 }
             };
 
-            $.ajax(requestConfig).then(function (responseMessage) {
-                var newElement = $(responseMessage);
-                showMyAreaBox.replaceWith(newElement);
-                newAreaInput.val('');
-                showMyAreaBox = newElement;
-            });
+            $.ajax(requestConfig)
+                .fail(function (jqXHR, textStatus) {
+                    alert(jqXHR.responseJSON.error);
+                })
+                .then(function (responseMessage) {
+                    var newElement = $(responseMessage);
+                    showMyAreaBox.replaceWith(newElement);
+                    newAreaInput.val('');
+                    showMyAreaBox = newElement;
+                });
         }
 
     });
@@ -137,12 +141,16 @@
                 }
             };
 
-            $.ajax(requestConfig).then(function (responseMessage) {
-                var newElement = $(responseMessage);
-                showMyCarsBox.replaceWith(newElement);
-                newCarInput.val('');
-                showMyCarsBox = newElement;
-            });
+            $.ajax(requestConfig)
+                .fail(function (jqXHR, textStatus) {
+                    alert(jqXHR.responseJSON.error);
+                })
+                .then(function (responseMessage) {
+                    var newElement = $(responseMessage);
+                    showMyCarsBox.replaceWith(newElement);
+                    newCarInput.val('');
+                    showMyCarsBox = newElement;
+                });
         }
 
     });
