@@ -25,13 +25,13 @@ router.get("/", (req, res) => {
 });
 
 router.get("/logsign", async(req, res) => {
-    console.log('//')
+    
     if(req.session.user){
-        console.log(111)
+        
         // alert("You have been loged in ")
         res.redirect('/')
     }else{
-        console.log(222)
+       
         try {
             
             res.render("usersRY/logsign");
@@ -47,6 +47,15 @@ router.get("/logsign", async(req, res) => {
 router.post('/logsign', async(req, res) => {
     if ('signup' === req.body.formType) {
         let userInfo = req.body;
+        try{
+            if(typeof userInfo.username !== 'string') throw''
+            
+        }
+        catch(e){
+
+        }
+        
+        
         try {
             const newUser = await userData.createUser(
                 userInfo.firstName,
