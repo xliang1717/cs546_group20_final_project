@@ -6,92 +6,103 @@ const parkLotData = method.parklot;
 const xss = require('xss');
 const validation = require('../validation');
 
-router.get('/:id', async (req, res) =>{
+router.get('/:id', async(req, res) => {
+
     let id = req.params.id; //This is parklot Id
+
     try {
         id = validation.checkId(id, 'ID');
-    }catch(e){
-        res.status(400).render('result/comment',{title : 'The parklot comment',  haserror : true,   error : e});
+    } catch (e) {
+        res.status(400).render('result/comment', { title: 'The parklot comment', haserror: true, error: e });
         return;
     };
 
-    try{
+    try {
         let ParkLotDetail = await parkLotData.get(id);
         ParkLotDetail.parkingChargeStandard = JSON.stringify(ParkLotDetail.parkingChargeStandard);
         ParkLotDetail.parkingLotCoordinates = JSON.stringify(ParkLotDetail.parkingLotCoordinates);
         let commentsList = await commentsData.getAllCommentsOfTheOneParkLotID(id);
 
-        if(commentsList && ParkLotDetail){
-            if(typeof commentsList === 'string'){
-                res.render('result/comment',{title : 'The parklot comment',  haserror : true,   error : commentsList});
-            }else{
-                res.render('result/comment',{title : 'The parklot comment', commentsList, ParkLotDetail});
+        if (commentsList && ParkLotDetail) {
+
+            if (typeof commentsList === 'string') {
+                res.render('result/comment', { title: 'The parklot comment', ParkLotDetail, AA: commentsList });
+            } else {
+                res.render('result/comment', { title: 'The parklot comment', commentsList, ParkLotDetail });
             }
-        }else{
-            res.status(500).render('result/comment',{title : 'The parklot comment', haserror : true,  error : "Can't find the comments of this ParkLot"});
+        } else {
+            console.log(4)
+            res.status(500).render('result/comment', { title: 'The parklot comment', haserror: true, error: "Can't find the comments of this ParkLot" });
         }
-        
-    }catch(e){
-        res.status(400).render('result/comment',{title : 'The parklot comment',  haserror : true,   error : e});
+
+    } catch (e) {
+        console.log(5)
+        res.status(400).render('result/comment', { title: 'The parklot comment', haserror: true, error: e });
     }
 });
 
-router.post('/comment', async (req, res) => {
+router.post('/comment', async(req, res) => {
     // req.session.user = { username: 'shuang', userId: '66666666666' }; //test
-    console.log(111)
     let parklotId;
     let tag;
     let commentS;
     let rating;
     let date;
+    let newComment;
 
 
     if (req.session.user) {
         console.log(req.session.user.username);
-        try{
+        try {
             date = new Date().toUTCString();
             parklotId = xss(req.body.parkLotId);
             parklotId = validation.checkId(parklotId, 'ParkLotId');
-            tag = xss(req.body.commentTag); 
+            tag = xss(req.body.commentTag);
             tag = validation.checkString(tag, 'CommentTag');
             commentS = xss(req.body.commentInfo);
             commentS = validation.checkString(commentS, 'Comment contents');
-            rating= xss(req.body.level);
-            rating = Number(rating); 
-            if(typeof rating !=='number' && isNaN(rating) ) throw "The rating must be number and number only"
+            rating = xss(req.body.level);
+            rating = Number(rating);
+            if (typeof rating !== 'number' && isNaN(rating)) throw "The rating must be number and number only"
             rating = validation.checkRate(rating, 'Rating');
-        }catch(e){
-            return res.json({success : false , error : e});
+        } catch (e) {
+            return res.json({ success: false, error: e });
         }
 
-        let newComment = await commentsData.create(
-            
-            req.session.user.username,
-            xss(tag),
-            date,
-            xss(parklotId),//commentPostInfo.parkLotId
-            req.session.user.userId,
-            xss(commentS),
-            xss(rating)
-        );
+
+        try {
+            newComment = await commentsData.create(
+
+                req.session.user.username,
+                xss(tag),
+                date,
+                xss(parklotId), //commentPostInfo.parkLotId
+                req.session.user.userId,
+                xss(commentS),
+                xss(rating)
+            );
+        } catch (e) {
+            return res.json({ success: false, error: e });
+        };
 
         if (newComment) {
-            res.json({success : true});
+            res.json({ success: true });
         } else {
-            return res.json({success : false , error : e});
+            return res.json({ success: false, error: e });
         }
 
     } else {
-        return res.json({success : false , error : 'You need login first'});
+        return res.json({ success: false, error: 'You need login first' });
     }
 
 });
 
-router.delete('/usercomment', async (req, res) => {
+router.delete('/usercomment', async(req, res) => {
     try {
         let id = xss(req.body.commentID); //comment Id
         let UserId = xss(req.body.UserId);
         if (req.session.user) {
+            //这个user Id 不行就改成 paramater
             if (req.session.user.UserId === UserId) {
                 let message = await commentsData.remove(id)
                 if (message) {

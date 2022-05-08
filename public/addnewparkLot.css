@@ -79,6 +79,20 @@ p{
     margin: auto;
 }
 
+#error{
+    font-size: 18pt;
+	color: #ff0000;
+    text-align: center;
+    margin: auto;
+}
+
+#result{
+    font-size: 18pt;
+	color:chartreuse ;
+    text-align: center;
+    margin: auto;
+}
+
 .parkLot-form{
     /* background-color: chocolate; */
     text-align: center;
@@ -95,7 +109,7 @@ p{
     border:none;
     border-radius: 5px;
     color: #fff;
-    background-color: #5fa188;
+    background-color: #008766;
     cursor: pointer;
 }
 

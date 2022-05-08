@@ -7,7 +7,7 @@
 
 #result{
     font-size: 10pt;
-	color:chartreuse ;
+	color:black ;
     text-align: center;
     margin: auto;
 }
@@ -30,6 +30,12 @@
     background-color: gold;
     margin: auto;
 }
+
+.p{
+    color: black;
+}
+
+
 /* body{
     background-color: indianred;
 } */

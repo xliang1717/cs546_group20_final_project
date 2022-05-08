@@ -32,21 +32,27 @@ module.exports = {
 
     async create(userName, commentTag, commentdate, parkLotId, UserId, commentInfo, level) {
 
-        if (arguments.length !== 7) {
-            throw "There must be 7 arguments !"
-        };
+        try{
 
-        userName = validation.checkString(userName, 'Username');
+            if (arguments.length !== 7) {
+                throw "There must be 7 arguments !"
+            };
 
-        commentTag = validation.checkString(commentTag, 'commentTag');
+            userName = validation.checkString(userName, 'Username');
 
-        parkLotId = validation.checkId(parkLotId, 'parkLotId');
+            commentTag = validation.checkString(commentTag, 'commentTag');
 
-        // UserId = validation.checkId(UserId,'UserId'); 到时候要取消注释
+            parkLotId = validation.checkId(parkLotId, 'parkLotId');
 
-        commentInfo = validation.checkString(commentInfo, 'CommentInfo');
+            // UserId = validation.checkId(UserId,'UserId'); 到时候要取消注释
 
-        level = validation.checkRate(level, 'Level');
+            commentInfo = validation.checkString(commentInfo, 'CommentInfo');
+            level = Number(level);
+
+            level = validation.checkRate(level, 'Level');
+        }catch(e){
+            throw `${e}`;
+        }
 
 
         //commentTag 不是array

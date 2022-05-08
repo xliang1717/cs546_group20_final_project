@@ -19,7 +19,9 @@ router.get('/', async (req,res) => {
 });
 
 router.get('/addnewpetrolStation', async (req, res) =>{
-    
+
+    if(!req.session.user) return res.render('result/addPetrol',{title : 'Error' , haserror :true, error:'You need log in first'})
+
     try {
         res.render('result/addPetrol',{title : 'Add new petrol'});
     } catch(e) {
@@ -28,7 +30,7 @@ router.get('/addnewpetrolStation', async (req, res) =>{
 });
 
 router.post('/addnewpetrol', async(req, res) =>{
-    req.session.user = { username: 'shuang', userId: '66666666666' }; //test
+   
 
     if(req.session.user) {
         try{
