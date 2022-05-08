@@ -78,7 +78,7 @@ router.post('/logsign', async(req, res) => {
             return res.redirect("/");
         } catch (e) {
             console.log(e);
-            return res.status(400).json({ error: e });
+            res.render("usersRY/error", {error : e});;
         }
     }
 })
