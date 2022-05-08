@@ -43,7 +43,11 @@ ul,li{
 }
 
 .Condition-title{
+    float: left;
+    bottom:20px;
     padding-left: 2em;
+    margin: 15px 7px;
+    padding: 5px 6px;
 }
 
 .Subcondition{
@@ -137,7 +141,23 @@ ul,li{
 .parkLotName p{
     cursor: default;
     font-weight: 800;
-    color:#36403c
+    color:#36403c;
+    font-size:12px;
+}
+
+.parkLotRating{
+    float: right;
+    margin: 15px 7px;
+    padding: 5px 6px;
+    padding-right: 2em;
+    cursor: pointer;
+}
+
+.parkLotRating p{
+    cursor: default;
+    font-weight: 800;
+    color:#36403c;
+    font-size:12px;
 }
 
 .parkLotName a{
