@@ -7,6 +7,8 @@ const commentData = method.comment;
 const validation = require("../validation");
 
 //TODO: Add validation for all below APIs.
+
+
 router.get('/:id', async (req, res) => {
     let id = req.params.id;
     try {
@@ -14,27 +16,33 @@ router.get('/:id', async (req, res) => {
     } catch (e) {
         return res.status(400).render('user/error', { layout: 'user', content: 'Invalid ID',  userId: id});
     }
-    try {
-        let myCollectionParkingLots = await myCollectionData.getCollectionForUser(id);
-        for (let i = 0; i < myCollectionParkingLots.length; i++) {
-            if (myCollectionParkingLots[i].parkingChargeStandard != undefined) {
-                myCollectionParkingLots[i].parkingFeeMessage = 'Parking Fee';
-            } else {
-                myCollectionParkingLots[i].parkingFeeMessage = 'No Parking Fee';
+    if(req.session.user){
+        try {
+            let myCollectionParkingLots = await myCollectionData.getCollectionForUser(id);
+            for (let i = 0; i < myCollectionParkingLots.length; i++) {
+                if (myCollectionParkingLots[i].parkingChargeStandard != undefined) {
+                    myCollectionParkingLots[i].parkingFeeMessage = 'Parking Fee';
+                } else {
+                    myCollectionParkingLots[i].parkingFeeMessage = 'No Parking Fee';
+                }
+                if ('True' == myCollectionParkingLots[i].disabilityFriendly) {
+                    myCollectionParkingLots[i].disabilityFriendly = 'Facilities For Disability';
+                } else {
+                    myCollectionParkingLots[i].disabilityFriendly = 'No Facilities For Disability';
+                }
+                myCollectionParkingLots[i].userId = id;
             }
-            if ('True' == myCollectionParkingLots[i].disabilityFriendly) {
-                myCollectionParkingLots[i].disabilityFriendly = 'Facilities For Disability';
-            } else {
-                myCollectionParkingLots[i].disabilityFriendly = 'No Facilities For Disability';
-            }
-            myCollectionParkingLots[i].userId = id;
+            let myCollectionExists = myCollectionParkingLots.length !== 0 ? true : false;
+            res.render('user/myCollection', { layout: 'user', title: 'My Collection', myCollection: myCollectionParkingLots, userId: id, myCollectionExists: myCollectionExists });
+        } catch (e) {
+            res.status(500).json({ error: e });
         }
-        let myCollectionExists = myCollectionParkingLots.length !== 0 ? true : false;
-        res.render('user/myCollection', { layout: 'user', title: 'My Collection', myCollection: myCollectionParkingLots, userId: id, myCollectionExists: myCollectionExists });
-    } catch (e) {
-        res.status(500).json({ error: e });
+    }else{
+        return res.status(403).redirect('/logsign');
     }
 });
+
+
 
 router.post('/', async (req, res) => {
     let myCollectionPostInfo = req.body;

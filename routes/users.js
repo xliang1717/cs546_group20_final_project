@@ -41,7 +41,29 @@ router.get("/logsign", async(req, res) => {
             return;
         }
     }
-})
+});
+
+router.get('/checkAuthen', async(req, res) => {
+    if (!req.session.user) {
+        return res.redirect("/logsign");
+    }
+    try {
+        res.redirect('/myCollection/' + req.session.user.userId);
+    } catch (e) {
+        res.status(500).json({ error: e });
+    }
+});
+
+router.get('/checkAuthentocomment', async(req, res) => {
+    if (!req.session.user) {
+        return res.redirect("/logsign");
+    }
+    try {
+        res.redirect('/myComments/' + req.session.user.userId);
+    } catch (e) {
+        res.status(500).json({ error: e });
+    }
+});
 
 
 router.post('/logsign', async(req, res) => {
