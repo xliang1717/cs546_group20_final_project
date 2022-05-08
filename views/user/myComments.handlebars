@@ -1,0 +1,18 @@
+<div class="userMainBox">
+    <div class="mainInfo">
+        <h1>{{title}}</h1>
+        <div class="myComments">
+            <div id="showComments">
+                <div class="commentBox" id="emptyCommentBox">
+                    Currently no comment for this user.
+                </div>
+                <div id="showMyCommentsBox">
+                    {{#each myComments}} {{> myComment }} {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="backToHomeDiv">
+            <button onclick="window.location.href='/user/{{userId}}';" data-userid="{{userId}}" class="backToHomeBtn">Back to Home</button>
+        </div>
+    </div>
+</div>
