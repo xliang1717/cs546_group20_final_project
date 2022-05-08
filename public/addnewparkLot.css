@@ -20,7 +20,7 @@ li{
 p{
     font-weight: 800;
     font-size: 18px;
-    color: #e0a43d;
+    color: #9c6e00;
     margin: 15px 7px;
     padding: 15px 6px;
 }
@@ -31,7 +31,7 @@ p{
     margin: 80px auto;
     padding: 5px 15px;
     border: 1px solid #ddd;
-    color: #6A9382;
+    color: #4b816c;
     font-size: 16px;
     background-color: #F1F9F5;
     border-radius: 5px;
@@ -57,7 +57,7 @@ p{
     display: inline-block;
     font-weight: 800;
     font-size: 18px;
-    color: #e0a43d;
+    color: #9c6e00;
     margin: 15px 7px;
     padding: 15px 6px;
 }
@@ -95,7 +95,7 @@ p{
     border:none;
     border-radius: 5px;
     color: #fff;
-    background-color: #9FCAB8;
+    background-color: #5fa188;
     cursor: pointer;
 }
 
@@ -108,7 +108,7 @@ p{
     border:none;
     border-radius: 5px;
     color: #fff;
-    background-color: #e0a43d;
+    background-color: #9c6e00;
     cursor: pointer;
 }
 /* body{

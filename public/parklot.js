@@ -181,6 +181,7 @@
                     addNewParkLot.trigger('reset');
                     result.html('You have successfully add the parkLot!');
                     result.show();
+                    alert('You have successfully add the parkLot')
                 }
             });
         };
