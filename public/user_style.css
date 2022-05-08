@@ -110,6 +110,12 @@ h1 {
     right: 0;
 }
 
+.errorContainer {
+    text-align: center;
+    font-size: 4em;
+    color: red;
+}
+
 #emptycollectionBox, #emptyParkingLotBox, #emptyCommentBox {
     text-align: center;
     font-family: verdana;

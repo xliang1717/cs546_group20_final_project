@@ -4,10 +4,16 @@ const method = require('../method');
 const myCollectionData = method.myCollection;
 const parklotData = method.parklot;
 const commentData = method.comment;
+const validation = require("../validation");
 
 //TODO: Add validation for all below APIs.
 router.get('/:id', async (req, res) => {
     let id = req.params.id;
+    try {
+        id = validation.checkId(id, 'ID');
+    } catch (e) {
+        return res.status(400).render('user/error', { layout: 'user', content: 'Invalid ID',  userId: id});
+    }
     try {
         let myCollectionParkingLots = await myCollectionData.getCollectionForUser(id);
         for (let i = 0; i < myCollectionParkingLots.length; i++) {
