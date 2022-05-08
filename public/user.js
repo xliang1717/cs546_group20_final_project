@@ -44,7 +44,7 @@
         emptyCommentBoxDiv.show();
     }
 
-    function bindEventsToMyCollectionItem(commentBoxItem) {
+    function bindEventsToMyCommentItem(commentBoxItem) {
         commentBoxItem.find('.commentBoxCancelBtn').on('click', function (event) {
             event.preventDefault();
             var currentCancelBtn = $(this);
@@ -66,7 +66,7 @@
     }
 
     showMyCommentsBoxDiv.children().each(function (index, element) {
-        bindEventsToMyCollectionItem($(element));
+        bindEventsToMyCommentItem($(element));
     });
 
     // My Area

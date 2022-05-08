@@ -37,6 +37,7 @@ h1 {
 }
 
 .collectionBox, .parkingLotBox {
+    padding: 1em;
     border: solid thin;
     margin: 1em;
     background: #f5fdfa;
