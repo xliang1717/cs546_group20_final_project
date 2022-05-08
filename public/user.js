@@ -85,7 +85,7 @@
             event.stopPropagation();
             newAreaInput.val('');
         } else {
-            modalInputError.hide();
+            modalInputError.text("");
 
             var userId = addNewAreaBtn.data('userid');
 
@@ -101,6 +101,7 @@
             $.ajax(requestConfig)
                 .fail(function (jqXHR, textStatus) {
                     alert(jqXHR.responseJSON.error);
+                    newAreaInput.val('');
                 })
                 .then(function (responseMessage) {
                     var newElement = $(responseMessage);
@@ -144,6 +145,7 @@
             $.ajax(requestConfig)
                 .fail(function (jqXHR, textStatus) {
                     alert(jqXHR.responseJSON.error);
+                    newCarInput.val('');
                 })
                 .then(function (responseMessage) {
                     var newElement = $(responseMessage);
