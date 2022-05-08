@@ -35,6 +35,40 @@
         bindEventsToMyCollectionItem($(element));
     });
 
+    // My Comments 
+    var showMyCommentsBoxDiv = $('#showMyCommentsBox');
+
+    var emptyCommentBoxDiv = $('#emptyCommentBox');
+
+    if (showMyCommentsBoxDiv.children().length == 0) {
+        emptyCommentBoxDiv.show();
+    }
+
+    function bindEventsToMyCollectionItem(commentBoxItem) {
+        commentBoxItem.find('.commentBoxCancelBtn').on('click', function (event) {
+            event.preventDefault();
+            var currentCancelBtn = $(this);
+            var commentId = currentCancelBtn.data('commentid');
+
+            var requestConfig = {
+                method: 'DELETE',
+                url: '/myComments/' + commentId
+            };
+
+            $.ajax(requestConfig).then(function (responseMessage) {
+                console.log(responseMessage);
+                commentBoxItem.remove();
+                if (showMyCommentsBoxDiv.children().length == 0) {
+                    emptyCommentBoxDiv.show();
+                }
+            });
+        });
+    }
+
+    showMyCommentsBoxDiv.children().each(function (index, element) {
+        bindEventsToMyCollectionItem($(element));
+    });
+
     // My Area
     var newAreaInput = $('#newAreaInput');
     var addNewAreaBtn = $('#addNewAreaBtn');
