@@ -2,12 +2,14 @@
 
 .top {
     height: 100px;
+    z-index:9999;
 }
 
 .context1 {
     height: 70px;
     margin: auto;
     background-color: rgb(215, 238, 230);
+    
 }
 
 .what {
@@ -145,6 +147,7 @@
     width: 128px;
     list-style: none;
     text-align: center;
+    z-index: 9999;
 }
 
 .navbar ul li a {
@@ -152,10 +155,12 @@
     line-height: 45px;
     font-size: 20px;
     color: #6e6767;
+    z-index: 9999;
 }
 
 .navbar ul li a:hover {
     color: #956795;
+    z-index: 9999;
 }
 
 
@@ -166,10 +171,12 @@
     display: none;
     width: 128px;
     line-height: 45px;
+    z-index: 9999;
 }
 
 .navbar ul li ul li {
     background-color: rgb(215, 238, 230);
+    z-index: 9999;
 }
 
 
@@ -177,14 +184,17 @@
 
 .navbar ul li ul li a:hover {
     color: #b8b1b1;
+    z-index: 9999;
 }
 
 .navbar ul li ul li:hover {
     background-color: #515151;
+    z-index: 9999;
 }
 
 .navbar ul li:hover ul {
     display: block;
+    z-index: 9999;
 }
 
 .our {

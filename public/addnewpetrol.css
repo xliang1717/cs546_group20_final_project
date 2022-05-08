@@ -17,6 +17,7 @@
     background-color: chocolate;
     text-align: center;
     margin: auto;
+    z-index:-100;
 }
 
 .btn{
@@ -29,6 +30,7 @@
 .full{
     background-color: gold;
     margin: auto;
+    z-index:-100;
 }
 
 .p{

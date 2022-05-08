@@ -7,6 +7,8 @@ const commentData = method.comment;
 const validation = require("../validation");
 
 //TODO: Add validation for all below APIs.
+
+
 router.get('/:id', async (req, res) => {
     let id = req.params.id;
     try {
@@ -14,27 +16,33 @@ router.get('/:id', async (req, res) => {
     } catch (e) {
         return res.status(400).render('user/error', { layout: 'user', content: 'Invalid ID',  userId: id});
     }
-    try {
-        let myCollectionParkingLots = await myCollectionData.getCollectionForUser(id);
-        for (let i = 0; i < myCollectionParkingLots.length; i++) {
-            if (myCollectionParkingLots[i].parkingChargeStandard != undefined) {
-                myCollectionParkingLots[i].parkingFeeMessage = 'Parking Fee';
-            } else {
-                myCollectionParkingLots[i].parkingFeeMessage = 'No Parking Fee';
+    if(req.session.user){
+        try {
+            let myCollectionParkingLots = await myCollectionData.getCollectionForUser(id);
+            for (let i = 0; i < myCollectionParkingLots.length; i++) {
+                if (myCollectionParkingLots[i].parkingChargeStandard != undefined) {
+                    myCollectionParkingLots[i].parkingFeeMessage = 'Parking Fee';
+                } else {
+                    myCollectionParkingLots[i].parkingFeeMessage = 'No Parking Fee';
+                }
+                if ('True' == myCollectionParkingLots[i].disabilityFriendly) {
+                    myCollectionParkingLots[i].disabilityFriendly = 'Facilities For Disability';
+                } else {
+                    myCollectionParkingLots[i].disabilityFriendly = 'No Facilities For Disability';
+                }
+                myCollectionParkingLots[i].userId = id;
             }
-            if ('True' == myCollectionParkingLots[i].disabilityFriendly) {
-                myCollectionParkingLots[i].disabilityFriendly = 'Facilities For Disability';
-            } else {
-                myCollectionParkingLots[i].disabilityFriendly = 'No Facilities For Disability';
-            }
-            myCollectionParkingLots[i].userId = id;
+            let myCollectionExists = myCollectionParkingLots.length !== 0 ? true : false;
+            res.render('user/myCollection', { layout: 'user', title: 'My Collection', myCollection: myCollectionParkingLots, userId: id, myCollectionExists: myCollectionExists });
+        } catch (e) {
+            res.status(500).json({ error: e });
         }
-        let myCollectionExists = myCollectionParkingLots.length !== 0 ? true : false;
-        res.render('user/myCollection', { layout: 'user', title: 'My Collection', myCollection: myCollectionParkingLots, userId: id, myCollectionExists: myCollectionExists });
-    } catch (e) {
-        res.status(500).json({ error: e });
+    }else{
+        return res.status(403).redirect('/logsign');
     }
 });
+
+
 
 router.post('/', async (req, res) => {
     let myCollectionPostInfo = req.body;
@@ -62,17 +70,20 @@ router.delete('/:id', async (req, res) => {
 
 router.get('/favorite/:id', async (req, res) => {
     let id = req.params.id;
-    req.session.user.userId = "626dcbb98ce6dca27a55ea18";
-    try {
+    if(req.session.userId){
+        try {
 
-        await myCollectionData.addParkingLotToUserCollectionTemp(id, req.session.user.userId);
-        let parkinglot = await parklotData.get(id);
-        let commentList = await commentData.getAllCommentsOfTheOneParkLotID(id);
-        res.render('pages/parkinglot', { title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo: commentList, content: "Parking lot has been added to my collection successfully." });
-    } catch (e) {
-        let parkinglot = await parklotData.get(id);
-        let commentList = await commentData.getAllCommentsOfTheOneParkLotID(id);
-        res.status(500).render('pages/parkinglot', { title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo: commentList, error: e });
+            await myCollectionData.addParkingLotToUserCollectionTemp(id, req.session.user.userId);
+            let parkinglot = await parklotData.get(id);
+            let commentList = await commentData.getAllCommentsOfTheOneParkLotID(id);
+            res.render('pages/parkinglot', { title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo: commentList, content: "Parking lot has been added to my collection successfully." });
+        } catch (e) {
+            let parkinglot = await parklotData.get(id);
+            let commentList = await commentData.getAllCommentsOfTheOneParkLotID(id);
+            res.status(500).render('pages/parkinglot', { title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo: commentList, error: e });
+        }
+    }else{
+        res.redirect('/logsign');
     }
 });
 

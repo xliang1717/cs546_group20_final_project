@@ -9,6 +9,7 @@ const validation = require('../validation');
 router.get('/:id', async(req, res) => {
 
     let id = req.params.id; //This is parklot Id
+    
 
     try {
         id = validation.checkId(id, 'ID');
@@ -31,12 +32,10 @@ router.get('/:id', async(req, res) => {
                 res.render('result/comment', { title: 'The parklot comment', commentsList, ParkLotDetail });
             }
         } else {
-            console.log(4)
             res.status(500).render('result/comment', { title: 'The parklot comment', haserror: true, error: "Can't find the comments of this ParkLot" });
         }
 
     } catch (e) {
-        console.log(5)
         res.status(400).render('result/comment', { title: 'The parklot comment', haserror: true, error: e });
     }
 });

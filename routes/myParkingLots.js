@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const method = require('../method');
 const parklotData = method.parklot;
+const validation = require('../validation');
 
 //TODO: Add validation for all below APIs.
 router.get('/:id', async (req, res) => {
     let userId = req.params.id;
+    console.log(userId);
     try {
         userId = validation.checkId(userId, 'ID');
     } catch (e) {

@@ -7,12 +7,16 @@ const parklotData= method.parklot;
 //TODO: Add validation for all below APIs.
 router.get('/:id', async (req, res) => {
     let id = req.params.id;
-    try {
-        let myComments = await myCommentsData.getByUserId(id);
-        let myCommentsExists = myComments.length !== 0 ? true : false;
-        res.render('user/myComments', { layout: 'user', title: 'My Comments', userId: id, myComments: myComments,  myCommentsExists: myCommentsExists });
-    } catch (e) {
-        res.status(500).json({ error: e });
+    if(req.session.user){
+        try {
+            let myComments = await myCommentsData.getByUserId(id);
+            let myCommentsExists = myComments.length !== 0 ? true : false;
+            res.render('user/myComments', { layout: 'user', title: 'My Comments', userId: id, myComments: myComments,  myCommentsExists: myCommentsExists });
+        } catch (e) {
+            res.status(500).json({ error: e });
+        }
+    }else{
+        res.status(403).redirect('/logsign');
     }
 });
 
