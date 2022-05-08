@@ -57,7 +57,7 @@ app.use((req, res, next) => {
     let method = req.method;
     let route = req.originalUrl;
 
-    req.session.user = {username : 'Weini', userId : '1212123213'}; //test
+    //req.session.user = {username : 'Weini', userId : '1212123213'}; //test
 
 
 
@@ -71,7 +71,7 @@ app.use((req, res, next) => {
     });
 
 app.use('/comment', (req,res,next) =>{
-    req.session.user = {username : 'Weini', userId : '1212123213'}; //test
+    //req.session.user = {username : 'Weini', userId : '1212123213'}; //test
     
     if (!req.session.user){ 
         res.status(403).render('result/comment', {title: 'Error', content: 'you are not logged in', haserror : true});

@@ -9,19 +9,48 @@
     <link rel="stylesheet" href="/public/filter_style.css">
     <link rel="stylesheet" href="/public/petrollist.css">
     <link rel="stylesheet" href="/public/addnewpetrol.css">
+    <link rel="stylesheet" href="/public/css/style2.css">
+    <link rel="stylesheet" href="/public/css/logsign.css">
 </head>
 
 
 <body>
-<header>
-    {{!-- <p>{{temp}}</p> --}}
-    {{!-- <h1>{{title}}</h1> --}}
-</header>
-
-
 
     <main>
+        <div class="top">
+        <div class="context1">
+                <h1 class="what">UParker</h1>
+            </a>
+            <nav class="navbar">
+                <ul class="mulu">
+                <li><a href="/搜索" class="our"><img src="/public/img/search.png"class="image" alt="Image description">Search</a></li>
+                <li><a href="/logsign" class="our"><img src="/public/img/contact.png"class="image" alt="Image description">Log In</a></li>
+                <li><a href="/搜索" class="our"><img src="/public/img/me.png"class="image" alt="Image description">Me</a>
+                    <ul class="hide">
+                        <li><a href="#" class="our" style="font-size: 15px;"><img src="/public/img/home.png"class="image" alt="Image description">Home</a></li>
+                        <li><a href="#" class="our" style="font-size: 15px;"><img src="/public/img/parking.png"class="image" alt="Image description">Parking</a></li>
+                        <li><a href="#" class="our" style="font-size: 15px;"><img src="/public/img/collection.png"class="image" alt="Image description">Collection</a></li>
+                        <li><a href="#" class="our" style="font-size: 15px;"><img src="/public/img/comment.png"class="image" alt="Image description">Comment</a></li>
+                        <li><a href="/logout" class="our" style="font-size: 15px;"><img src="/public/img/logout.png"class="image" alt="Image description">Logout</a></li>
+                    </ul>
+                </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 欢迎 -->
+    <div class="context2">
+            <h2 class="welcom">Welcome to UParker, your parking assistant !</h2>
+    </div>
+
         {{{body}}}
+
+           <!-- 底部导航栏 -->
+        <div class="end">
+        <div class="endd">Final Project - Group20</div>
+        </div>
+
     </main>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -32,6 +61,9 @@
     <script src="../../public/parklot.js"></script>
     <script src="../../public/filter.js"></script>
     <script src="../../public/addpetrol.js"></script>
+    <script src="../public/js/home.js"></script>
+    <script src="../public/js/canvas-nest.js"></script>
+    <script src="../public/js/logsign.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url(public/img/logsign.png) no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.container {
+    margin-top: 19%;
+    position: relative;
+    border-radius: 14px;
+    width: 800px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.main_left,
+.main_right,
+.way {
+    width: 400px;
+    height: 500px;
+    padding: 50px 30px;
+    position: absolute;
+    text-align: center;
+}
+
+h2,
+label {
+    letter-spacing: 20px;
+    text-indent: 20px;
+}
+
+form {
+    padding-top: 25px;
+}
+
+input[type="text"],
+input[type="password"] {
+    display: inline-block;
+    height: 40px;
+    width: 100%;
+    padding: 7px 8px;
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+button {
+    /* margin-top: 25px; */
+    width: 160px;
+    height: 40px;
+    letter-spacing: 16px;
+    text-indent: 16px;
+    border-radius: 16px;
+    border: 0;
+    color: #fff;
+    font-size: 16px;
+    background: linear-gradient(to right, #5d9960, #0b5e2e);
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: darkcyan;
+}
+
+.active {
+    background-color: #E9E9E9;
+    border-radius: 14px;
+}
+
+.main_left {
+    transition: all 0.6s ease-in-out;
+}
+
+.other {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.other a:first-child {
+    margin-left: 0;
+}
+
+.other a {
+    margin-left: 35px;
+}
+
+.way {
+    position: absolute;
+    left: 50%;
+    transition: all 0.6s ease-in-out;
+}
+
+.change_way {
+    margin: 115px 80px 140px;
+    position: relative;
+    white-space: nowrap;
+    border-radius: 14px;
+}
+
+.main_right {
+    left: 50%;
+    display: none;
+}
+
+.btn_register {
+    margin-bottom: 10px;
+
+}
+
+.pull {
+    left: 0;
+}
+
+.dis {
+    display: block;
+}
+
+.hid {
+    display: none;
+}
