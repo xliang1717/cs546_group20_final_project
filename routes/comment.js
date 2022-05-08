@@ -9,7 +9,7 @@ const validation = require('../validation');
 router.get('/:id', async(req, res) => {
 
     let id = req.params.id; //This is parklot Id
-    console.log(id);
+    
 
     try {
         id = validation.checkId(id, 'ID');
