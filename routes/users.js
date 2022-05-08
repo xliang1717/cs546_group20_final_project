@@ -25,15 +25,15 @@ router.get("/", (req, res) => {
 });
 
 router.get("/logsign", async(req, res) => {
-    
-    if(req.session.user){
-        
+
+    if (req.session.user) {
+
         // alert("You have been loged in ")
         res.redirect('/')
-    }else{
-       
+    } else {
+
         try {
-            
+
             res.render("usersRY/logsign");
             return;
         } catch (e) {
@@ -47,15 +47,37 @@ router.get("/logsign", async(req, res) => {
 router.post('/logsign', async(req, res) => {
     if ('signup' === req.body.formType) {
         let userInfo = req.body;
-        try{
-            if(typeof userInfo.username !== 'string') throw''
-            
+        try {
+            if (!userInfo.username) {
+                throw "No Input Username";
+            }
+            if (!userInfo.password) {
+                throw "No Input Password";
+            }
+            if (typeof userInfo.username != "string" || typeof userInfo.password != "string")
+                throw "Error: Username or password must be string";
+            if (userInfo.username.trim().length === 0) {
+                throw "String is only spaces";
+            }
+            if (userInfo.username.length == 0) {
+                throw "Length of string is 0";
+            }
+            if (userInfo.username.length < 4 || userInfo.username.length > 16) {
+                throw "Username length should be 4-16 characters";
+            }
+            if (userInfo.username.indexOf(' ') >= 0 || /[^A-Za-z0-9]/g.test(userInfo.username)) {
+                throw "Error: username is inappropriate, must not include spaces and only alphanumeric characters";
+            }
+            if (userInfo.password.trim().length === 0 || userInfo.password.length < 6)
+                throw "Error: Password cannot be blanks or length should be atleast 6 chars long";
+            if (/\s/.test(userInfo.password)) throw "Error: Password cannot contain spaces";
+        } catch (e) {
+            console.log(e);
+            res.render("usersRY/error", { error: e });
+            return;
         }
-        catch(e){
 
-        }
-        
-        
+
         try {
             const newUser = await userData.createUser(
                 userInfo.firstName,
@@ -67,7 +89,7 @@ router.post('/logsign', async(req, res) => {
             res.redirect("/logsign");
         } catch (e) {
             console.log(e);
-            res.render("usersRY/error", {error : e});
+            res.render("usersRY/error", { error: e });
             return;
         }
     } else if ('login' === req.body.formType) {
@@ -78,17 +100,17 @@ router.post('/logsign', async(req, res) => {
             return res.redirect("/");
         } catch (e) {
             console.log(e);
-            return res.status(400).json({ error: e });
+            res.render("usersRY/error", { error: e });
         }
     }
 })
 
 
 router.get('/logout', async(req, res) => {
-    if(req.session.user){
+    if (req.session.user) {
         req.session.destroy();
         res.redirect("/");
-    }else{
+    } else {
         res.redirect('/logsign')
     }
 

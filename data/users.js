@@ -14,17 +14,6 @@ async function get(username) {
     return userr;
 }
 
-function validateID(id) {
-    if (typeof id != "string") {
-        throw "Argument of type string expected";
-    }
-    if (id.trim().length === 0) {
-        throw "String cannot be blanks or empty";
-    }
-    if (!ObjectId.isValid(id)) {
-        throw "Object Id is not valid";
-    }
-}
 
 function checkIsProperString(val) {
     if (!val) {
@@ -75,7 +64,7 @@ let exportedMethods = {
 
         const userr = await get(username);
 
-        if(userr) throw 'The username hase been created';
+        if (userr) throw 'The username hase been created';
 
         pwd = await bcrypt.hash(password, saltRounds);
         let newUser = {
@@ -85,13 +74,13 @@ let exportedMethods = {
             nickname: username,
             email: email,
             password: pwd,
-            comment : [],
-            preferLocation:[],
-            carsize:[],
-            collectionCarParks:[],
-            addedCarParks:[],
-            carParkingLocation:'',
-            myCar:[]
+            comment: [],
+            preferLocation: [],
+            carsize: [],
+            collectionCarParks: [],
+            addedCarParks: [],
+            carParkingLocation: '',
+            myCar: []
         };
         const userCollection = await user();
         const userInfo = await userCollection.insertOne(newUser)
@@ -117,24 +106,24 @@ let exportedMethods = {
         username = username.toLowerCase()
         checkIsProperString(username);
         if (!username) {
-            alert("No Input Username");
+            throw "No Input Username";
         }
         if (!password) {
-            alert("No Input Password");
+            throw "No Input Password";
         }
         if (typeof username != "string" || typeof password != "string")
             throw "Error: Username or password must be string";
         if (username.trim().length === 0) {
-            alert("String is only spaces");
+            throw "String is only spaces";
         }
         if (username.length == 0) {
-            alert("Length of string is 0");
+            throw "Length of string is 0";
         }
         if (username.length < 4 || username.length > 16) {
-            alert("Username length should be 4-16 characters");
+            throw "Username length should be 4-16 characters";
         }
         if (username.indexOf(' ') >= 0 || /[^A-Za-z0-9]/g.test(username)) {
-            alert("Error: username is inappropriate, must not include spaces and only alphanumeric characters");
+            throw "Error: username is inappropriate, must not include spaces and only alphanumeric characters";
         }
 
         checkIsProperString(password);

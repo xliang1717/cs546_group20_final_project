@@ -26,6 +26,7 @@
 }
 
 .mulu>li {
+    line-height: 45px;
     border: 1px solid #6e6767;
     border-radius: 10px;
     width: 120px;
@@ -38,6 +39,7 @@
 }
 
 .dh {
+    margin-top: 2%;
     margin-left: 300px;
 }
 
@@ -75,6 +77,7 @@
 /* 轮播图 */
 
 .wrap {
+    margin-top: 1%;
     background-color: rgb(215, 238, 230);
     display: none;
     width: 750px;
@@ -207,10 +210,12 @@
     width: 750px;
     height: 600px;
     margin-left: 360px;
+    margin-top: 1%;
     background-color: rgb(215, 238, 230);
 }
 
 .show3 {
+    margin-top: 1%;
     display: none;
     width: 750px;
     height: 600px;
