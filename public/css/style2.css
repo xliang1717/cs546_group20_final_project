@@ -2,14 +2,13 @@
 
 .top {
     height: 100px;
-    z-index:9999;
+    z-index: 9999;
 }
 
 .context1 {
     height: 70px;
     margin: auto;
     background-color: rgb(215, 238, 230);
-    
 }
 
 .what {
@@ -47,7 +46,7 @@
 
 .dh>button {
     font-family: OPPOSans;
-    background-color: #3e8270;
+    background-color: #4e8575;
     border: 8px solid rgb(215, 238, 230);
     border-radius: 50px;
     border-style: outset;
