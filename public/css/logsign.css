@@ -56,7 +56,6 @@ button {
     /* margin-top: 25px; */
     width: 160px;
     height: 40px;
-    letter-spacing: 16px;
     text-indent: 16px;
     border-radius: 16px;
     border: 0;
@@ -113,7 +112,6 @@ a {
 
 .btn_register {
     margin-bottom: 10px;
-
 }
 
 .pull {

@@ -37,19 +37,32 @@ router.get('/:id', async (req, res) =>{
 });
 
 router.post('/comment', async (req, res) => {
-    req.session.user = { username: 'shuang', userId: '66666666666' }; //test
-    
-    if (req.session.user) {
+    // req.session.user = { username: 'shuang', userId: '66666666666' }; //test
+    console.log(111)
+    let parklotId;
+    let tag;
+    let commentS;
+    let rating;
+    let date;
 
-        let date = new Date().toUTCString();
-        let parklotId = xss(req.body.parkLotId);
-        parklotId = validation.checkId(parklotId, 'ParkLotId');
-        let tag = xss(req.body.commentTag); 
-        tag = validation.checkString(tag, 'CommentTag');
-        let commentS = xss(req.body.commentInfo);
-        commentS = validation.checkString(commentS, 'Comment contents');
-        let rating= xss(req.body.level);
-        rating = validation.checkRate(rating, 'Rating');
+
+    if (req.session.user) {
+        console.log(req.session.user.username);
+        try{
+            date = new Date().toUTCString();
+            parklotId = xss(req.body.parkLotId);
+            parklotId = validation.checkId(parklotId, 'ParkLotId');
+            tag = xss(req.body.commentTag); 
+            tag = validation.checkString(tag, 'CommentTag');
+            commentS = xss(req.body.commentInfo);
+            commentS = validation.checkString(commentS, 'Comment contents');
+            rating= xss(req.body.level);
+            rating = Number(rating); 
+            if(typeof rating !=='number' && isNaN(rating) ) throw "The rating must be number and number only"
+            rating = validation.checkRate(rating, 'Rating');
+        }catch(e){
+            return res.json({success : false , error : e});
+        }
 
         let newComment = await commentsData.create(
             
