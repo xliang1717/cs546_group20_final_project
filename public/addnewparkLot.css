@@ -15,6 +15,11 @@ li{
     float: left;
     margin: 15px 7px;
     padding: 5px 6px;
+    letter-spacing: normal;
+}
+
+label{
+    letter-spacing: normal;
 }
 
 p{
@@ -55,6 +60,7 @@ p{
 .sizeSelection label,
 .parklotCapa label{
     display: inline-block;
+    letter-spacing: normal;
     font-weight: 800;
     font-size: 18px;
     color: #9c6e00;
@@ -64,7 +70,8 @@ p{
 
 .parkChargeList li,
 .longLa li{
-    padding-left: 3em;
+    /* padding-left: 3em; */
+    letter-spacing: normal;
 }
 
 .sizeSelection select{
@@ -134,4 +141,10 @@ p{
 
 .link{
     color:black ;
+}
+
+.trafficCondition li>label,
+.longLa li>label,
+.parkChargeList li>label{
+    letter-spacing: normal;
 }
