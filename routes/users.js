@@ -18,7 +18,7 @@ function validate(id) {
 router.get("/", (req, res) => {
     try {
 
-        res.render('usersRY/home');
+        res.render('usersRY/home', { title: "Home" });
     } catch (error) {
         res.status(404).json({ message: "Page not found" });
     }
@@ -34,11 +34,12 @@ router.get("/logsign", async(req, res) => {
 
         try {
 
-            res.render("usersRY/logsign");
+            res.render("usersRY/logsign", { title: "Logsign" });
             return;
         } catch (e) {
             res.status(404).json({ error: "Internal Error" });
             return;
+            yield
         }
     }
 })
@@ -48,29 +49,29 @@ router.post('/logsign', async(req, res) => {
     if ('signup' === req.body.formType) {
         let userInfo = req.body;
         try {
-            if (!userInfo.username) {
+            if (!userInfo.username2) {
                 throw "No Input Username";
             }
-            if (!userInfo.password) {
+            if (!userInfo.password2) {
                 throw "No Input Password";
             }
-            if (typeof userInfo.username != "string" || typeof userInfo.password != "string")
+            if (typeof userInfo.username2 != "string" || typeof userInfo.password2 != "string")
                 throw "Error: Username or password must be string";
-            if (userInfo.username.trim().length === 0) {
+            if (userInfo.username2.trim().length === 0) {
                 throw "String is only spaces";
             }
-            if (userInfo.username.length == 0) {
+            if (userInfo.username2.length == 0) {
                 throw "Length of string is 0";
             }
-            if (userInfo.username.length < 4 || userInfo.username.length > 16) {
+            if (userInfo.username2.length < 4 || userInfo.username2.length > 16) {
                 throw "Username length should be 4-16 characters";
             }
-            if (userInfo.username.indexOf(' ') >= 0 || /[^A-Za-z0-9]/g.test(userInfo.username)) {
+            if (userInfo.username2.indexOf(' ') >= 0 || /[^A-Za-z0-9]/g.test(userInfo.username)) {
                 throw "Error: username is inappropriate, must not include spaces and only alphanumeric characters";
             }
-            if (userInfo.password.trim().length === 0 || userInfo.password.length < 6)
+            if (userInfo.password2.trim().length === 0 || userInfo.password2.length < 6)
                 throw "Error: Password cannot be blanks or length should be atleast 6 chars long";
-            if (/\s/.test(userInfo.password)) throw "Error: Password cannot contain spaces";
+            if (/\s/.test(userInfo.password2)) throw "Error: Password cannot contain spaces";
         } catch (e) {
             console.log(e);
             res.render("usersRY/error", { error: e });
@@ -82,9 +83,9 @@ router.post('/logsign', async(req, res) => {
             const newUser = await userData.createUser(
                 userInfo.firstName,
                 userInfo.lastName,
-                userInfo.username,
+                userInfo.username2,
                 userInfo.email,
-                userInfo.password
+                userInfo.password2
             );
             res.redirect("/logsign");
         } catch (e) {

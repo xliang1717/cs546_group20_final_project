@@ -1,43 +1,35 @@
-<head>
-  <title>Logsign</title>
-</head>
-
-
-<body>
-    <div class="container">
-        <div class="main_left active">
-            <h2>Log In</h2>
-            <form action="/logsign" method="POST" id='login-form'class="form_login">
-                <label for="username"></label>
-                <input type="text" placeholder="username" id="username" name="username" value="{{username}}"> 
-                <label for="password"></label>
-                <input type="password"  id="password" name="password" value="{{password}}" placeholder="Password">
-                <input type="hidden" name="formType" value="login">
-                <button class="btn_login" type="submit" id="submit">Log In</button>
-            </form>
-        </div>
-        <div class="way">
-            <div class="change_way">
-                <button class="click" onclick="dclick(this)">Create account</button>
-            </div>
-        </div>
-        <div class="main_right active">
-            <h2>signup</h2>
-            <form action="/logsign" method="post" class="form_register" id="signup-form">
-            <label for="firstName"></label>
-                <input type="text" name="firstName" id="firstName" placeholder="First name">
-                <label for="lastName"></label>
-                <input type="text" name="lastName" id="lastName" placeholder="Last name">
-                <label for="username"></label>
-                <input type="text" name="username" id="username" placeholder="User name(4-16 alphanumeric characters)">
-                <label for="email"></label>
-                <input type="text" name="email" id="email" placeholder="Email">
-                <label for="password"></label>
-                <input type="password" name="password" id="password" placeholder="Password(atleast 6 chars long)">
-                <input type="hidden" name="formType" value="signup">
-                <button class="btn_register" type="submit" id="submit">Sign Up</button>
-            </form>
+<div class="container">
+    <div class="main_left active">
+        <h2>Log In</h2>
+        <form action="/logsign" method="POST" id='login-form' class="form_login">
+            <label for="username"></label>
+            <input type="text" placeholder="username" id="username" name="username" value="{{username}}">
+            <label for="password"></label>
+            <input type="password" id="password" name="password" value="{{password}}" placeholder="Password">
+            <input type="hidden" name="formType" value="login">
+            <button class="btn_login" type="submit" id="submit">Log In</button>
+        </form>
+    </div>
+    <div class="way">
+        <div class="change_way">
+            <button class="click" onclick="dclick(this)">Create account</button>
         </div>
     </div>
-    
-</body>
+    <div class="main_right active">
+        <h2>signup</h2>
+        <form action="/logsign" method="post" class="form_register" id="signup-form">
+            <label for="firstName"></label>
+            <input type="text" name="firstName" id="firstName" placeholder="First name">
+            <label for="lastName"></label>
+            <input type="text" name="lastName" id="lastName" placeholder="Last name">
+            <label for="username"></label>
+            <input type="text" name="username2" id="username2" placeholder="User name(4-16 alphanumeric characters)">
+            <label for="email"></label>
+            <input type="text" name="email" id="email" placeholder="Email">
+            <label for="password"></label>
+            <input type="password" name="password2" id="password2" placeholder="Password(atleast 6 chars long)">
+            <input type="hidden" name="formType" value="signup">
+            <button class="btn_register" type="submit" id="submit2">Sign Up</button>
+        </form>
+    </div>
+</div>

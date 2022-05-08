@@ -11,7 +11,6 @@ body {
 }
 
 .container {
-    margin-top: 19%;
     position: relative;
     border-radius: 14px;
     width: 800px;
@@ -59,7 +58,7 @@ button {
     text-indent: 16px;
     border-radius: 16px;
     border: 0;
-    color: #fff;
+    color: rgb(17, 14, 14);
     font-size: 16px;
     background: linear-gradient(to right, #5d9960, #0b5e2e);
     cursor: pointer;

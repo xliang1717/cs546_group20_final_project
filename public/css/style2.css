@@ -45,7 +45,7 @@
 
 .dh>button {
     font-family: OPPOSans;
-    background-color: rgb(215, 238, 230);
+    background-color: #3e8270;
     border: 8px solid rgb(215, 238, 230);
     border-radius: 50px;
     border-style: outset;
@@ -125,18 +125,12 @@
 
 /* 底部导航栏 */
 
-.end {
-    background-color: #DCDCDC;
-    margin-top: 20px;
-    height: 30px;
-}
-
 .endd {
+    background-color: #DCDCDC;
+    margin-top: 120px;
     height: 30px;
-    width: 1200px;
     color: #616161;
     font-size: 20px;
-    margin-left: 800px;
 }
 
 
@@ -212,6 +206,10 @@
     margin-left: 360px;
     margin-top: 1%;
     background-color: rgb(215, 238, 230);
+}
+
+.show1 p {
+    color: #8b6100;
 }
 
 .show3 {
