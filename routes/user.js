@@ -33,12 +33,17 @@ router.get('/myprofile', async (req, res) => {
 router.get('/:id', async (req, res) => {
   let id = req.params.id;
   try {
+    id = validation.checkId(id, 'ID');
+  } catch (e) {
+    return res.status(400).render('user/error', { layout: 'user', content: 'Invalid ID', userId: id });
+  }
+  try {
     let user = await usersData.get(id);
     res.render('user/detail', { layout: 'user', title: 'User Detail', user: user, userId: id });
     // Below should not be required. Will remove later.
     // res.status(200).json(user);
   } catch (e) {
-    res.status(404).json({ error: e });
+    res.status(400).render('user/error', { layout: 'user', content: e, userId: id });
   }
 });
 
