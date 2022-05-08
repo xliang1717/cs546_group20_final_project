@@ -16,6 +16,11 @@ router.get('/:id', async (req, res) => {
             } else {
                 myCollectionParkingLots[i].parkingFeeMessage = 'No Parking Fee';
             }
+            if ('True' == myCollectionParkingLots[i].disabilityFriendly) {
+                myCollectionParkingLots[i].disabilityFriendly = 'Facilities For Disability';
+            } else {
+                myCollectionParkingLots[i].disabilityFriendly = 'No Facilities For Disability';
+            }
             myCollectionParkingLots[i].userId = id;
         }
         let myCollectionExists = myCollectionParkingLots.length !== 0 ? true : false;
