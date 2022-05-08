@@ -13,7 +13,7 @@ module.exports = {
 
     const userCollection = await users();
     const userData = await userCollection.findOne({ _id: ObjectId(id) });
-    if (userData === null) throw 'No band with that id';
+    if (userData === null) throw 'No user with that id';
     userData._id = userData._id.toString();
     return userData;
   },
