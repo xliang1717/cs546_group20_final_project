@@ -75,7 +75,6 @@ router.get('/temp/:id', async(req, res) => {
 
 router.post('/myprofile', async(req, res) => {
     let userInfo = req.body;
-    req.session.user.userId = "626dcbb98ce6dca27a55ea18";
     if (req.session.user) {
         try {
             req.session.user.userId = validation.checkId(req.session.user.userId, 'ID');

@@ -20,7 +20,6 @@ router.get('/addNewParkLot', async (req, res) => {
     }
 });
 
-//这个是子慧的function
 router.get('/:id', async (req, res) => {
     id = req.params.id;
     try {
