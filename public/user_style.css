@@ -1,6 +1,21 @@
 h1 {
     text-align: center;
-    color: #f9e8dc;
+    color: black;
+}
+
+hr {
+    width:40%;
+    margin-block-start:2px;
+    margin-block-end:2px;
+    background-color:white;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.rating {
+    float:right;
 }
 
 .userMainBox {

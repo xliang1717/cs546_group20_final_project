@@ -5,25 +5,25 @@
                 <div class="myUserProfileText">
                     {{user.lastName}}
                 </div>
-                <hr style="width:40%;margin-block-start:2px;margin-block-end:2px;" , size="1" , color=white>
+                <hr>
             </div>
             <div class="myUserProfileItem">
                 <div class="myUserProfileText">
                     {{user.firstName}}
                 </div>
-                <hr style="width:40%;margin-block-start:2px;margin-block-end:2px;" , size="1" , color=white>
+                <hr>
             </div>
             <div class="myUserProfileItem">
                 <div class="myUserProfileText">
                     {{user.nickname}}
                 </div>
-                <hr style="width:40%;margin-block-start:2px;margin-block-end:2px;" , size="1" , color=white>
+                <hr>
             </div>
             <div class="myUserProfileItem">
                 <div class="myUserProfileText">
                     {{user.email}}
                 </div>
-                <hr style="width:40%;margin-block-start:2px;margin-block-end:2px;" , size="1" , color=white>
+                <hr>
             </div>
         </div>
     </div>
@@ -52,6 +52,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <label for="newCarInput"></label>
                         <input type="text" class="form-control" id="newCarInput" placeholder="Car's Tag">
                     </div>
                     <div class="modal-input-error" id="modalMyCarsInputError"></div>
@@ -94,6 +95,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <label for="newAreaInput"></label>
                         <input type="text" class="form-control" id="newAreaInput" placeholder="Area Tag">
                     </div>
                     <div class="modal-input-error" id="modalInputError"></div>
@@ -106,17 +108,17 @@
             </div>
         </div>
     </div>
-    <a href="/myCollection/{{userId}}" style="text-decoration: none;">
+    <a href="/myCollection/{{userId}}" class="link">
         <div id="detailPageMyCollection">My Collection</div>
     </a>
-    <a href="/myComments/{{userId}}" style="text-decoration: none;">
+    <a href="/myComments/{{userId}}" class="link">
         <div id="detailPageMyComments">My Comments</div>
     </a>
-    <a href="/myParkingLots/{{userId}}" style="text-decoration: none;">
+    <a href="/myParkingLots/{{userId}}" class="link">
         <div id="detailPageAddNewParkingLot">View/Add New Parking Lot</div>
     </a>
 
-    <a href="/petrolStation/addnewpetrolStation" style="text-decoration: none;">
+    <a href="/petrolStation/addnewpetrolStation" class="link">
         <div id="detailPageAddNewParkingLot">Add New petrolStation</div>
     </a>
 
