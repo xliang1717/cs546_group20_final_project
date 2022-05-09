@@ -11,6 +11,7 @@ const validation = require("../validation");
 
 router.get('/:id', async (req, res) => {
     let id = req.params.id;
+    console.log(id);
     try {
         id = validation.checkId(id, 'ID');
     } catch (e) {
@@ -70,10 +71,10 @@ router.delete('/:id', async (req, res) => {
 
 router.get('/favorite/:id', async (req, res) => {
     let id = req.params.id;
-    if(req.session.userId){
+    if(req.session.user){
         try {
 
-            await myCollectionData.addParkingLotToUserCollectionTemp(id, req.session.user.userId);
+            await myCollectionData.addParkingLotToUserCollection(id, req.session.user.userId);
             let parkinglot = await parklotData.get(id);
             let commentList = await commentData.getAllCommentsOfTheOneParkLotID(id);
             res.render('pages/parkinglot', { title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo: commentList, content: "Parking lot has been added to my collection successfully." });

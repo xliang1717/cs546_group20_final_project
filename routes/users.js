@@ -3,6 +3,7 @@ const router = express.Router()
 const data = require("../data");
 const userData = data.users;
 const { ObjectId, CURSOR_FLAGS } = require("mongodb");
+const xss = require('xss');
 
 
 function validate(id) {
@@ -103,11 +104,11 @@ router.post('/logsign', async(req, res) => {
 
         try {
             const newUser = await userData.createUser(
-                userInfo.firstName,
-                userInfo.lastName,
-                userInfo.username2,
-                userInfo.email,
-                userInfo.password2
+                xss(userInfo.firstName),
+                xss(userInfo.lastName),
+                xss(userInfo.username2),
+                xss(userInfo.email),
+                xss(userInfo.password2)
             );
             res.redirect("/logsign");
         } catch (e) {
@@ -118,7 +119,7 @@ router.post('/logsign', async(req, res) => {
     } else if ('login' === req.body.formType) {
         try {
             let userInfo = req.body;
-            let user = await userData.checkUser(userInfo.username, userInfo.password);
+            let user = await userData.checkUser(xss(userInfo.username), xss(userInfo.password));
             req.session.user = { username: user.nickname.toLowerCase(), userId: user._id.toString() };
             return res.redirect("/");
         } catch (e) {

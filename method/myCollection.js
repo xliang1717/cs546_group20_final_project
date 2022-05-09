@@ -70,28 +70,28 @@ module.exports = {
 
 
 
-    async addParkingLotToUserCollectionTemp(parkingLotId, userId) {
+    // async addParkingLotToUserCollectionTemp(parkingLotId, userId) {
        
-        const userCollection = await users();
-        //let myCollectionParkingLotIds = await this.getCollectionParkingLotIdsForUser(userId);
-        const parkLotCollection = await parklots();
+    //     const userCollection = await users();
+    //     //let myCollectionParkingLotIds = await this.getCollectionParkingLotIdsForUser(userId);
+    //     const parkLotCollection = await parklots();
         
-        let parkLotInfo = await parkLotCollection.findOne( {_id : ObjectId(parkingLotId) });
+    //     let parkLotInfo = await parkLotCollection.findOne( {_id : ObjectId(parkingLotId) });
       
-        let ParkingLotName = parkLotInfo.parkLotname;
-        let myCollectionParkingLots = await this.getCollectionParkingLotForUser(userId);
-        if (myCollectionParkingLots.length > 0) {
-            if (myCollectionParkingLots.includes(ParkingLotName)) {
-                throw 'This parking lot already in the user collection!';
-            }
-        }
-        let updateAddParkingLotInfo = await userCollection.updateOne(
-            { _id: ObjectId(userId) },
-            { $push: { collectionCarParks: ParkingLotName } }
-        );
-        if (!updateAddParkingLotInfo.modifiedCount) throw 'Add parking lot to user collection failed.';
-        return this.getCollectionParkingLotForUser(userId);
-    },
+    //     let ParkingLotName = parkLotInfo.parkLotname;
+    //     let myCollectionParkingLots = await this.getCollectionParkingLotForUser(userId);
+    //     if (myCollectionParkingLots.length > 0) {
+    //         if (myCollectionParkingLots.includes(ParkingLotName)) {
+    //             throw 'This parking lot already in the user collection!';
+    //         }
+    //     }
+    //     let updateAddParkingLotInfo = await userCollection.updateOne(
+    //         { _id: ObjectId(userId) },
+    //         { $push: { collectionCarParks: ParkingLotName } }
+    //     );
+    //     if (!updateAddParkingLotInfo.modifiedCount) throw 'Add parking lot to user collection failed.';
+    //     return this.getCollectionParkingLotForUser(userId);
+    // },
 
     async getCollectionParkingLotForUser(userId) {
         const userCollection = await users();
