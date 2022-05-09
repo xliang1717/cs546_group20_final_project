@@ -11,6 +11,7 @@ module.exports = {
         let updateInfo = await userCollection.updateOne({ _id: ObjectId(userId) },{ $push: { myCar: newCar } });
         if (!updateInfo.modifiedCount) throw 'Add car failed.';
       }else{
+        // alert('No same car is allowed to add.');
         throw 'No same car is allowed to add.';
       }
       return this.getMyCarForUser(userId);

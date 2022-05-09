@@ -146,6 +146,42 @@
         }
 
     });
+    
+    //delete mycar
+    
+    function bindEventsToMyCarItem(carlistItem) {
+       
+        carlistItem.find('.removecarBtn').on('click', function (event) {
+          event.preventDefault();
+          //var iid=$('#iid').val();
 
+          var currentremove = $(this);
+          var userId = currentremove.data('userid');
+          var carname = currentremove.data('carname');
+          var requestConfig = {
+            method: 'DELETE',
+            url: '/myCar/' + userId,
+            contentType: 'application/json',
+            data: JSON.stringify({
+              myCar: carname,
+              userId: userId
+            })
+          };
+    
+          $.ajax(requestConfig).then(function (responseMessage) {
+    
+            console.log(responseMessage);
+            carlistItem.remove();
+            // if (carlistDiv.children().length == 0) {
+            //   emptyDiv.show();
+            // }
+    
+          });
+        });
+      }
+    
+      showMyCarsBox.children().each(function (index, element) {
+        bindEventsToMyCarItem($(element));
+      });
 
 })(window.jQuery);

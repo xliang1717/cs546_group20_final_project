@@ -51,17 +51,19 @@ router.delete('/:id', async (req, res) => {
 
 router.get('/favorite/:id', async (req, res) => {
     let id = req.params.id;
-    req.session.user.userId="626dcbb98ce6dca27a55ea18";
+    req.session.user.userId="62773f874f3f4dd4b63137d7";
     try {
       
-        await myCollectionData.addParkingLotToUserCollectionTemp(id, req.session.user.userId);
+        await myCollectionData.addParkingLotToUserCollection(id, req.session.user.userId);
         let parkinglot = await parklotData.get(id);
         let commentList = await commentData.getAllCommentsOfTheOneParkLotID(id);
-        res.render('pages/parkinglot', { title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo:commentList,content:"Parking lot has been added to my collection successfully." });
+        res.render('user/parklot', { layout: 'parklot',title: parkinglot.parkLotname, userId:id, parkinglotInfo: parkinglot, commentlistInfo:commentList,content:"Parking lot has been added to my collection successfully." });
+        //res.render('pages/parkinglot', { title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo:commentList,content:"Parking lot has been added to my collection successfully." });
     } catch (e) {
       let parkinglot = await parklotData.get(id);
       let commentList = await commentData.getAllCommentsOfTheOneParkLotID(id);
-      res.status(500).render('pages/parkinglot',{ title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo:commentList,error: e});
+      res.status(500).render('user/parklot',{ layout:'parklot',title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo:commentList,error: e});
+      //res.status(500).render('pages/parkinglot',{ title: parkinglot.parkLotname, parkinglotInfo: parkinglot, commentlistInfo:commentList,error: e});
     }
   });
   

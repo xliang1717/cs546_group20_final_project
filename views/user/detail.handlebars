@@ -3,25 +3,25 @@
         <div id="showUserProfileBox">
             <div class="myUserProfileItem">
                 <div class="myUserProfileText">
-                    {{user.lastName}}
+                    Last Name: {{user.lastName}}
                 </div>
                 <hr style="width:40%;margin-block-start:2px;margin-block-end:2px;" , size="1" , color=white>
             </div>
             <div class="myUserProfileItem">
                 <div class="myUserProfileText">
-                    {{user.firstName}}
+                    First Name: {{user.firstName}}
                 </div>
                 <hr style="width:40%;margin-block-start:2px;margin-block-end:2px;" , size="1" , color=white>
             </div>
             <div class="myUserProfileItem">
                 <div class="myUserProfileText">
-                    {{user.nickname}}
+                    Username: {{user.nickname}}
                 </div>
                 <hr style="width:40%;margin-block-start:2px;margin-block-end:2px;" , size="1" , color=white>
             </div>
             <div class="myUserProfileItem">
                 <div class="myUserProfileText">
-                    {{user.email}}
+                   Email: {{user.email}}
                 </div>
                 <hr style="width:40%;margin-block-start:2px;margin-block-end:2px;" , size="1" , color=white>
             </div>
@@ -31,13 +31,16 @@
     <div id="myCars">
         {{!-- View existing myCars --}}
         <div id="showMyCarsBox">
-            {{#each user.myCar}}
-            {{> myCar }}
+            {{!-- {{carInfo.userId}} --}}
+            {{#each carInfo.car}}
+            {{>myCar}}
             {{/each}}
+
         </div>
         {{!-- Button and text to add new Car --}}
         <div id="addNewCarBox">
-            <button id="addNewCarBtn" data-userid="{{userId}}" data-toggle="modal" data-target="#myCarsModal">Add New
+            <button id="addNewCarBtn" data-userid="{{carInfo.userId}}" data-toggle="modal"
+                data-target="#myCarsModal">Add New
                 Car</button>
         </div>
         <!-- Modal -->
@@ -75,6 +78,7 @@
         <div id="showMyAreaBox">
             {{#each user.preferLocation}}
             {{> area }}
+
             {{/each}}
         </div>
         {{!-- Button and text to add new Area --}}
@@ -107,13 +111,13 @@
             </div>
         </div>
     </div>
-    <a href="/myCollection/{{userId}}" style="text-decoration: none;">
+    <a href="/myCollection/{{carInfo.userId}}" style="text-decoration: none;">
         <div id="detailPageMyCollection">My Collection</div>
     </a>
-    <a href="/myComments/{{userId}}" style="text-decoration: none;">
+    <a href="/myComments/{{carInfo.userId}}" style="text-decoration: none;">
         <div id="detailPageMyComments">My Comments</div>
     </a>
-    <a href="/myParkingLots/{{userId}}" style="text-decoration: none;">
+    <a href="/myParkingLots/{{carInfo.userId}}" style="text-decoration: none;">
         <div id="detailPageAddNewParkingLot">Add New Parking Lot</div>
     </a>
 </div>

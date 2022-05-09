@@ -201,3 +201,27 @@ h1 {
     color: #5a8c8a;
     background: #bbeae8;
 }
+
+.parklotBox{
+    text-align: center;
+    padding: 1em;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin: 1em;
+    margin-top: 6px;
+    margin-bottom: 1px;
+    color: #5a8c8a;
+    background: #bbeae8;
+}
+
+.favorite{
+    font-size: 1.5em;
+    color: #5a8c8a;
+}
+
+.error-to-show{
+    text-align: center;
+    color: #f5fdfa;
+    font-weight: bold;
+    font-size: 2em;
+}

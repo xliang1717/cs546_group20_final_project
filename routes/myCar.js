@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     let myCarsInfo = req.body;
-    req.session.user.userId = "626dcbb98ce6dca27a55ea18";
+    req.session.user.userId = "6277457fab2c8f20a4ef59a6";
     let carname = xss(myCarsInfo.carname_input);
 
     let userId = req.body.userId;
@@ -45,10 +45,30 @@ router.post('/', async (req, res) => {
         //await myCarData.addNewCarToUser(carname,req.session.user.userId  );
         //res.status(200).render('pages/myCar', { content: "New car has been added successfully." });
         let myCars = await myCarData.addNewCarToUser(newCar, userId);
-        res.render('partials/myCars', { layout: null, myCars: myCars });
+        let temp={userId:userId,car:[]}
+        for(let i of myCars){
+            let ob={
+                carName:i,
+                userId: userId
+            }
+            temp.car.push(ob)
+        }
+        res.render('partials/myCars', { layout: null, myCars: temp.car });
+        // res.render('partials/myCars', { myCars: temp.car });
     } catch (e) {
         //res.render('pages/myCar', { error: e });
-        res.status(500).json({ error: e });
+        //res.status(500).json({ error: e });
+        let myCars = await myCarData.getMyCarForUser(userId);
+        let temp={userId:userId,car:[]}
+        for(let i of myCars){
+            let ob={
+                carName:i,
+                userId: userId
+            }
+            temp.car.push(ob)
+        }
+        console.log(e)
+        res.render('partials/myCars', { layout: null, myCars: temp.car,error:e });
     }
 });
 

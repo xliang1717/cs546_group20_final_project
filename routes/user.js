@@ -34,7 +34,21 @@ router.get('/:id', async (req, res) => {
   let id = req.params.id;
   try {
     let user = await usersData.get(id);
-    res.render('user/detail', { layout: 'user', title: 'User Detail', user: user, userId: id });
+    // let usermycar=user.myCar;
+    // let userid= user._id;
+    // let u={ usera :usermycar, u}
+    // console.log(user)
+    const carInfo = { userId: id, car: [] }
+    for (let i of user.myCar) {
+      let temp = {
+        carName: i,
+        userId: id
+      }
+      carInfo.car.push(temp)
+    }
+    // console.log(carInfo)
+    console.log(carInfo)
+    res.render('user/detail', { layout: 'user', title: 'User Detail', user: user, carInfo: carInfo });
     // Below should not be required. Will remove later.
     // res.status(200).json(user);
   } catch (e) {
@@ -70,7 +84,7 @@ router.get('/temp/:id', async (req, res) => {
 
 router.post('/myprofile', async (req, res) => {
   let userInfo = req.body;
-  req.session.user.userId = "626dcbb98ce6dca27a55ea18";
+  req.session.user.userId = "62772048358cc5ef41ee0360";
   if (req.session.user) {
     try {
       req.session.user.userId = validation.checkId(req.session.user.userId, 'ID');
