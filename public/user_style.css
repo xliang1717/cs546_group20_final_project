@@ -10,6 +10,12 @@ h1 {
     margin: 0 auto;
 }
 
+.btn-primary {
+    color: #fff;
+    background-color: #0072ee;
+    border-color: #0072ee;
+}
+
 .parklotBox {
     background: #f4fdfa;
     padding: 16px;
