@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const method = require('../method');
 const xss = require('xss');
-router.get('/', async (req, res) => {
+router.get('/', async(req, res) => {
     let result = [];
     try {
         result = await method.filter.allPark();
@@ -20,13 +20,14 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', async(req, res) => {
     try {
         let valPF = xss(req.body.valPF);
         let valCT = xss(req.body.valCT);
         let valDF = xss(req.body.valDF);
         let locVal = xss(req.body.locVal);
         let zipVal = xss(req.body.zipVal);
+        if (!valPF || !valCT || !valPF) throw "Parameter missing, please check the input.";
         let filter = [];
         filter.push(valPF);
         filter.push(valCT);
