@@ -68,7 +68,12 @@ a {
     text-decoration: none;
     color: darkcyan;
 }
-
+#favorite{
+    color:#008484;
+}
+#back{
+    color:#008484;
+}
 .active {
     background-color: #E9E9E9;
     border-radius: 14px;
