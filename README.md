@@ -1,7 +1,29 @@
 # cs546_group20_final_project
 
 
-##
+## Core Feature Tests
+
+Run ``` npm run start ``` to start the website
+
+Visit http://localhost:3000
+
+* You will view the main page, it includes instruction, news and about us.
+
+* You can click nav bar to log in or sign up account
+
+* Make sure you login your account. You will be able to visit user detail page by clicking top right "Home" button
+
+* You will be able to view user detail, my cars, favrite areas in user detail page
+
+* You will be able to add new parking lot in this page using "View/Add New Parking Lot" button
+
+* After parking lot added, you can use the same button to view the parking lot you added.
+
+* And then you are able to view the parking lot detail by clicking the "view" button.
+
+* In the parking lot page, you can add the parking lot to my collection.
+
+* You can also add comment for parking lot.
 
 ## Instruction for git rebase and git merge
 
