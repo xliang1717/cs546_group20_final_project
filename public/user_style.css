@@ -14,6 +14,10 @@ hr {
     text-decoration: none;
 }
 
+.favorite {
+    color:black;
+}
+
 .rating {
     float:right;
 }
